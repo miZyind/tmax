@@ -1,0 +1,40 @@
+/* TSConfig Reference https://www.typescriptlang.org/tsconfig */
+{
+  /* File Inclusion */
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules"],
+  "compilerOptions": {
+    /* Project Options */
+    "target": "ESNext",
+    "module": "ESNext",
+    "jsx": "preserve",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "plugins": [{ "name": "typescript-styled-plugin" }],
+    "noEmit": true,
+    "allowJs": true,
+    "sourceMap": true,
+    "importHelpers": true,
+    "isolatedModules": true,
+    "removeComments": true,
+    /* Strict Checks */
+    "strict": true,
+    /* Module Resolution */
+    "baseUrl": ".",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    /* Linter Checks */
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    /* Experimental */
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    /* Advanced */
+    "forceConsistentCasingInFileNames": true,
+    "preserveConstEnums": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true
+  }
+}
