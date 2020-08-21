@@ -1,0 +1,13 @@
+# https://docs.netlify.com/configure-builds/file-based-configuration
+[build]
+  publish = "out"
+  command = "yarn build && yarn export"
+
+[build.environment]
+  NODE_VERSION = "14"
+  NEXT_PUBLIC_TITLE = "Turbulent miZyind at Xion"
+
+[[redirects]]
+  from = "https://mizyind.netlify.app"
+  to = "https://mizyind.dev"
+  force = true
