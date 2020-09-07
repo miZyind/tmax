@@ -3073,10 +3073,10 @@ eslint-config-prettier@^6.11.0:
   dependencies:
     get-stdin "^6.0.0"
 
-eslint-plugin-mizyind@^1.0.8:
-  version "1.0.8"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-mizyind/-/eslint-plugin-mizyind-1.0.8.tgz#1c54e21e03bd0c569b0989eaf2bbe1665d37855b"
-  integrity sha512-+MlrhSuRKL58cBlWKttSb+iprJ2GPLpW++PXz6scZ/J8tdSS3bBoEnWE1V6lcQe/7kzgFtjY33KDlGBD9T+0Ow==
+eslint-plugin-mizyind@^1.0.9:
+  version "1.0.9"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-mizyind/-/eslint-plugin-mizyind-1.0.9.tgz#8252547d2ec665d014f82122274edd282f22e617"
+  integrity sha512-IvAXC2ChuoHSz2F4jGpQXvafRdazOotjzfHyLBA3vSJNTo55r71fKpkfStkOChr6xGI2tVgP2z2iHtg/y/pQ0Q==
   dependencies:
     "@typescript-eslint/experimental-utils" "^4.0.1"
     lodash.kebabcase "^4.1.1"
