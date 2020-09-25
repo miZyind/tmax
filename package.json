@@ -10,6 +10,8 @@
     "url": "https://github.com/miZyind/tmax/issues"
   },
   "scripts": {
+    "postinstall": "yarn extract-blueprint-vars",
+    "extract-blueprint-vars": "node scripts/blueprint-vars-extractor.mjs",
     "dev": "next dev",
     "build": "next build",
     "export": "next export",
@@ -20,10 +22,12 @@
     "node": ">=14"
   },
   "dependencies": {
-    "@blueprintjs/core": "^3.31.0",
+    "@blueprintjs/core": "^3.32.1",
     "next": "^9.5.3",
+    "node-sass": "^4.14.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "sass-extract": "^2.1.0",
     "styled-components": "^5.2.0"
   },
   "devDependencies": {
@@ -40,7 +44,7 @@
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-mizyind": "^1.1.0",
     "eslint-plugin-prettier": "^3.1.4",
-    "eslint-plugin-react": "^7.20.6",
+    "eslint-plugin-react": "^7.21.2",
     "husky": "^4.3.0",
     "lint-staged": "^10.4.0",
     "prettier": "^2.1.2",
@@ -74,7 +78,10 @@
       "ecmaVersion": 2020,
       "ecmaFeatures": {
         "jsx": true
-      }
+      },
+      "extraFileExtensions": [
+        ".mjs"
+      ]
     },
     "settings": {
       "react": {
