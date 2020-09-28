@@ -12,7 +12,7 @@ import config from '#utils/config';
 import type { AppProps } from 'next/app';
 
 const GlobalStyle = createGlobalStyle`
-  html, body, #__next { height: 100vh; }
+  html, body, #__next { height: 100%; }
 `;
 
 export default function App({ Component, pageProps }: AppProps) {
