@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import Hexmizyind from '#components/hexmizyind';
+import Hexind from '#components/hexind';
 
 const Index = ({ className }: StyledProps) => (
   <div className={className}>
-    <Hexmizyind />
+    <Hexind />
   </div>
 );
 
@@ -13,35 +13,9 @@ export default styled(Index)`
   height: 100%;
   display: flex;
   align-items: center;
-
-  &:before,
-  &:after {
-    content: '';
-    width: 100%;
-    height: 100%;
-    position: absolute;
-  }
-
-  &:before {
-    @keyframes ani-background {
-      0% {
-        filter: brightness(0);
-      }
-      100% {
-        filter: brightness(0.4);
-      }
-    }
-
-    animation-name: ani-background;
-    animation-duration: 1s;
-    animation-timing-function: ease-in;
-
-    filter: brightness(0.4);
-
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-image: url('/background.jpg');
-  }
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image: url('/background.jpg');
 
   &:after {
     @keyframes ani-cloud {
@@ -53,8 +27,13 @@ export default styled(Index)`
       }
     }
 
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+
     animation-name: ani-cloud;
-    animation-duration: 5s;
+    animation-duration: 150s;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
 
