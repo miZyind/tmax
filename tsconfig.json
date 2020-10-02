@@ -25,6 +25,7 @@
     "allowSyntheticDefaultImports": true,
     "paths": {
       "#components/*": ["components/*"],
+      "#icons/*": ["icons/*"],
       "#theme": ["theme"],
       "#utils/*": ["utils/*"]
     },
