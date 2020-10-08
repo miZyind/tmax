@@ -24,7 +24,7 @@
   "dependencies": {
     "@blueprintjs/core": "^3.32.1",
     "gsap": "^3.5.1",
-    "next": "^9.5.3",
+    "next": "^9.5.4",
     "node-sass": "^4.14.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
