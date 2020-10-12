@@ -142,7 +142,11 @@ export default styled(Hexind)`
     align-items: center;
     justify-content: center;
     background-color: rgba(51, 153, 51, 0.8);
-    clip-path: ${({ theme: { hexagon } }) => hexagon};
+    clip-path: ${({
+      theme: {
+        clipPaths: { hexagon },
+      },
+    }) => hexagon};
   }
 
   .mizyind {
