@@ -14,6 +14,12 @@
 
 TMAX, short for **Turbulent miZyind at Xion**.
 
+## 📜 Dotenv Example
+
+```ini
+NEXT_PUBLIC_TITLE="Turbulent miZyind at Xion"
+```
+
 ## 🖋 Author
 
 miZyind <mizyind@gmail.com>
