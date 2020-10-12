@@ -2,6 +2,12 @@ import 'styled-components';
 
 import { Theme } from '#theme';
 
+declare global {
+  interface StyledProps {
+    className?: string;
+  }
+}
+
 declare module 'styled-components' {
-  export interface DefaultTheme extends Theme {}
+  interface DefaultTheme extends Theme {}
 }

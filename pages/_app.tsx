@@ -6,8 +6,8 @@ import Head from 'next/head';
 import React from 'react';
 import { ThemeProvider, createGlobalStyle } from 'styled-components';
 
+import env from '#configs/env';
 import theme from '#theme';
-import config from '#utils/config';
 
 import type { AppProps } from 'next/app';
 
@@ -23,7 +23,7 @@ export default function App({ Component, pageProps }: AppProps) {
           name='viewport'
           content='width=device-width, initial-scale=1.0, minimum-scale=1, maximum-scale=1'
         />
-        <title>{config.title}</title>
+        <title>{env.title}</title>
       </Head>
       <ThemeProvider theme={theme}>
         <GlobalStyle />

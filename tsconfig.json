@@ -1,7 +1,7 @@
 /* TSConfig Reference https://www.typescriptlang.org/tsconfig */
 {
   /* File Inclusion */
-  "include": ["next-env.d.ts", "scripts/*.mjs", "**/*.ts", "**/*.tsx"],
+  "include": ["**/*"],
   "exclude": ["node_modules"],
   "compilerOptions": {
     /* Project Options */
@@ -25,9 +25,9 @@
     "allowSyntheticDefaultImports": true,
     "paths": {
       "#components/*": ["components/*"],
+      "#configs/*": ["configs/*"],
       "#icons/*": ["icons/*"],
-      "#theme": ["theme"],
-      "#utils/*": ["utils/*"]
+      "#theme": ["theme"]
     },
     "typeRoots": ["node_modules/@types", "@types"],
     /* Linter Checks */
