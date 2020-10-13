@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 
 import GithubIcon from '#icons/github';
+import HCTKIcon from '#icons/hctk';
 import NodeIcon from '#icons/node';
 import ReactIcon from '#icons/react';
-import SteamIcon from '#icons/steam';
-import TypeScriptIcon from '#icons/type-script';
+import TypeScriptIcon from '#icons/typescript';
 import UbuntuIcon from '#icons/ubuntu';
 
 import {
@@ -101,7 +101,7 @@ class Hexind extends Component<HexindProps, HexindState> {
           color='rgba(42, 71, 94, 0.8)'
           scalable
         >
-          <SteamIcon size={iconSize} />
+          <HCTKIcon size={iconSize} />
         </Hexagon>
         <Hexagon
           ux={unitX}
