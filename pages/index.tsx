@@ -6,6 +6,7 @@ import Hexind from '#components/hexind';
 const Index = ({ className }: StyledProps) => (
   <div className={className}>
     <Hexind />
+    <div className='cloud' />
   </div>
 );
 
@@ -17,7 +18,7 @@ export default styled(Index)`
   background-repeat: no-repeat;
   background-image: url('/background.jpg');
 
-  &:after {
+  .cloud {
     @keyframes ani-cloud {
       0% {
         background-position: 0px;
@@ -26,22 +27,17 @@ export default styled(Index)`
         background-position: 5440px;
       }
     }
-
-    content: '';
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    pointer-events: none;
-
     animation-name: ani-cloud;
     animation-duration: 150s;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
 
-    filter: opacity(0.3);
-
+    width: 100%;
+    height: 100%;
+    opacity: 0.3;
+    position: absolute;
+    pointer-events: none;
     background-size: auto 100%;
-    background-repeat: repeat;
     background-image: url('/cloud.png');
   }
 `;
