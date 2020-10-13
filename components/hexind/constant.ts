@@ -9,4 +9,4 @@ export const WINDOW_PROP = 0.25;
 export const ELEMENT_PROP = WIDTH_PROP / HEIGHT_PROP;
 export const SIZE_SCALE_PROP = 3;
 export const ICON_SCALE_PROP = 0.25;
-export const LOGO_SCALE_PROP = 2.5;
+export const LOGO_SCALE_PROP = 3;
