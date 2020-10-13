@@ -31,6 +31,7 @@ export default styled(Index)`
     width: 100%;
     height: 100%;
     position: absolute;
+    pointer-events: none;
 
     animation-name: ani-cloud;
     animation-duration: 150s;
