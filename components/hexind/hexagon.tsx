@@ -1,7 +1,7 @@
 import GSAP, { Expo } from 'gsap';
-import React, { ReactNode, useEffect, useRef } from 'react';
+import React, { ReactNode, useEffect, useRef, useState } from 'react';
 
-import { BEGIN_GAP_SIZE, FINAL_GAP_SIZE } from './constant';
+import { BEGIN_GAP_SIZE, FINAL_GAP_SIZE, MIDDLE_GAP_SIZE } from './constant';
 
 interface Props {
   ux: number;
@@ -9,32 +9,51 @@ interface Props {
   px: number;
   py: number;
   color: string;
-  scalable?: boolean;
-  children?: ReactNode;
+  fixed?: boolean;
+  children: ReactNode;
 }
 
-export default function Hexagon({
-  ux,
-  uy,
-  px,
-  py,
-  color,
-  scalable = false,
-  children,
-}: Props) {
+export default function Hexagon(props: Props) {
   const ref = useRef<HTMLDivElement>(null);
-  const gapSize = scalable ? BEGIN_GAP_SIZE : FINAL_GAP_SIZE;
-  const x = ux + ux * px * gapSize;
-  const y = uy + uy * py * gapSize;
+  const { ux, uy, px, py, fixed = false } = props;
+  const [hasPrepared, setHasPrepared] = useState(fixed);
+  const x = ux + ux * px * FINAL_GAP_SIZE;
+  const y = uy + uy * py * FINAL_GAP_SIZE;
 
-  if (scalable) {
+  if (!fixed) {
     useEffect(() => {
-      GSAP.to(ref.current, {
-        translateX: ux + ux * px * FINAL_GAP_SIZE,
-        translateY: uy + uy * py * FINAL_GAP_SIZE,
-        duration: 1.5,
-        ease: Expo.easeInOut,
+      GSAP.set(ref.current, {
+        filter: `brightness(${hasPrepared ? '100' : '0'}%)`,
+        translateX: hasPrepared ? x : ux + ux * px * BEGIN_GAP_SIZE,
+        translateY: hasPrepared ? y : uy + uy * py * BEGIN_GAP_SIZE,
       });
+
+      const timeline = GSAP.timeline({ defaults: { ease: Expo.easeInOut } })
+        .to(ref.current, {
+          delay: 1,
+          repeat: 1,
+          yoyo: true,
+          duration: 0.5,
+          rotate: 90,
+          translateX: ux + ux * px * MIDDLE_GAP_SIZE,
+          translateY: uy + uy * py * MIDDLE_GAP_SIZE,
+        })
+        .to(ref.current, {
+          duration: 1,
+          filter: 'brightness(100%)',
+          translateX: x,
+          translateY: y,
+        })
+        .pause();
+
+      if (!hasPrepared) {
+        timeline.play();
+        setHasPrepared(true);
+      }
+
+      return () => {
+        timeline.kill();
+      };
     }, [ux, uy]);
   }
 
@@ -43,13 +62,14 @@ export default function Hexagon({
       ref={ref}
       className='hexagon'
       style={{
-        backgroundColor: color,
         width: ux,
         height: uy,
+        backgroundColor: props.color,
         transform: `translate(${x}px, ${y}px)`,
+        visibility: hasPrepared ? 'visible' : 'hidden',
       }}
     >
-      {children}
+      {props.children}
     </div>
   );
 }

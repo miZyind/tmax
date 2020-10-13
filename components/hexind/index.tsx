@@ -11,22 +11,21 @@ import UbuntuIcon from '#icons/ubuntu';
 import {
   ELEMENT_PROP,
   ICON_SCALE_PROP,
+  LOGO_SCALE_PROP,
   PADDING_SIZE,
+  SIZE_SCALE_PROP,
   WINDOW_PROP,
 } from './constant';
 import Hexagon from './hexagon';
 
-const SIZE_SCALE_PROP = 3;
-const LOGO_SCALE_PROP = 2.5;
+interface Props extends StyledProps {}
 
-interface HexindProps extends StyledProps {}
-
-interface HexindState {
+interface State {
   unit: number;
 }
 
-class Hexind extends Component<HexindProps, HexindState> {
-  constructor(props: HexindProps) {
+class Hexind extends Component<Props, State> {
+  constructor(props: Props) {
     super(props);
     this.state = { unit: 0 };
   }
@@ -50,77 +49,70 @@ class Hexind extends Component<HexindProps, HexindState> {
     const width = unitX * SIZE_SCALE_PROP;
     const height = unitY * SIZE_SCALE_PROP;
     const iconSize = unitX * ICON_SCALE_PROP;
+    const logoSize = iconSize * LOGO_SCALE_PROP;
 
     return (
       <div className={className} style={{ width, height }}>
-        <Hexagon
-          ux={unitX}
-          uy={unitY}
-          px={0}
-          py={-1}
-          color='rgba(51,153,51, 0.8)'
-          scalable
-        >
-          <NodeIcon size={iconSize} />
-        </Hexagon>
-        <Hexagon
-          ux={unitX}
-          uy={unitY}
-          px={1}
-          py={-0.5}
-          color='rgba(0,122,204, 0.8)'
-          scalable
-        >
-          <TypeScriptIcon size={iconSize} />
-        </Hexagon>
-        <Hexagon
-          ux={unitX}
-          uy={unitY}
-          px={1}
-          py={0.5}
-          color='rgba(97,218,251, 0.8)'
-          scalable
-        >
-          <ReactIcon size={iconSize} />
-        </Hexagon>
-        <Hexagon
-          ux={unitX}
-          uy={unitY}
-          px={0}
-          py={1}
-          color='rgba(233,84,32, 0.8)'
-          scalable
-        >
-          <UbuntuIcon size={iconSize} />
-        </Hexagon>
-        <Hexagon
-          ux={unitX}
-          uy={unitY}
-          px={-1}
-          py={0.5}
-          color='rgba(42, 71, 94, 0.8)'
-          scalable
-        >
-          <HCTKIcon size={iconSize} />
-        </Hexagon>
-        <Hexagon
-          ux={unitX}
-          uy={unitY}
-          px={-1}
-          py={-0.5}
-          color='rgba(24,23,23, 0.8)'
-          scalable
-        >
-          <GithubIcon size={iconSize} />
-        </Hexagon>
-        <Hexagon ux={unitX} uy={unitY} px={0} py={0} color='white'>
-          <div
-            className='mizyind'
-            style={{
-              width: iconSize * LOGO_SCALE_PROP,
-              height: iconSize * LOGO_SCALE_PROP,
-            }}
-          />
+        {unit && (
+          <>
+            <Hexagon
+              ux={unitX}
+              uy={unitY}
+              px={0}
+              py={-1}
+              color='rgba(51,153,51,0.8)'
+            >
+              <NodeIcon size={iconSize} />
+            </Hexagon>
+            <Hexagon
+              ux={unitX}
+              uy={unitY}
+              px={1}
+              py={-0.5}
+              color='rgba(0,122,204,0.8)'
+            >
+              <TypeScriptIcon size={iconSize} />
+            </Hexagon>
+            <Hexagon
+              ux={unitX}
+              uy={unitY}
+              px={1}
+              py={0.5}
+              color='rgba(97,218,251,0.8)'
+            >
+              <ReactIcon size={iconSize} />
+            </Hexagon>
+            <Hexagon
+              ux={unitX}
+              uy={unitY}
+              px={0}
+              py={1}
+              color='rgba(233,84,32,0.8)'
+            >
+              <UbuntuIcon size={iconSize} />
+            </Hexagon>
+            <Hexagon
+              ux={unitX}
+              uy={unitY}
+              px={-1}
+              py={0.5}
+              color='rgba(42,71,94,0.8)'
+            >
+              <HCTKIcon size={iconSize} />
+            </Hexagon>
+            <Hexagon
+              ux={unitX}
+              uy={unitY}
+              px={-1}
+              py={-0.5}
+              color='rgba(24,23,23,0.8)'
+            >
+              <GithubIcon size={iconSize} />
+            </Hexagon>
+          </>
+        )}
+        <Hexagon ux={unitX} uy={unitY} px={0} py={0} color='white' fixed>
+          <div className='logo' style={{ width: logoSize, height: logoSize }} />
         </Hexagon>
       </div>
     );
@@ -141,15 +133,10 @@ export default styled(Hexind)`
     position: absolute;
     align-items: center;
     justify-content: center;
-    background-color: rgba(51, 153, 51, 0.8);
-    clip-path: ${({
-      theme: {
-        clipPaths: { hexagon },
-      },
-    }) => hexagon};
+    clip-path: ${({ theme }) => theme.clipPaths.hexagon};
   }
 
-  .mizyind {
+  .logo {
     border-radius: 50%;
     background-size: cover;
     background-image: url('/mizyind.png');
