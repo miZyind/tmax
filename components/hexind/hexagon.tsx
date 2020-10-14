@@ -35,21 +35,24 @@ export default function Hexagon(props: Props) {
         translateY: hasPrepared ? y : uy + uy * py * BEGIN_GAP_SIZE,
       });
 
-      const timeline = GSAP.timeline({ defaults: { ease: Expo.easeInOut } })
+      const timeline = GSAP.timeline()
         .to(ref.current, {
-          delay: 1,
-          repeat: 1,
-          yoyo: true,
-          duration: 0.5,
           rotate: 90,
           translateX: ux + ux * px * MIDDLE_GAP_SIZE,
           translateY: uy + uy * py * MIDDLE_GAP_SIZE,
+          delay: 1,
+          duration: 1,
+          repeat: 1,
+          yoyo: true,
+          yoyoEase: Expo.easeOut,
+          ease: Expo.easeOut,
         })
         .to(ref.current, {
-          duration: 1,
-          filter: 'brightness(100%)',
           translateX: x,
           translateY: y,
+          filter: 'brightness(100%)',
+          duration: 0.8,
+          ease: Expo.easeInOut,
         })
         .pause();
 
