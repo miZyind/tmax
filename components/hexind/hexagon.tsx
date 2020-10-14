@@ -1,21 +1,28 @@
 import GSAP, { Expo } from 'gsap';
-import React, { ReactNode, useEffect, useRef, useState } from 'react';
+import React, {
+  HTMLAttributes,
+  ReactNode,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 
 import { BEGIN_GAP_SIZE, FINAL_GAP_SIZE, MIDDLE_GAP_SIZE } from './constant';
 
-interface Props {
+export interface Props {
   ux: number;
   uy: number;
   px: number;
   py: number;
   color: string;
   fixed?: boolean;
+  onClick?: HTMLAttributes<HTMLDivElement>['onClick'];
   children: ReactNode;
 }
 
 export default function Hexagon(props: Props) {
   const ref = useRef<HTMLDivElement>(null);
-  const { ux, uy, px, py, fixed = false } = props;
+  const { ux, uy, px, py, fixed = false, onClick } = props;
   const [hasPrepared, setHasPrepared] = useState(fixed);
   const x = ux + ux * px * FINAL_GAP_SIZE;
   const y = uy + uy * py * FINAL_GAP_SIZE;
@@ -68,6 +75,7 @@ export default function Hexagon(props: Props) {
         transform: `translate(${x}px, ${y}px)`,
         visibility: hasPrepared ? 'visible' : 'hidden',
       }}
+      onClick={onClick}
     >
       {props.children}
     </div>

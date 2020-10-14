@@ -16,9 +16,11 @@ import {
   SIZE_SCALE_PROP,
   WINDOW_PROP,
 } from './constant';
-import Hexagon from './hexagon';
+import Hexagon, { Props as HexagonProps } from './hexagon';
 
-interface Props extends StyledProps {}
+interface Props extends StyledProps {
+  onHCTKClick: HexagonProps['onClick'];
+}
 
 interface State {
   unit: number;
@@ -38,7 +40,7 @@ class Hexind extends Component<Props, State> {
   }
 
   render() {
-    const { className } = this.props;
+    const { className, onHCTKClick } = this.props;
     const { unit } = this.state;
 
     const isLoaded = Boolean(unit);
@@ -95,6 +97,7 @@ class Hexind extends Component<Props, State> {
               px={-1}
               py={0.5}
               color='rgba(42,71,94,0.8)'
+              onClick={onHCTKClick}
             >
               <HCTKIcon size={iconSize} />
             </Hexagon>

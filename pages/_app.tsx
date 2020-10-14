@@ -25,8 +25,8 @@ export default function App({ Component, pageProps }: AppProps) {
         />
         <title>{env.title}</title>
       </Head>
+      <GlobalStyle />
       <ThemeProvider theme={theme}>
-        <GlobalStyle />
         <Component {...pageProps} />
       </ThemeProvider>
     </>

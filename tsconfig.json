@@ -27,7 +27,8 @@
       "#components/*": ["components/*"],
       "#configs/*": ["configs/*"],
       "#icons/*": ["icons/*"],
-      "#theme": ["theme"]
+      "#theme": ["theme"],
+      "#utils/*": ["utils/*"]
     },
     "typeRoots": ["node_modules/@types", "@types"],
     /* Linter Checks */
