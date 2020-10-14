@@ -1,6 +1,6 @@
 export function decode(input: string, cedict: Cedict) {
   if (/\w+/u.test(input)) {
-    return 'N/A';
+    return '';
   }
 
   return input
