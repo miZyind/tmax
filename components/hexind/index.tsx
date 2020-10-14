@@ -25,10 +25,7 @@ interface State {
 }
 
 class Hexind extends Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
-    this.state = { unit: 0 };
-  }
+  state: State = { unit: 0 };
 
   componentDidMount() {
     this.updateUnit();
@@ -44,6 +41,7 @@ class Hexind extends Component<Props, State> {
     const { className } = this.props;
     const { unit } = this.state;
 
+    const isLoaded = Boolean(unit);
     const unitX = unit * ELEMENT_PROP;
     const unitY = unit;
     const width = unitX * SIZE_SCALE_PROP;
@@ -53,7 +51,7 @@ class Hexind extends Component<Props, State> {
 
     return (
       <div className={className} style={{ width, height }}>
-        {unit && (
+        {isLoaded && (
           <>
             <Hexagon
               ux={unitX}
