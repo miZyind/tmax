@@ -15,11 +15,7 @@ const Index = ({ className, cedict }: Props) => {
 
   return (
     <div className={className}>
-      <Hexind
-        onHCTKClick={() => {
-          setIsHCTKOpen((isOpen) => !isOpen);
-        }}
-      />
+      <Hexind onHCTKClick={() => setIsHCTKOpen((isOpen) => !isOpen)} />
       <HCTK cedict={cedict} isOpen={isHCTKOpen} onClose={handleOnHCTKClose} />
     </div>
   );
