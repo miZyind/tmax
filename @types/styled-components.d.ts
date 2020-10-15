@@ -1,6 +1,6 @@
 import 'styled-components';
 
-import { Theme } from '#theme';
+import type { Theme } from '#theme';
 
 declare global {
   interface StyledProps {

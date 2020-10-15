@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import styled from 'styled-components';
 
 import GithubIcon from '#icons/github';
@@ -16,7 +16,9 @@ import {
   SIZE_SCALE_PROP,
   WINDOW_PROP,
 } from './constant';
-import Hexagon, { Props as HexagonProps } from './hexagon';
+import Hexagon from './hexagon';
+
+import type { Props as HexagonProps } from './hexagon';
 
 interface Props extends StyledProps {
   onHCTKClick: HexagonProps['onClick'];
@@ -27,7 +29,11 @@ interface State {
 }
 
 class Hexind extends Component<Props, State> {
-  state: State = { unit: 0 };
+  constructor(props: Props) {
+    super(props);
+
+    this.state = { unit: 0 };
+  }
 
   componentDidMount() {
     this.updateUnit();

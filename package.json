@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "@blueprintjs/core": "^3.33.0",
+    "classnames": "^2.2.6",
     "gsap": "^3.5.1",
     "next": "^9.5.5",
     "react": "^16.14.0",
@@ -30,6 +31,7 @@
   "devDependencies": {
     "@commitlint/cli": "^11.0.0",
     "@commitlint/config-conventional": "^11.0.0",
+    "@types/classnames": "^2.2.10",
     "@types/node": "^14.11.8",
     "@types/react": "^16.9.52",
     "@types/react-dom": "^16.9.8",
@@ -91,7 +93,8 @@
     ],
     "extends": [
       "eslint:recommended",
-      "plugin:react/recommended",
+      "plugin:react/all",
+      "prettier/react",
       "plugin:@typescript-eslint/all",
       "prettier/@typescript-eslint",
       "plugin:prettier/recommended",

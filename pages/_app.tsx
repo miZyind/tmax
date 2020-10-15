@@ -3,7 +3,6 @@ import '@blueprintjs/core/lib/css/blueprint.css';
 import '@blueprintjs/icons/lib/css/blueprint-icons.css';
 
 import Head from 'next/head';
-import React from 'react';
 import { ThemeProvider, createGlobalStyle } from 'styled-components';
 
 import env from '#configs/env';

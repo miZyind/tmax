@@ -1,7 +1,7 @@
-import React, { useCallback, useState } from 'react';
+import { useCallback, useState } from 'react';
 import styled from 'styled-components';
 
-import HCTK from '#components/hctk';
+import HCTKDialog from '#components/hctk-dialog';
 import Hexind from '#components/hexind';
 import { load } from '#utils/hctk-loader';
 
@@ -9,17 +9,22 @@ interface Props extends StyledProps {
   cedict: Cedict;
 }
 
-const Index = ({ className, cedict }: Props) => {
+function Index({ className, cedict }: Props) {
   const [isHCTKOpen, setIsHCTKOpen] = useState(false);
+  const handleOnHCTKClick = useCallback(() => setIsHCTKOpen(true), []);
   const handleOnHCTKClose = useCallback(() => setIsHCTKOpen(false), []);
 
   return (
     <div className={className}>
-      <Hexind onHCTKClick={() => setIsHCTKOpen((isOpen) => !isOpen)} />
-      <HCTK cedict={cedict} isOpen={isHCTKOpen} onClose={handleOnHCTKClose} />
+      <Hexind onHCTKClick={handleOnHCTKClick} />
+      <HCTKDialog
+        cedict={cedict}
+        isOpen={isHCTKOpen}
+        onClose={handleOnHCTKClose}
+      />
     </div>
   );
-};
+}
 
 export async function getStaticProps() {
   const cedict = await load();

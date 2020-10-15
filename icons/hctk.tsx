@@ -1,6 +1,6 @@
-import React from 'react';
+import BaseIcon from './base';
 
-import BaseIcon, { BaseIconProps } from './base';
+import type { BaseIconProps } from './base';
 
 export default function HCTKIcon(props: BaseIconProps) {
   return (
