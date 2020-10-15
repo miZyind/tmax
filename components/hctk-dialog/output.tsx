@@ -13,9 +13,14 @@ interface Props extends StyledProps {
 }
 
 function Output({ className, value, isValidOutput }: Props) {
-  const onClick = useCallback((e: MouseEvent<HTMLInputElement>) => {
-    e.currentTarget.select();
-  }, []);
+  const onClick = useCallback(
+    (e: MouseEvent<HTMLInputElement>) => {
+      e.currentTarget.select();
+
+      return navigator.clipboard.writeText(value);
+    },
+    [value],
+  );
   const targetProps = {
     id: 'hctk-output',
     className: classNames(className, Classes.INPUT),
@@ -32,10 +37,9 @@ function Output({ className, value, isValidOutput }: Props) {
         <Icon icon={IconNames.LOG_OUT} />
         <Popover
           position={Position.BOTTOM_LEFT}
-          target='input'
-          targetProps={targetProps}
+          target={<input {...targetProps} />}
           targetTagName='div'
-          content='Copied'
+          content='Copied!'
           usePortal={false}
           disabled={!isValidOutput}
         />

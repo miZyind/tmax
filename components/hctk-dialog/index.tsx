@@ -31,7 +31,7 @@ function HCTKDialog({ className, cedict, isOpen, onClose }: Props) {
     >
       <div className={Classes.DIALOG_BODY}>
         <Input value={text} isValidOutput={isValidOutput} onChange={setText} />
-        <Output value={text} isValidOutput={isValidOutput} />
+        <Output value={output} isValidOutput={isValidOutput} />
       </div>
     </Dialog>
   );
