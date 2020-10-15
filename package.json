@@ -14,7 +14,6 @@
     "build": "next build",
     "export": "next export",
     "start": "next start",
-    "sb": "start-storybook --port 3001 --static-dir public",
     "lint": "eslint \"*/**/*.{ts,tsx}\" --max-warnings 0"
   },
   "engines": {
@@ -24,20 +23,19 @@
     "@blueprintjs/core": "^3.33.0",
     "gsap": "^3.5.1",
     "next": "^9.5.5",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0",
     "styled-components": "^5.2.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^11.0.0",
     "@commitlint/config-conventional": "^11.0.0",
-    "@storybook/react": "^6.0.26",
     "@types/node": "^14.11.8",
     "@types/react": "^16.9.52",
     "@types/react-dom": "^16.9.8",
     "@types/styled-components": "^5.1.4",
-    "@typescript-eslint/eslint-plugin": "^4.4.0",
-    "@typescript-eslint/parser": "^4.4.0",
+    "@typescript-eslint/eslint-plugin": "^4.4.1",
+    "@typescript-eslint/parser": "^4.4.1",
     "babel-plugin-styled-components": "^1.11.1",
     "eslint": "^7.11.0",
     "eslint-config-prettier": "^6.12.0",
