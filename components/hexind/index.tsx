@@ -128,6 +128,7 @@ class Hexind extends Component<Props, State> {
   private updateUnit() {
     const minLength = Math.min(window.innerWidth, window.innerHeight);
 
+    // eslint-disable-next-line react/no-set-state
     this.setState({ unit: (minLength - PADDING_SIZE) * WINDOW_PROP });
   }
 }
