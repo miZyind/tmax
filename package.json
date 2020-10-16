@@ -20,7 +20,7 @@
     "node": ">=14"
   },
   "dependencies": {
-    "@blueprintjs/core": "^3.33.0",
+    "@blueprintjs/core": "^3.34.0",
     "classnames": "^2.2.6",
     "gsap": "^3.5.1",
     "next": "^9.5.5",
@@ -36,17 +36,12 @@
     "@types/react": "^16.9.52",
     "@types/react-dom": "^16.9.8",
     "@types/styled-components": "^5.1.4",
-    "@typescript-eslint/eslint-plugin": "^4.4.1",
-    "@typescript-eslint/parser": "^4.4.1",
     "babel-plugin-styled-components": "^1.11.1",
-    "eslint": "^7.11.0",
-    "eslint-config-prettier": "^6.12.0",
-    "eslint-plugin-mizyind": "^1.2.1",
-    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-mizyind": "^2.0.1",
     "eslint-plugin-react": "^7.21.4",
+    "eslint-plugin-react-hooks": "^4.1.2",
     "husky": "^4.3.0",
     "lint-staged": "^10.4.0",
-    "prettier": "^2.1.2",
     "typescript": "^4.0.3",
     "typescript-styled-plugin": "^0.15.0"
   },
@@ -64,40 +59,7 @@
     ]
   },
   "eslintConfig": {
-    "env": {
-      "es6": true,
-      "node": true,
-      "browser": true,
-      "jest": true
-    },
-    "parser": "@typescript-eslint/parser",
-    "parserOptions": {
-      "project": "tsconfig.json",
-      "sourceType": "module",
-      "ecmaVersion": 2020,
-      "ecmaFeatures": {
-        "jsx": true
-      },
-      "extraFileExtensions": [
-        ".mjs"
-      ]
-    },
-    "settings": {
-      "react": {
-        "version": "detect"
-      }
-    },
-    "plugins": [
-      "@typescript-eslint",
-      "mizyind"
-    ],
     "extends": [
-      "eslint:recommended",
-      "plugin:react/all",
-      "prettier/react",
-      "plugin:@typescript-eslint/all",
-      "prettier/@typescript-eslint",
-      "plugin:prettier/recommended",
       "plugin:mizyind/react"
     ]
   },
