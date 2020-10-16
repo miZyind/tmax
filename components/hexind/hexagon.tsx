@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 
 import { BEGIN_GAP_SIZE, FINAL_GAP_SIZE, MIDDLE_GAP_SIZE } from './constant';
 
-import type { HTMLAttributes, ReactNode } from 'react';
+import type { MouseEventHandler, ReactNode } from 'react';
 
 export interface Props {
   ux: number;
@@ -12,7 +12,7 @@ export interface Props {
   py: number;
   color: string;
   fixed?: boolean;
-  onClick?: HTMLAttributes<HTMLDivElement>['onClick'];
+  onClick?: MouseEventHandler<HTMLDivElement>;
   children: ReactNode;
 }
 
