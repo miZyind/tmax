@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import styled from 'styled-components';
 
 import { Classes, Dialog } from '@blueprintjs/core';
@@ -20,17 +20,27 @@ function HCTKDialog({ className, cedict, isOpen, onClose }: Props) {
   const [text, setText] = useState('');
   const output = decode(text, cedict);
   const isValidOutput = Boolean(output.length);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const handleDialogOpening = useCallback(() => inputRef.current?.focus(), [
+    inputRef,
+  ]);
 
   return (
     <Dialog
       className={`${className} ${Classes.DARK}`}
       isOpen={isOpen}
       onClose={onClose}
+      onOpening={handleDialogOpening}
       icon={<HeaderIcon />}
       title='HantChar to Keyboard Keys'
     >
       <div className={Classes.DIALOG_BODY}>
-        <Input value={text} isValidOutput={isValidOutput} onChange={setText} />
+        <Input
+          inputRef={inputRef}
+          value={text}
+          isValidOutput={isValidOutput}
+          onChange={setText}
+        />
         <Output value={output} isValidOutput={isValidOutput} />
       </div>
     </Dialog>

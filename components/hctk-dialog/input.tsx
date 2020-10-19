@@ -3,15 +3,22 @@ import { useCallback } from 'react';
 
 import { Classes, FormGroup, InputGroup } from '@blueprintjs/core';
 
+import type { IInputGroupProps } from '@blueprintjs/core';
 import type { ChangeEvent } from 'react';
 
 interface Props {
+  inputRef: IInputGroupProps['inputRef'];
   value: string;
   isValidOutput: boolean;
   onChange: (value: string) => void;
 }
 
-export default function Input({ value, isValidOutput, onChange }: Props) {
+export default function Input({
+  inputRef,
+  value,
+  isValidOutput,
+  onChange,
+}: Props) {
   const modifier = isValidOutput
     ? Classes.INTENT_SUCCESS
     : Classes.INTENT_DANGER;
@@ -24,8 +31,7 @@ export default function Input({ value, isValidOutput, onChange }: Props) {
   return (
     <FormGroup label='Input' labelFor='hctk-input'>
       <InputGroup
-        // eslint-disable-next-line react/jsx-no-bind
-        inputRef={(el) => el?.focus()}
+        inputRef={inputRef}
         id='hctk-input'
         className={className}
         placeholder='Input HantChar...'
