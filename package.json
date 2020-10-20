@@ -2,12 +2,13 @@
   "name": "tmax",
   "version": "1.0.0",
   "description": "TMAX, short for Turbulent miZyind at Xion.",
-  "repository": "git@github.com:miZyind/tmax.git",
   "author": "miZyind <mizyind@gmail.com>",
   "license": "MIT",
+  "repository": "git@github.com:miZyind/tmax.git",
   "homepage": "https://mizyind.dev",
-  "bugs": {
-    "url": "https://github.com/miZyind/tmax/issues"
+  "bugs": "https://github.com/miZyind/tmax/issues",
+  "engines": {
+    "node": ">=14"
   },
   "scripts": {
     "dev": "next dev",
@@ -15,9 +16,6 @@
     "export": "next export",
     "start": "next start",
     "lint": "eslint \"*/**/*.{ts,tsx}\" --max-warnings 0"
-  },
-  "engines": {
-    "node": ">=14"
   },
   "dependencies": {
     "@blueprintjs/core": "^3.34.0",
@@ -32,13 +30,13 @@
     "@commitlint/cli": "^11.0.0",
     "@commitlint/config-conventional": "^11.0.0",
     "@types/classnames": "^2.2.10",
-    "@types/node": "^14.11.10",
+    "@types/node": "^14.11.11",
     "@types/react": "^16.9.53",
     "@types/react-dom": "^16.9.8",
     "@types/styled-components": "^5.1.4",
     "babel-plugin-styled-components": "^1.11.1",
-    "eslint-plugin-mizyind": "^2.0.1",
-    "eslint-plugin-react": "^7.21.4",
+    "eslint-plugin-mizyind": "^2.0.2",
+    "eslint-plugin-react": "^7.21.5",
     "eslint-plugin-react-hooks": "^4.1.2",
     "husky": "^4.3.0",
     "lint-staged": "^10.4.2",
