@@ -5,6 +5,10 @@ import { BEGIN_GAP_SIZE, FINAL_GAP_SIZE, MIDDLE_GAP_SIZE } from './constant';
 
 import type { MouseEventHandler, ReactNode } from 'react';
 
+function getPos(u: number, p: number, gapSize = FINAL_GAP_SIZE) {
+  return u + u * p * gapSize;
+}
+
 export interface Props {
   ux: number;
   uy: number;
@@ -17,51 +21,44 @@ export interface Props {
 }
 
 export default function Hexagon(props: Props) {
-  const ref = useRef<HTMLDivElement>(null);
   const { ux, uy, px, py, color, fixed = false, onClick, children } = props;
-  const [hasPrepared, setHasPrepared] = useState(fixed);
-  const x = ux + ux * px * FINAL_GAP_SIZE;
-  const y = uy + uy * py * FINAL_GAP_SIZE;
+  const ref = useRef<HTMLDivElement>(null);
+  const [isActive, setIsActive] = useState(fixed);
+  const x = getPos(ux, px);
+  const y = getPos(uy, py);
 
-  if (!fixed) {
-    useEffect(() => {
-      GSAP.set(ref.current, {
-        filter: `brightness(${hasPrepared ? '100' : '0'}%)`,
-        translateX: hasPrepared ? x : ux + ux * px * BEGIN_GAP_SIZE,
-        translateY: hasPrepared ? y : uy + uy * py * BEGIN_GAP_SIZE,
-      });
-
-      const timeline = GSAP.timeline()
-        .to(ref.current, {
-          rotate: 90,
-          translateX: ux + ux * px * MIDDLE_GAP_SIZE,
-          translateY: uy + uy * py * MIDDLE_GAP_SIZE,
-          delay: 1,
-          duration: 1,
-          repeat: 1,
-          yoyo: true,
-          yoyoEase: Expo.easeOut,
-          ease: Expo.easeOut,
-        })
+  useEffect(() => {
+    if (!fixed && !isActive) {
+      GSAP.timeline({ defaults: { filter: 'brightness(0%)' } })
+        .fromTo(
+          ref.current,
+          {
+            translateX: getPos(ux, px, BEGIN_GAP_SIZE),
+            translateY: getPos(uy, py, BEGIN_GAP_SIZE),
+          },
+          {
+            rotate: 90,
+            translateX: getPos(ux, px, MIDDLE_GAP_SIZE),
+            translateY: getPos(uy, py, MIDDLE_GAP_SIZE),
+            delay: 1,
+            duration: 1,
+            repeat: 1,
+            yoyo: true,
+            yoyoEase: Expo.easeOut,
+            ease: Expo.easeOut,
+          },
+        )
         .to(ref.current, {
           translateX: x,
           translateY: y,
           filter: 'brightness(100%)',
           duration: 0.8,
           ease: Expo.easeInOut,
-        })
-        .pause();
+        });
 
-      if (!hasPrepared) {
-        timeline.play();
-        setHasPrepared(true);
-      }
-
-      return () => {
-        timeline.kill();
-      };
-    }, [ux, uy]);
-  }
+      setIsActive(true);
+    }
+  }, [fixed, isActive, px, py, ux, uy, x, y]);
 
   return (
     <div
@@ -72,7 +69,7 @@ export default function Hexagon(props: Props) {
         height: uy,
         backgroundColor: color,
         transform: `translate(${x}px, ${y}px)`,
-        visibility: hasPrepared ? 'visible' : 'hidden',
+        visibility: isActive ? 'visible' : 'hidden',
       }}
       onClick={onClick}
     >
