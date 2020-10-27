@@ -1,13 +1,9 @@
 import GSAP, { Expo } from 'gsap';
 import { useEffect, useRef, useState } from 'react';
 
-import { BEGIN_GAP_SIZE, FINAL_GAP_SIZE, MIDDLE_GAP_SIZE } from './constant';
+import { BEGIN_GAP, FINAL_GAP, MIDDLE_GAP } from './constant';
 
 import type { MouseEventHandler, ReactNode } from 'react';
-
-function getPos(u: number, p: number, gapSize = FINAL_GAP_SIZE) {
-  return u + u * p * gapSize;
-}
 
 export interface Props {
   ux: number;
@@ -24,8 +20,8 @@ export default function Hexagon(props: Props) {
   const { ux, uy, px, py, color, fixed = false, onClick, children } = props;
   const ref = useRef<HTMLDivElement>(null);
   const [isActive, setIsActive] = useState(fixed);
-  const x = getPos(ux, px);
-  const y = getPos(uy, py);
+  const x = ux + ux * px;
+  const y = uy + uy * py;
 
   useEffect(() => {
     if (!fixed && !isActive) {
@@ -33,13 +29,13 @@ export default function Hexagon(props: Props) {
         .fromTo(
           ref.current,
           {
-            translateX: getPos(ux, px, BEGIN_GAP_SIZE),
-            translateY: getPos(uy, py, BEGIN_GAP_SIZE),
+            translateX: x * BEGIN_GAP,
+            translateY: y * BEGIN_GAP,
           },
           {
             rotate: 90,
-            translateX: getPos(ux, px, MIDDLE_GAP_SIZE),
-            translateY: getPos(uy, py, MIDDLE_GAP_SIZE),
+            translateX: x * MIDDLE_GAP,
+            translateY: y * MIDDLE_GAP,
             delay: 1,
             duration: 1,
             repeat: 1,
@@ -49,8 +45,8 @@ export default function Hexagon(props: Props) {
           },
         )
         .to(ref.current, {
-          translateX: x,
-          translateY: y,
+          translateX: x * FINAL_GAP,
+          translateY: y * FINAL_GAP,
           filter: 'brightness(100%)',
           duration: 0.8,
           ease: Expo.easeInOut,
@@ -58,7 +54,7 @@ export default function Hexagon(props: Props) {
 
       setIsActive(true);
     }
-  }, [fixed, isActive, px, py, ux, uy, x, y]);
+  }, [fixed, isActive, x, y]);
 
   return (
     <div
@@ -68,7 +64,7 @@ export default function Hexagon(props: Props) {
         width: ux,
         height: uy,
         backgroundColor: color,
-        transform: `translate(${x}px, ${y}px)`,
+        transform: `translate(${x * FINAL_GAP}px,${y * FINAL_GAP}px)`,
         visibility: isActive ? 'visible' : 'hidden',
       }}
       onClick={onClick}

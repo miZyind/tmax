@@ -13,7 +13,7 @@ import {
   ICON_SCALE_PROP,
   INITIAL_UNIT,
   LOGO_SCALE_PROP,
-  PADDING_SIZE,
+  PADDING,
   SIZE_SCALE_PROP,
   WINDOW_PROP,
 } from './constant';
@@ -28,7 +28,7 @@ function useUnit() {
     function updateUnit() {
       const minLength = Math.min(window.innerWidth, window.innerHeight);
 
-      setUnit((minLength - PADDING_SIZE) * WINDOW_PROP);
+      setUnit((minLength - PADDING) * WINDOW_PROP);
     }
 
     window.addEventListener('resize', updateUnit);
