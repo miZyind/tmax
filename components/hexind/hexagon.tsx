@@ -5,6 +5,10 @@ import { BEGIN_GAP, FINAL_GAP, MIDDLE_GAP } from './constant';
 
 import type { MouseEventHandler, ReactNode } from 'react';
 
+function calc(u: number, p: number, gap = FINAL_GAP) {
+  return u + u * p * gap;
+}
+
 export interface Props {
   ux: number;
   uy: number;
@@ -20,8 +24,6 @@ export default function Hexagon(props: Props) {
   const { ux, uy, px, py, color, fixed = false, onClick, children } = props;
   const ref = useRef<HTMLDivElement>(null);
   const [isActive, setIsActive] = useState(fixed);
-  const x = ux + ux * px;
-  const y = uy + uy * py;
 
   useEffect(() => {
     if (!fixed && !isActive) {
@@ -29,13 +31,13 @@ export default function Hexagon(props: Props) {
         .fromTo(
           ref.current,
           {
-            translateX: x * BEGIN_GAP,
-            translateY: y * BEGIN_GAP,
+            translateX: calc(ux, px, BEGIN_GAP),
+            translateY: calc(uy, py, BEGIN_GAP),
           },
           {
             rotate: 90,
-            translateX: x * MIDDLE_GAP,
-            translateY: y * MIDDLE_GAP,
+            translateX: calc(ux, px, MIDDLE_GAP),
+            translateY: calc(uy, py, MIDDLE_GAP),
             delay: 1,
             duration: 1,
             repeat: 1,
@@ -45,8 +47,8 @@ export default function Hexagon(props: Props) {
           },
         )
         .to(ref.current, {
-          translateX: x * FINAL_GAP,
-          translateY: y * FINAL_GAP,
+          translateX: calc(ux, px),
+          translateY: calc(uy, py),
           filter: 'brightness(100%)',
           duration: 0.8,
           ease: Expo.easeInOut,
@@ -54,7 +56,7 @@ export default function Hexagon(props: Props) {
 
       setIsActive(true);
     }
-  }, [fixed, isActive, x, y]);
+  }, [fixed, isActive, ux, px, uy, py]);
 
   return (
     <div
@@ -64,7 +66,7 @@ export default function Hexagon(props: Props) {
         width: ux,
         height: uy,
         backgroundColor: color,
-        transform: `translate(${x * FINAL_GAP}px,${y * FINAL_GAP}px)`,
+        transform: `translate(${calc(ux, px)}px,${calc(uy, py)}px)`,
         visibility: isActive ? 'visible' : 'hidden',
       }}
       onClick={onClick}
