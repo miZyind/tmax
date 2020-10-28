@@ -24,6 +24,7 @@
     "next": "^9.5.5",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
+    "recoil": "^0.0.13",
     "styled-components": "^5.2.0"
   },
   "devDependencies": {
