@@ -8,7 +8,8 @@
 [![BlueprintJS](https://img.shields.io/github/package-json/dependency-version/mizyind/tmax/@blueprintjs/core?style=for-the-badge&label=&color=0a2d59&logo=css3)](https://blueprintjs.com)
 [![TypeScript](https://img.shields.io/github/package-json/dependency-version/mizyind/tmax/dev/typescript?style=for-the-badge&label=&color=007acc&logo=typescript)](https://www.typescriptlang.org)
 [![React](https://img.shields.io/github/package-json/dependency-version/mizyind/tmax/react?style=for-the-badge&label=&color=61dafb&logo=react&logoColor=fff)](https://reactjs.org)
-[![License](https://img.shields.io/badge/LIC.-mit-404040?style=for-the-badge&labelColor=000)](https://github.com/miZyind/tmax/blob/master/LICENSE)
+[![ESLint](https://img.shields.io/npm/dependency-version/eslint-plugin-mizyind/eslint?style=for-the-badge&label=&color=4b32c3&logo=eslint&logoColor=fff)](https://eslint.org)
+[![Prettier](https://img.shields.io/npm/dependency-version/eslint-plugin-mizyind/prettier?style=for-the-badge&label=&color=f7b93e&logo=prettier&logoColor=fff)](https://prettier.io)
 
 TMAX, short for **Turbulent miZyind at Xion**.
 
