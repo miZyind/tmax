@@ -13,13 +13,13 @@ import {
   ELEMENT_PROP,
   ICON_SCALE_PROP,
   INITIAL_UNIT,
-  LOGO_SCALE_PROP,
   PADDING,
   SIZE_SCALE_PROP,
   UPDATE_UNIT_DELAY,
   WINDOW_PROP,
 } from './constant';
 import Hexagon from './hexagon';
+import Logo from './logo';
 
 import type { Props as HexagonProps } from './hexagon';
 
@@ -56,78 +56,39 @@ function Hexind({ className, onHCTKClick }: Props) {
   const width = unitX * SIZE_SCALE_PROP;
   const height = unitY * SIZE_SCALE_PROP;
   const iconSize = unitX * ICON_SCALE_PROP;
-  const logoSize = iconSize * LOGO_SCALE_PROP;
 
   return (
     <div className={className} style={{ width, height }}>
       {isLoaded && (
         <>
-          <Hexagon
-            ux={unitX}
-            uy={unitY}
-            px={0}
-            py={-1}
-            color='rgba(51,153,51,0.8)'
-          >
+          <Hexagon id={1} width={unitX} height={unitY}>
             <NodeIcon size={iconSize} />
           </Hexagon>
-          <Hexagon
-            ux={unitX}
-            uy={unitY}
-            px={1}
-            py={-0.5}
-            color='rgba(0,122,204,0.8)'
-          >
+          <Hexagon id={2} width={unitX} height={unitY}>
             <TypeScriptIcon size={iconSize} />
           </Hexagon>
-          <Hexagon
-            ux={unitX}
-            uy={unitY}
-            px={1}
-            py={0.5}
-            color='rgba(97,218,251,0.8)'
-          >
+          <Hexagon id={3} width={unitX} height={unitY}>
             <ReactIcon size={iconSize} />
           </Hexagon>
-          <Hexagon
-            ux={unitX}
-            uy={unitY}
-            px={0}
-            py={1}
-            color='rgba(233,84,32,0.8)'
-          >
+          <Hexagon id={4} width={unitX} height={unitY}>
             <UbuntuIcon size={iconSize} />
           </Hexagon>
-          <Hexagon
-            ux={unitX}
-            uy={unitY}
-            px={-1}
-            py={0.5}
-            color='rgba(42,71,94,0.8)'
-            onClick={onHCTKClick}
-          >
+          <Hexagon id={5} width={unitX} height={unitY} onClick={onHCTKClick}>
             <HCTKIcon size={iconSize} />
           </Hexagon>
-          <Hexagon
-            ux={unitX}
-            uy={unitY}
-            px={-1}
-            py={-0.5}
-            color='rgba(24,23,23,0.8)'
-          >
+          <Hexagon id={6} width={unitX} height={unitY}>
             <GithubIcon size={iconSize} />
           </Hexagon>
         </>
       )}
-      <Hexagon ux={unitX} uy={unitY} px={0} py={0} color='white' fixed>
-        <div className='logo' style={{ width: logoSize, height: logoSize }} />
-      </Hexagon>
+      <Logo width={unitX} height={unitY} />
     </div>
   );
 }
 
 export default styled(Hexind)`
   margin: auto;
+  position: relative;
 
   .hexagon {
     display: flex;
@@ -135,11 +96,5 @@ export default styled(Hexind)`
     align-items: center;
     justify-content: center;
     clip-path: ${({ theme }) => theme.clipPaths.hexagon};
-  }
-
-  .logo {
-    border-radius: 50%;
-    background-size: cover;
-    background-image: url('/mizyind.png');
   }
 `;

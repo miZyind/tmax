@@ -1,73 +1,77 @@
 import GSAP, { Expo } from 'gsap';
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
-import { BEGIN_GAP, FINAL_GAP, MIDDLE_GAP } from './constant';
+import { BEGIN_GAP, FINAL_GAP, HEXAGON_SET, MIDDLE_GAP } from './constant';
 
+import type { TimelineLite } from 'gsap';
 import type { MouseEventHandler, ReactNode } from 'react';
 
-function calc(u: number, p: number, gap = FINAL_GAP) {
-  return u + u * p * gap;
-}
-
 export interface Props {
-  ux: number;
-  uy: number;
-  px: number;
-  py: number;
-  color: string;
-  fixed?: boolean;
+  id: keyof typeof HEXAGON_SET;
+  width: number;
+  height: number;
   onClick?: MouseEventHandler<HTMLDivElement>;
   children: ReactNode;
 }
 
 export default function Hexagon(props: Props) {
-  const { ux, uy, px, py, color, fixed = false, onClick, children } = props;
+  const { id, width, height, onClick, children } = props;
+  const { x, y, color } = HEXAGON_SET[id];
   const ref = useRef<HTMLDivElement>(null);
-  const [isActive, setIsActive] = useState(fixed);
+  const [timeline, setTimeline] = useState<TimelineLite | null>(null);
+  const getPos = useCallback(
+    (gap = FINAL_GAP) => ({
+      left: width + width * x * gap,
+      top: height + height * y * gap,
+    }),
+    [width, height, x, y],
+  );
 
   useEffect(() => {
-    if (!fixed && !isActive) {
-      GSAP.timeline({ defaults: { filter: 'brightness(0%)' } })
-        .fromTo(
-          ref.current,
-          {
-            translateX: calc(ux, px, BEGIN_GAP),
-            translateY: calc(uy, py, BEGIN_GAP),
-          },
-          {
+    if (timeline === null) {
+      GSAP.set(ref.current, { ...getPos(BEGIN_GAP), filter: 'brightness(0%)' });
+
+      setTimeline(
+        GSAP.timeline({ defaults: { duration: 1, ease: Expo.easeOut } })
+          .to(ref.current, { opacity: 1 })
+          .to(ref.current, {
+            ...getPos(MIDDLE_GAP),
             rotate: 90,
-            translateX: calc(ux, px, MIDDLE_GAP),
-            translateY: calc(uy, py, MIDDLE_GAP),
-            delay: 1,
-            duration: 1,
             repeat: 1,
             yoyo: true,
             yoyoEase: Expo.easeOut,
-            ease: Expo.easeOut,
-          },
-        )
-        .to(ref.current, {
-          translateX: calc(ux, px),
-          translateY: calc(uy, py),
-          filter: 'brightness(100%)',
-          duration: 0.8,
-          ease: Expo.easeInOut,
-        });
-
-      setIsActive(true);
+          })
+          .to(ref.current, {
+            ...getPos(),
+            filter: 'brightness(100%)',
+            duration: 0.8,
+            ease: Expo.easeInOut,
+          })
+          .pause(),
+      );
+    } else if (timeline.isActive() && timeline.parent !== null) {
+      timeline.kill();
+      GSAP.set(ref.current, {
+        ...getPos(),
+        rotate: 0,
+        opacity: 1,
+        filter: 'brightness(100%)',
+      });
+    } else if (!timeline.isActive()) {
+      timeline.play();
     }
-  }, [fixed, isActive, ux, px, uy, py]);
+  }, [timeline, getPos]);
 
   return (
     <div
       ref={ref}
       className='hexagon'
       style={{
-        width: ux,
-        height: uy,
+        width,
+        height,
+        ...getPos(),
+        opacity: 0,
         backgroundColor: color,
-        transform: `translate(${calc(ux, px)}px,${calc(uy, py)}px)`,
-        visibility: isActive ? 'visible' : 'hidden',
       }}
       onClick={onClick}
     >
