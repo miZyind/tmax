@@ -3,7 +3,6 @@ import '@blueprintjs/core/lib/css/blueprint.css';
 import '@blueprintjs/icons/lib/css/blueprint-icons.css';
 
 import Head from 'next/head';
-import { RecoilRoot } from 'recoil';
 import { ThemeProvider, createGlobalStyle } from 'styled-components';
 
 import env from '#configs/env';
@@ -17,7 +16,7 @@ const GlobalStyle = createGlobalStyle`
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <RecoilRoot>
+    <>
       <Head>
         <meta
           name='viewport'
@@ -29,6 +28,6 @@ export default function App({ Component, pageProps }: AppProps) {
       <ThemeProvider theme={theme}>
         <Component {...pageProps} />
       </ThemeProvider>
-    </RecoilRoot>
+    </>
   );
 }

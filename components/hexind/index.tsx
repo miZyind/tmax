@@ -1,3 +1,4 @@
+import debounce from 'lodash/debounce';
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
@@ -15,6 +16,7 @@ import {
   LOGO_SCALE_PROP,
   PADDING,
   SIZE_SCALE_PROP,
+  UPDATE_UNIT_DELAY,
   WINDOW_PROP,
 } from './constant';
 import Hexagon from './hexagon';
@@ -25,17 +27,18 @@ function useUnit() {
   const [unit, setUnit] = useState(INITIAL_UNIT);
 
   useEffect(() => {
-    function updateUnit() {
-      const minLength = Math.min(window.innerWidth, window.innerHeight);
+    const updateUnit = () =>
+      setUnit(
+        (Math.min(window.innerWidth, window.innerHeight) - PADDING) *
+          WINDOW_PROP,
+      );
+    const debouncedUpdateUnit = debounce(updateUnit, UPDATE_UNIT_DELAY);
 
-      setUnit((minLength - PADDING) * WINDOW_PROP);
-    }
-
-    window.addEventListener('resize', updateUnit);
+    window.addEventListener('resize', debouncedUpdateUnit);
 
     updateUnit();
 
-    return () => window.removeEventListener('resize', updateUnit);
+    return () => window.removeEventListener('resize', debouncedUpdateUnit);
   }, []);
 
   return unit;
