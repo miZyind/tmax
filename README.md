@@ -20,16 +20,16 @@ TMAX, short for **Turbulent miZyind at Xion**.
   - **[NextJS](https://nextjs.org)** - The React Framework for Production.
   - **[BlueprintJS](https://blueprintjs.com)** - A React-based UI toolkit for the web.
   - **[styled-components](https://styled-components.com)** - Visual primitives for the component age.
-    - **[babel-plugin-styled-components](https://github.com/styled-components/babel-plugin-styled-components)** - Improve the debugging experience and add server-side rendering support.
+    - **[babel-plugin-styled-components](https://github.com/styled-components/babel-plugin-styled-components)** - Improve the debugging experience and add SSR support.
 - **[Classnames](https://github.com/JedWatson/classnames)** - A simple JS utility for conditionally joining classnames together.
 - **[Lodash](https://lodash.com)** - A modern JS utility library delivering modularity, performance & extras.
 - **[GSAP](https://greensock.com/gsap)** - Professional-grade JS animation for the modern web.
 - **[TypeScript](https://www.typescriptlang.org)** - Typed JS at Any Scale.
-  - **[tslib](https://github.com/microsoft/tslib)** - Runtime library for TypeScript helpers.
-  - **[typescript-styled-plugin](https://github.com/microsoft/typescript-styled-plugin)** - TypeScript server plugin that adds intellisense to styled component css strings.
+  - **[tslib](https://github.com/microsoft/tslib)** - Runtime library for TS helpers.
+  - **[typescript-styled-plugin](https://github.com/microsoft/typescript-styled-plugin)** - TS server plugin that adds intellisense to styled component css strings.
 - **[Prettier](https://prettier.io)** - Opinionated Code Formatter.
 - **[ESLint](https://eslint.org)** - Pluggable JS linter.
-  - **[typescript-eslint](https://typescript-eslint.io)** - Monorepo for all the tooling which enables ESLint to support TypeScript.
+  - **[typescript-eslint](https://typescript-eslint.io)** - Monorepo for all the tooling which enables ESLint to support TS.
   - **[eslint-config-prettier](https://github.com/prettier/eslint-config-prettier)** - Turns off all rules that are unnecessary or might conflict with Prettier.
   - **[eslint-plugin-prettier](https://github.com/prettier/eslint-plugin-prettier)** - ESLint plugin for Prettier formatting.
   - **[eslint-plugin-react](https://github.com/yannickcr/eslint-plugin-react)** - React specific linting rules for ESLint.
