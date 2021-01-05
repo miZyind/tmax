@@ -6,7 +6,7 @@ interface Props {
   children: ReactNode;
 }
 
-export type BaseIconProps = Pick<Props, 'size' | 'color'>;
+export type BaseIconProps = Pick<Props, 'color' | 'size'>;
 
 export default function BaseIcon({ size, color = 'white', children }: Props) {
   return (
