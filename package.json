@@ -15,7 +15,8 @@
     "build": "next build",
     "export": "next export",
     "start": "next start",
-    "lint": "eslint \"*/**/*.{ts,tsx}\" --max-warnings 0"
+    "lint": "eslint \"*/**/*.{ts,tsx}\" --max-warnings 0",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@blueprintjs/core": "^3.42.0",
