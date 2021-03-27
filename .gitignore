@@ -10,7 +10,6 @@ out
 
 # misc
 .DS_Store
-.husky
 
 # debug
 .log

@@ -11,12 +11,12 @@
     "node": ">=14"
   },
   "scripts": {
+    "prepare": "husky install",
     "dev": "next dev",
     "build": "next build",
     "export": "next export",
     "start": "next start",
-    "lint": "eslint \"*/**/*.{ts,tsx}\" --max-warnings 0",
-    "prepare": "husky install"
+    "lint": "eslint \"*/**/*.{ts,tsx}\" --max-warnings 0"
   },
   "dependencies": {
     "@blueprintjs/core": "^3.42.0",
@@ -78,11 +78,5 @@
     "extends": [
       "@commitlint/config-conventional"
     ]
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged",
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-    }
   }
 }
