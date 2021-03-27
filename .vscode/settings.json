@@ -8,6 +8,7 @@
     "**/.DS_Store": true,
     "**/.git": true,
     "**/node_modules": true,
+    ".husky": true,
     ".vscode": true
   },
   "files.insertFinalNewline": true,
