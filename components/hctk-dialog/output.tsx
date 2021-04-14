@@ -1,4 +1,4 @@
-import classNames from 'classnames';
+import clsx from 'classnames';
 import { useCallback } from 'react';
 import styled from 'styled-components';
 
@@ -23,7 +23,7 @@ function Output({ className, value, isValidOutput }: Props) {
   );
   const targetProps = {
     id: 'hctk-output',
-    className: classNames(className, Classes.INPUT),
+    className: clsx(className, Classes.INPUT),
     placeholder: 'Output keyboard keys...',
     value,
     onClick,
@@ -33,7 +33,7 @@ function Output({ className, value, isValidOutput }: Props) {
 
   return (
     <FormGroup label='Output' labelFor='hctk-output'>
-      <div className={classNames(Classes.INPUT_GROUP, Classes.LARGE)}>
+      <div className={clsx(Classes.INPUT_GROUP, Classes.LARGE)}>
         <Icon icon={IconNames.LOG_OUT} />
         <Popover
           position={Position.BOTTOM_LEFT}

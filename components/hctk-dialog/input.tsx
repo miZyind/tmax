@@ -1,13 +1,13 @@
-import classNames from 'classnames';
+import clsx from 'classnames';
 import { useCallback } from 'react';
 
 import { Classes, FormGroup, InputGroup } from '@blueprintjs/core';
 
-import type { IInputGroupProps } from '@blueprintjs/core';
 import type { ChangeEvent } from 'react';
+import type { IInputGroupProps2 } from '@blueprintjs/core';
 
 interface Props {
-  inputRef: IInputGroupProps['inputRef'];
+  inputRef: IInputGroupProps2['inputRef'];
   value: string;
   isValidOutput: boolean;
   onChange: (value: string) => void;
@@ -22,7 +22,7 @@ export default function Input({
   const modifier = isValidOutput
     ? Classes.INTENT_SUCCESS
     : Classes.INTENT_DANGER;
-  const className = classNames({ [modifier]: value.length });
+  const className = clsx({ [modifier]: value.length });
   const handleOnChange = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => onChange(e.target.value),
     [onChange],

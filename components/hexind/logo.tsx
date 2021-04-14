@@ -1,4 +1,4 @@
-import classNames from 'classnames';
+import clsx from 'classnames';
 import styled from 'styled-components';
 
 import { LOGO_SCALE_PROP } from './constant';
@@ -13,7 +13,7 @@ function Logo({ className, width, height }: Props) {
 
   return (
     <div
-      className={classNames(className, 'hexagon')}
+      className={clsx(className, 'hexagon')}
       style={{ width, height, left: width, top: height }}
     >
       <div style={{ width: imageSize, height: imageSize }} />
