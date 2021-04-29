@@ -1,18 +1,29 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useContext, useState } from 'react';
 import styled from 'styled-components';
+
+import { Switch } from '@blueprintjs/core';
 
 import HCTKDialog from '#components/hctk-dialog';
 import Hexind from '#components/hexind';
+import SettingsContext from '#contexts/settings';
 import { load } from '#utils/hctk-loader';
+
+import type { FormEvent } from 'react';
 
 interface Props extends StyledProps {
   cedict: Cedict;
 }
 
 function Index({ className, cedict }: Props) {
+  const { settings, update } = useContext(SettingsContext);
   const [isHCTKOpen, setIsHCTKOpen] = useState(false);
   const handleOnHCTKClick = useCallback(() => setIsHCTKOpen(true), []);
   const handleOnHCTKClose = useCallback(() => setIsHCTKOpen(false), []);
+  const handleOnImmutableChange = useCallback(
+    (e: FormEvent<HTMLInputElement>) =>
+      update?.({ immutable: e.currentTarget.checked }),
+    [update],
+  );
 
   return (
     <div className={className}>
@@ -22,6 +33,13 @@ function Index({ className, cedict }: Props) {
         isOpen={isHCTKOpen}
         onClose={handleOnHCTKClose}
       />
+      {settings.immutable && (
+        <Switch
+          checked={settings.immutable}
+          label='Public'
+          onChange={handleOnImmutableChange}
+        />
+      )}
     </div>
   );
 }

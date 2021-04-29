@@ -1,4 +1,3 @@
-import clsx from 'classnames';
 import styled from 'styled-components';
 
 import { LOGO_SCALE_PROP } from './constant';
@@ -13,7 +12,7 @@ function Logo({ className, width, height }: Props) {
 
   return (
     <div
-      className={clsx(className, 'hexagon')}
+      className={className}
       style={{ width, height, left: width, top: height }}
     >
       <div style={{ width: imageSize, height: imageSize }} />
@@ -22,7 +21,12 @@ function Logo({ className, width, height }: Props) {
 }
 
 export default styled(Logo)`
+  display: flex;
+  position: absolute;
+  align-items: center;
+  justify-content: center;
   background-color: white;
+  clip-path: ${({ theme }) => theme.clipPaths.hexagon};
 
   > div {
     border-radius: 50%;

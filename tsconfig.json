@@ -26,6 +26,7 @@
     "paths": {
       "#components/*": ["components/*"],
       "#configs/*": ["configs/*"],
+      "#contexts/*": ["contexts/*"],
       "#icons/*": ["icons/*"],
       "#theme": ["theme"],
       "#utils/*": ["utils/*"]

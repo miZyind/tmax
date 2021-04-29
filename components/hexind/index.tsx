@@ -89,12 +89,4 @@ function Hexind({ className, onHCTKClick }: Props) {
 export default styled(Hexind)`
   margin: auto;
   position: relative;
-
-  .hexagon {
-    display: flex;
-    position: absolute;
-    align-items: center;
-    justify-content: center;
-    clip-path: ${({ theme }) => theme.clipPaths.hexagon};
-  }
 `;
