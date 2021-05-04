@@ -9,11 +9,12 @@ import HeaderIcon from './header-icon';
 import Input from './input';
 import Output from './output';
 
-import type { IDialogProps } from '@blueprintjs/core';
+import type { DialogProps } from '@blueprintjs/core';
+
 interface Props extends StyledProps {
   cedict: Cedict;
   isOpen: boolean;
-  onClose: IDialogProps['onClose'];
+  onClose: DialogProps['onClose'];
 }
 
 function HCTKDialog({ className, cedict, isOpen, onClose }: Props) {
