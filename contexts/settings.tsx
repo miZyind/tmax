@@ -1,9 +1,11 @@
-import { createContext, useCallback, useMemo, useState } from 'react';
+import { createContext, useMemo, useState } from 'react';
+
+import { CookieKey, getCookie, setClientCookie } from '#utils/cookie';
 
 import type { ReactNode } from 'react';
 
 interface Settings {
-  immutable: boolean;
+  animate: boolean;
 }
 
 interface Context {
@@ -11,18 +13,29 @@ interface Context {
   update?: (settings: Settings) => void;
 }
 
-const defaultSettings: Settings = { immutable: false };
+const defaultSettings: Settings = getCookie(CookieKey.Settings) ?? {
+  animate: true,
+};
 
 const SettingsContext = createContext<Context>({ settings: defaultSettings });
 
 export function SettingsProvider({ children }: { children: ReactNode }) {
   const [settings, setSettings] = useState(defaultSettings);
-  const update = useCallback(
-    (current: Settings) =>
-      setSettings((previous) => ({ ...previous, ...current })),
-    [],
+  const memo = useMemo(
+    () => ({
+      settings,
+      update: (current: Settings) => {
+        setSettings((previous) => {
+          const merged = { ...previous, ...current };
+
+          setClientCookie(CookieKey.Settings, merged);
+
+          return merged;
+        });
+      },
+    }),
+    [settings],
   );
-  const memo = useMemo(() => ({ settings, update }), [settings, update]);
 
   return (
     <SettingsContext.Provider value={memo}>{children}</SettingsContext.Provider>

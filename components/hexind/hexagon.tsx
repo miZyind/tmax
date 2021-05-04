@@ -40,7 +40,7 @@ function Hexagon({ className, id, width, height, onClick, children }: Props) {
   );
 
   useEffect(() => {
-    if (settings.immutable) {
+    if (!settings.animate) {
       bypassTimeline(ref.current, getPos());
     } else if (timeline === null) {
       GSAP.set(ref.current, { ...getPos(BEGIN_GAP), filter: 'brightness(0%)' });
@@ -68,7 +68,7 @@ function Hexagon({ className, id, width, height, onClick, children }: Props) {
     } else if (!timeline.isActive()) {
       timeline.play();
     }
-  }, [settings.immutable, timeline, getPos]);
+  }, [settings.animate, timeline, getPos]);
 
   return (
     <div

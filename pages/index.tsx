@@ -8,7 +8,7 @@ import Hexind from '#components/hexind';
 import SettingsContext from '#contexts/settings';
 import { load } from '#utils/hctk-loader';
 
-import type { FormEvent } from 'react';
+import type { MouseEvent } from 'react';
 
 interface Props extends StyledProps {
   cedict: Cedict;
@@ -19,9 +19,9 @@ function Index({ className, cedict }: Props) {
   const [isHCTKOpen, setIsHCTKOpen] = useState(false);
   const handleOnHCTKClick = useCallback(() => setIsHCTKOpen(true), []);
   const handleOnHCTKClose = useCallback(() => setIsHCTKOpen(false), []);
-  const handleOnImmutableChange = useCallback(
-    (e: FormEvent<HTMLInputElement>) =>
-      update?.({ immutable: !e.currentTarget.checked }),
+  const handleOnSwitchAnimationClick = useCallback(
+    (e: MouseEvent<HTMLInputElement>) =>
+      update?.({ animate: e.currentTarget.checked }),
     [update],
   );
 
@@ -36,8 +36,9 @@ function Index({ className, cedict }: Props) {
       <Switch
         className='switch-animation'
         label='Animation'
-        checked={!settings.immutable}
-        onChange={handleOnImmutableChange}
+        checked={settings.animate}
+        onClick={handleOnSwitchAnimationClick}
+        readOnly
       />
     </div>
   );
