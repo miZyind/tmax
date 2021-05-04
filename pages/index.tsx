@@ -21,7 +21,7 @@ function Index({ className, cedict }: Props) {
   const handleOnHCTKClose = useCallback(() => setIsHCTKOpen(false), []);
   const handleOnImmutableChange = useCallback(
     (e: FormEvent<HTMLInputElement>) =>
-      update?.({ immutable: e.currentTarget.checked }),
+      update?.({ immutable: !e.currentTarget.checked }),
     [update],
   );
 
@@ -34,8 +34,9 @@ function Index({ className, cedict }: Props) {
         onClose={handleOnHCTKClose}
       />
       <Switch
-        checked={settings.immutable}
-        label='Disable Animation'
+        className='switch-animation'
+        label='Animation'
+        checked={!settings.immutable}
         onChange={handleOnImmutableChange}
       />
     </div>
@@ -78,5 +79,12 @@ export default styled(Index)`
     pointer-events: none;
     background-size: auto 100%;
     background-image: url('/cloud.png');
+  }
+
+  .switch-animation {
+    top: 0;
+    right: 0;
+    margin: 5px 10px;
+    position: absolute;
   }
 `;
