@@ -33,13 +33,11 @@ function Index({ className, cedict }: Props) {
         isOpen={isHCTKOpen}
         onClose={handleOnHCTKClose}
       />
-      {settings.immutable && (
-        <Switch
-          checked={settings.immutable}
-          label='Public'
-          onChange={handleOnImmutableChange}
-        />
-      )}
+      <Switch
+        checked={settings.immutable}
+        label='Disable Animation'
+        onChange={handleOnImmutableChange}
+      />
     </div>
   );
 }
