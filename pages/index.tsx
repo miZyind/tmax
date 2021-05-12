@@ -1,7 +1,7 @@
 import { useCallback, useContext, useState } from 'react';
 import styled from 'styled-components';
 
-import { Switch } from '@blueprintjs/core';
+import { Icon, Switch } from '@blueprintjs/core';
 
 import HCTKDialog from '#components/hctk-dialog';
 import Hexind from '#components/hexind';
@@ -35,11 +35,12 @@ function Index({ className, cedict }: Props) {
       />
       <Switch
         className='switch-animation'
-        label='Animation'
         checked={settings.animate}
         onClick={handleOnSwitchAnimationClick}
         readOnly
-      />
+      >
+        <Icon icon='film' />
+      </Switch>
     </div>
   );
 }
@@ -86,6 +87,7 @@ export default styled(Index)`
     top: 0;
     right: 0;
     margin: 5px 10px;
+    user-select: none;
     position: absolute;
   }
 `;
