@@ -12,19 +12,19 @@ import Output from './output';
 import type { DialogProps } from '@blueprintjs/core';
 
 interface Props extends StyledProps {
-  cedict: Cedict;
   isOpen: boolean;
   onClose: DialogProps['onClose'];
 }
 
-function HCTKDialog({ className, cedict, isOpen, onClose }: Props) {
+function HCTKDialog({ className, isOpen, onClose }: Props) {
   const [text, setText] = useState('');
-  const output = decode(text, cedict);
+  const output = decode(text);
   const isValidOutput = Boolean(output.length);
   const inputRef = useRef<HTMLInputElement>(null);
-  const handleDialogOpening = useCallback(() => inputRef.current?.focus(), [
-    inputRef,
-  ]);
+  const handleDialogOpening = useCallback(
+    () => inputRef.current?.focus(),
+    [inputRef],
+  );
 
   return (
     <Dialog
