@@ -8,6 +8,9 @@
   NEXT_SERVERLESS= "true"
   NEXT_PUBLIC_TITLE = "Turbulent miZyind at Xion"
 
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
 [[redirects]]
   from = "https://mizyind.netlify.app"
   to = "https://mizyind.dev"
