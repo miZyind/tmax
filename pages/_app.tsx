@@ -6,7 +6,6 @@ import Head from 'next/head';
 import { ThemeProvider, createGlobalStyle } from 'styled-components';
 
 import env from '#configs/env';
-import { SettingsProvider } from '#contexts/settings';
 import theme from '#theme';
 
 import type { AppProps } from 'next/app';
@@ -26,11 +25,9 @@ export default function App({ Component, pageProps }: AppProps) {
         <title>{env.title}</title>
       </Head>
       <GlobalStyle />
-      <SettingsProvider>
-        <ThemeProvider theme={theme}>
-          <Component {...pageProps} />
-        </ThemeProvider>
-      </SettingsProvider>
+      <ThemeProvider theme={theme}>
+        <Component {...pageProps} />
+      </ThemeProvider>
     </>
   );
 }

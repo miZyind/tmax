@@ -1,54 +1,45 @@
-import { useCallback, useContext, useState } from 'react';
+import { useCallback, useState } from 'react';
 import styled from 'styled-components';
 
-import { Icon, Switch } from '@blueprintjs/core';
+import { Button } from '@blueprintjs/core';
 
 import HCTKDialog from '#components/hctk-dialog';
 import Hexind from '#components/hexind';
-import SettingsContext from '#contexts/settings';
-import { load } from '#utils/hctk-loader';
+import { CookieKey, get, set } from '#utils/cookie';
 
-import type { MouseEvent } from 'react';
+import type { GetServerSidePropsContext } from 'next';
+import type { Settings } from '#utils/cookie';
 
 interface Props extends StyledProps {
-  cedict: Cedict;
+  settings: Settings;
 }
 
-function Index({ className, cedict }: Props) {
-  const { settings, update } = useContext(SettingsContext);
+function Index({ className, settings }: Props) {
   const [isHCTKOpen, setIsHCTKOpen] = useState(false);
-  const handleOnHCTKClick = useCallback(() => setIsHCTKOpen(true), []);
-  const handleOnHCTKClose = useCallback(() => setIsHCTKOpen(false), []);
-  const handleOnSwitchAnimationClick = useCallback(
-    (e: MouseEvent<HTMLInputElement>) =>
-      update?.({ animate: e.currentTarget.checked }),
-    [update],
-  );
+  const [animate, setAnimate] = useState(settings.animate);
 
   return (
     <div className={className}>
-      <Hexind onHCTKClick={handleOnHCTKClick} />
+      <Hexind onHCTKClick={useCallback(() => setIsHCTKOpen(true), [])} />
       <HCTKDialog
-        cedict={cedict}
         isOpen={isHCTKOpen}
-        onClose={handleOnHCTKClose}
+        onClose={useCallback(() => setIsHCTKOpen(false), [])}
       />
-      <Switch
-        className='switch-animation'
-        checked={settings.animate}
-        onClick={handleOnSwitchAnimationClick}
-        readOnly
-      >
-        <Icon icon='film' />
-      </Switch>
+      <Button
+        className='button-animation'
+        icon='social-media'
+        intent={animate ? 'primary' : 'none'}
+        onClick={useCallback(() => {
+          set(CookieKey.Settings, { animate: !animate });
+          setAnimate(!animate);
+        }, [animate])}
+      />
     </div>
   );
 }
 
-export async function getStaticProps() {
-  const cedict = await load();
-
-  return { props: { cedict } };
+export function getServerSideProps(ctx: GetServerSidePropsContext) {
+  return { props: { settings: get(CookieKey.Settings, ctx) } };
 }
 
 export default styled(Index)`
@@ -83,11 +74,14 @@ export default styled(Index)`
     background-image: url('/cloud.png');
   }
 
-  .switch-animation {
+  .button-animation {
     top: 0;
     right: 0;
     margin: 5px 10px;
-    user-select: none;
     position: absolute;
+
+    &:focus {
+      outline: unset !important;
+    }
   }
 `;

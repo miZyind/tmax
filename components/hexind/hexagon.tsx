@@ -1,8 +1,8 @@
 import GSAP, { Expo } from 'gsap';
-import { useCallback, useContext, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 
-import SettingsContext from '#contexts/settings';
+import { CookieKey, get } from '#utils/cookie';
 
 import { BEGIN_GAP, FINAL_GAP, HEXAGON_SET, MIDDLE_GAP } from './constant';
 
@@ -27,7 +27,7 @@ function bypassTimeline(target: gsap.TweenTarget, vars: gsap.TweenVars) {
 }
 
 function Hexagon({ className, id, width, height, onClick, children }: Props) {
-  const { settings } = useContext(SettingsContext);
+  const settings = get(CookieKey.Settings);
   const { x, y, color } = HEXAGON_SET[id];
   const ref = useRef<HTMLDivElement>(null);
   const [timeline, setTimeline] = useState<TimelineLite | null>(null);

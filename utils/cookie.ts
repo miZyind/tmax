@@ -1,15 +1,36 @@
 import { parseCookies, setCookie } from 'nookies';
 
+import type { GetServerSidePropsContext as Context } from 'next';
+
+export interface Settings {
+  animate: boolean;
+}
+
 export enum CookieKey {
   Settings = 'SETTINGS',
 }
 
-export function getCookie<T>(key: CookieKey) {
-  const value = parseCookies()[key] as string | undefined;
+type CookieValue = Settings;
 
-  return typeof value === 'string' ? (JSON.parse(value) as T) : null;
+export function get(key: CookieKey.Settings, ctx?: Context): Settings;
+export function get<T extends Record<string, unknown>>(
+  key: CookieKey,
+  ctx?: Context,
+) {
+  const value = parseCookies(ctx)[key] as string | undefined;
+
+  if (typeof value === 'string') {
+    return JSON.parse(value) as T;
+  }
+
+  switch (key) {
+    case CookieKey.Settings:
+      return { animate: true };
+    default:
+      return null;
+  }
 }
 
-export function setClientCookie(key: CookieKey, value: unknown) {
-  setCookie(null, key, JSON.stringify(value));
+export function set(key: CookieKey, value: Partial<CookieValue>) {
+  setCookie(null, key, JSON.stringify({ ...get(key), ...value }));
 }
