@@ -21,6 +21,7 @@ TMAX, short for **Turbulent miZyind at Xion**.
   - **[BlueprintJS](https://blueprintjs.com)** - A React-based UI toolkit for the web.
   - **[styled-components](https://styled-components.com)** - Visual primitives for the component age.
     - **[babel-plugin-styled-components](https://github.com/styled-components/babel-plugin-styled-components)** - Improve the debugging experience and add SSR support.
+  - **[SWR](https://github.com/vercel/swr)** - React Hooks library for remote data fetching.
 - **[Classnames](https://github.com/JedWatson/classnames)** - A simple JS utility for conditionally joining classnames together.
 - **[Lodash](https://lodash.com)** - A modern JS utility library delivering modularity, performance & extras.
 - **[GSAP](https://greensock.com/gsap)** - Professional-grade JS animation for the modern web.
