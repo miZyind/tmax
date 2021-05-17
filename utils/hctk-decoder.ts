@@ -1,6 +1,4 @@
-import cedict from './cedict.json';
-
-export function decode(input: string) {
+export function decode(input: string, cedict: Cedict = {}) {
   if (/\w+/u.test(input)) {
     return '';
   }

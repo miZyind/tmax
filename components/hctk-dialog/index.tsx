@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { Classes, Dialog } from '@blueprintjs/core';
 
 import { decode } from '#utils/hctk-decoder';
+import { useCedict } from '#utils/swr';
 
 import HeaderIcon from './header-icon';
 import Input from './input';
@@ -18,7 +19,8 @@ interface Props extends StyledProps {
 
 function HCTKDialog({ className, isOpen, onClose }: Props) {
   const [text, setText] = useState('');
-  const output = decode(text);
+  const cedict = useCedict();
+  const output = decode(text, cedict);
   const isValidOutput = Boolean(output.length);
   const inputRef = useRef<HTMLInputElement>(null);
   const handleDialogOpening = useCallback(
