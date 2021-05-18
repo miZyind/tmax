@@ -1,13 +1,14 @@
 import debounce from 'lodash/debounce';
-import { useEffect, useState } from 'react';
+import { useCallback, useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
 
+import { DialogsContext, Name } from '#contexts/dialogs';
+import AnalyticsIcon from '#icons/analytics';
 import GithubIcon from '#icons/github';
 import HCTKIcon from '#icons/hctk';
 import NodeIcon from '#icons/node';
 import ReactIcon from '#icons/react';
 import TypeScriptIcon from '#icons/typescript';
-import UbuntuIcon from '#icons/ubuntu';
 
 import {
   ELEMENT_PROP,
@@ -20,8 +21,6 @@ import {
 } from './constant';
 import Hexagon from './hexagon';
 import Logo from './logo';
-
-import type { Props as HexagonProps } from './hexagon';
 
 function useUnit() {
   const [unit, setUnit] = useState(INITIAL_UNIT);
@@ -44,11 +43,8 @@ function useUnit() {
   return unit;
 }
 
-interface Props extends StyledProps {
-  onHCTKClick: HexagonProps['onClick'];
-}
-
-function Hexind({ className, onHCTKClick }: Props) {
+function Hexind({ className }: StyledProps) {
+  const { dispatch } = useContext(DialogsContext);
   const unit = useUnit();
   const isLoaded = Boolean(unit);
   const unitX = unit * ELEMENT_PROP;
@@ -56,32 +52,41 @@ function Hexind({ className, onHCTKClick }: Props) {
   const width = unitX * SIZE_SCALE_PROP;
   const height = unitY * SIZE_SCALE_PROP;
   const iconSize = unitX * ICON_SCALE_PROP;
+  const props = { width: unitX, height: unitY };
+  const onAnalyticsClick = useCallback(
+    () => dispatch([Name.Analytics, true]),
+    [dispatch],
+  );
+  const onHCTKClick = useCallback(
+    () => dispatch([Name.HCTK, true]),
+    [dispatch],
+  );
 
   return (
     <div className={className} style={{ width, height }}>
       {isLoaded && (
         <>
-          <Hexagon id={1} width={unitX} height={unitY}>
+          <Hexagon id={1} {...props}>
             <NodeIcon size={iconSize} />
           </Hexagon>
-          <Hexagon id={2} width={unitX} height={unitY}>
+          <Hexagon id={2} {...props}>
             <TypeScriptIcon size={iconSize} />
           </Hexagon>
-          <Hexagon id={3} width={unitX} height={unitY}>
+          <Hexagon id={3} {...props}>
             <ReactIcon size={iconSize} />
           </Hexagon>
-          <Hexagon id={4} width={unitX} height={unitY}>
-            <UbuntuIcon size={iconSize} />
+          <Hexagon id={4} {...props} onClick={onAnalyticsClick}>
+            <AnalyticsIcon size={iconSize} />
           </Hexagon>
-          <Hexagon id={5} width={unitX} height={unitY} onClick={onHCTKClick}>
+          <Hexagon id={5} {...props} onClick={onHCTKClick}>
             <HCTKIcon size={iconSize} />
           </Hexagon>
-          <Hexagon id={6} width={unitX} height={unitY}>
+          <Hexagon id={6} {...props}>
             <GithubIcon size={iconSize} />
           </Hexagon>
         </>
       )}
-      <Logo width={unitX} height={unitY} />
+      <Logo {...props} />
     </div>
   );
 }

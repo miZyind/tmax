@@ -3,8 +3,10 @@ import styled from 'styled-components';
 
 import { Button } from '@blueprintjs/core';
 
-import HCTKDialog from '#components/hctk-dialog';
+import DialogAnalytics from '#components/dialog-analytics';
+import DialogHCTK from '#components/dialog-hctk';
 import Hexind from '#components/hexind';
+import { DialogsProvider } from '#contexts/dialogs';
 import { CookieKey, get, set } from '#utils/cookie';
 
 import type { GetServerSidePropsContext } from 'next';
@@ -15,25 +17,24 @@ interface Props extends StyledProps {
 }
 
 function Index({ className, settings }: Props) {
-  const [isHCTKOpen, setIsHCTKOpen] = useState(false);
   const [animate, setAnimate] = useState(settings.animate);
 
   return (
     <div className={className}>
-      <Hexind onHCTKClick={useCallback(() => setIsHCTKOpen(true), [])} />
-      <HCTKDialog
-        isOpen={isHCTKOpen}
-        onClose={useCallback(() => setIsHCTKOpen(false), [])}
-      />
-      <Button
-        className='button-animation'
-        icon='social-media'
-        intent={animate ? 'primary' : 'none'}
-        onClick={useCallback(() => {
-          set(CookieKey.Settings, { animate: !animate });
-          setAnimate(!animate);
-        }, [animate])}
-      />
+      <DialogsProvider>
+        <Hexind />
+        <DialogHCTK />
+        <DialogAnalytics />
+        <Button
+          className='button-animation'
+          icon='social-media'
+          intent={animate ? 'primary' : 'none'}
+          onClick={useCallback(() => {
+            set(CookieKey.Settings, { animate: !animate });
+            setAnimate(!animate);
+          }, [animate])}
+        />
+      </DialogsProvider>
     </div>
   );
 }

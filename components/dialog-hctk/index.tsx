@@ -1,8 +1,9 @@
-import { useCallback, useRef, useState } from 'react';
+import { useCallback, useContext, useRef, useState } from 'react';
 import styled from 'styled-components';
 
 import { Classes, Dialog } from '@blueprintjs/core';
 
+import { DialogsContext, Name } from '#contexts/dialogs';
 import { decode } from '#utils/hctk-decoder';
 import { useCedict } from '#utils/swr';
 
@@ -10,30 +11,22 @@ import HeaderIcon from './header-icon';
 import Input from './input';
 import Output from './output';
 
-import type { DialogProps } from '@blueprintjs/core';
+const DIALOG = Name.HCTK;
 
-interface Props extends StyledProps {
-  isOpen: boolean;
-  onClose: DialogProps['onClose'];
-}
-
-function HCTKDialog({ className, isOpen, onClose }: Props) {
+function DialogHCTK({ className }: StyledProps) {
+  const { state, dispatch } = useContext(DialogsContext);
   const [text, setText] = useState('');
+  const inputRef = useRef<HTMLInputElement>(null);
   const cedict = useCedict();
   const output = decode(text, cedict);
   const isValidOutput = Boolean(output.length);
-  const inputRef = useRef<HTMLInputElement>(null);
-  const handleDialogOpening = useCallback(
-    () => inputRef.current?.focus(),
-    [inputRef],
-  );
 
   return (
     <Dialog
       className={`${className} ${Classes.DARK}`}
-      isOpen={isOpen}
-      onClose={onClose}
-      onOpening={handleDialogOpening}
+      isOpen={state[DIALOG]}
+      onClose={useCallback(() => dispatch([DIALOG, false]), [dispatch])}
+      onOpening={useCallback(() => inputRef.current?.focus(), [inputRef])}
       icon={<HeaderIcon />}
       title='HantChar to Keyboard Keys'
     >
@@ -50,7 +43,7 @@ function HCTKDialog({ className, isOpen, onClose }: Props) {
   );
 }
 
-export default styled(HCTKDialog)`
+export default styled(DialogHCTK)`
   padding: unset;
   background-color: ${({ theme }) => theme.vars['$dark-gray4']};
 

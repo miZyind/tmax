@@ -9,7 +9,7 @@ import { BEGIN_GAP, FINAL_GAP, HEXAGON_SET, MIDDLE_GAP } from './constant';
 import type { TimelineLite } from 'gsap';
 import type { MouseEventHandler, ReactNode } from 'react';
 
-export interface Props extends StyledProps {
+interface Props extends StyledProps {
   id: keyof typeof HEXAGON_SET;
   width: number;
   height: number;
