@@ -8,16 +8,16 @@
   "homepage": "https://mizyind.dev",
   "bugs": "https://github.com/miZyind/tmax/issues",
   "engines": {
-    "node": ">=14"
+    "node": ">=16"
   },
   "scripts": {
     "prepare": "husky install",
     "dev": "next dev",
-    "build": "next build",
+    "build": "yarn lint && yarn lint:css && next build",
     "export": "next export",
     "start": "next start",
     "lint": "eslint \"*/**/*.{ts,tsx}\" --max-warnings 0",
-    "lint:css": "stylelint \"*/**/*.tsx\""
+    "lint:css": "stylelint \"*/**/*.tsx\" --max-warnings 0"
   },
   "dependencies": {
     "@blueprintjs/core": "^3.49.1",
@@ -36,16 +36,13 @@
     "@commitlint/cli": "^13.1.0",
     "@commitlint/config-conventional": "^13.1.0",
     "@netlify/plugin-nextjs": "^3.9.0",
-    "@types/classnames": "^2.3.1",
     "@types/lodash": "^4.14.172",
     "@types/node": "^16.9.1",
-    "@types/react": "^17.0.20",
+    "@types/react": "^17.0.21",
     "@types/react-dom": "^17.0.9",
     "@types/styled-components": "^5.1.14",
     "babel-plugin-styled-components": "^1.13.2",
-    "eslint-plugin-mizyind": "^2.3.3",
-    "eslint-plugin-react": "^7.25.1",
-    "eslint-plugin-react-hooks": "^4.2.0",
+    "eslint-plugin-mizyind": "^3.0.1",
     "husky": "^7.0.2",
     "lint-staged": "^11.1.2",
     "stylelint": "^13.13.1",
@@ -71,7 +68,7 @@
   },
   "eslintConfig": {
     "extends": [
-      "plugin:mizyind/react"
+      "plugin:mizyind/next"
     ]
   },
   "stylelint": {

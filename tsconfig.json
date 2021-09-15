@@ -2,7 +2,7 @@
 {
   /* File Inclusion */
   "include": ["**/*"],
-  "exclude": ["node_modules"],
+  "exclude": ["node_modules", "next-env.d.ts"],
   "compilerOptions": {
     /* Project Options */
     "target": "ESNext",
