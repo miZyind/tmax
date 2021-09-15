@@ -2086,10 +2086,10 @@ eslint-plugin-import@^2.24.2:
     resolve "^1.20.0"
     tsconfig-paths "^3.11.0"
 
-eslint-plugin-mizyind@^3.0.1:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-mizyind/-/eslint-plugin-mizyind-3.0.1.tgz#de3d04c0977533221f5371e425347d9c62d8644c"
-  integrity sha512-NbYCA1NEZZe3a92yZckM0jlLnLOxTvtgnbc3UR3iyydu42KV1MqytmlyrkCRoE32NTTP6jkdo57Pn/y+jir/Ag==
+eslint-plugin-mizyind@^3.1.1:
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-mizyind/-/eslint-plugin-mizyind-3.1.1.tgz#c03b168f1880c37f6175656f8613e64301032e6e"
+  integrity sha512-fDm0lIVkkKyDEIKO3Qx9DKefBt2Z2RnadRx79BMTO19CzyHPItUM4KE5g5I4aY5Ovl+Wa2xKnhb/cnWtjWp00A==
   dependencies:
     "@next/eslint-plugin-next" "^11.1.2"
     "@typescript-eslint/eslint-plugin" "^4.31.1"

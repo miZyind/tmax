@@ -13,10 +13,11 @@
   "scripts": {
     "prepare": "husky install",
     "dev": "next dev",
-    "build": "yarn lint && yarn lint:css && next build",
+    "build": "yarn lint && next build",
     "export": "next export",
     "start": "next start",
-    "lint": "eslint \"*/**/*.{ts,tsx}\" --max-warnings 0",
+    "lint": "yarn lint:js && yarn lint:css",
+    "lint:js": "eslint \"*/**/*.{ts,tsx}\" --max-warnings 0",
     "lint:css": "stylelint \"*/**/*.tsx\" --max-warnings 0"
   },
   "dependencies": {
@@ -42,7 +43,7 @@
     "@types/react-dom": "^17.0.9",
     "@types/styled-components": "^5.1.14",
     "babel-plugin-styled-components": "^1.13.2",
-    "eslint-plugin-mizyind": "^3.0.1",
+    "eslint-plugin-mizyind": "^3.1.1",
     "husky": "^7.0.2",
     "lint-staged": "^11.1.2",
     "stylelint": "^13.13.1",
