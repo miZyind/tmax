@@ -4,9 +4,11 @@ import '@blueprintjs/icons/lib/css/blueprint-icons.css';
 
 import Head from 'next/head';
 import { ThemeProvider, createGlobalStyle } from 'styled-components';
+import { SWRConfig } from 'swr';
 
 import env from '#configs/env';
 import theme from '#theme';
+import { fetcher } from '#utils/swr';
 
 import type { AppProps } from 'next/app';
 
@@ -26,7 +28,9 @@ export default function App({ Component, pageProps }: AppProps) {
       </Head>
       <GlobalStyle />
       <ThemeProvider theme={theme}>
-        <Component {...pageProps} />
+        <SWRConfig value={{ fetcher }}>
+          <Component {...pageProps} />
+        </SWRConfig>
       </ThemeProvider>
     </>
   );

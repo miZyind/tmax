@@ -10,8 +10,6 @@ export enum CookieKey {
   Settings = 'SETTINGS',
 }
 
-type CookieValue = Settings;
-
 export function get(key: CookieKey.Settings, ctx?: Context): Settings;
 export function get<T extends Record<string, unknown>>(
   key: CookieKey,
@@ -31,6 +29,6 @@ export function get<T extends Record<string, unknown>>(
   }
 }
 
-export function set(key: CookieKey, value: Partial<CookieValue>) {
+export function set(key: CookieKey, value: Partial<Settings>) {
   setCookie(null, key, JSON.stringify({ ...get(key), ...value }));
 }
