@@ -71,7 +71,10 @@
   "eslintConfig": {
     "extends": [
       "plugin:mizyind/next"
-    ]
+    ],
+    "rules": {
+      "react-hooks/exhaustive-deps": "off"
+    }
   },
   "stylelint": {
     "processors": [
