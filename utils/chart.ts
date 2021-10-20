@@ -104,7 +104,7 @@ export const useLineChart = (
                       return (this as Scale).getLabelForValue(value as number);
                     }
 
-                    return '';
+                    return null;
                   },
                 },
               },
