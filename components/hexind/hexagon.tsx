@@ -6,7 +6,6 @@ import { CookieKey, get } from '#utils/cookie';
 
 import { BEGIN_GAP, FINAL_GAP, HEXAGON_SET, MIDDLE_GAP } from './constant';
 
-import type { TimelineLite } from 'gsap';
 import type { MouseEventHandler, ReactNode } from 'react';
 
 interface Props extends StyledProps {
@@ -30,7 +29,7 @@ function Hexagon({ className, id, width, height, onClick, children }: Props) {
   const settings = get(CookieKey.Settings);
   const { x, y, color } = HEXAGON_SET[id];
   const ref = useRef<HTMLDivElement>(null);
-  const [timeline, setTimeline] = useState<TimelineLite | null>(null);
+  const [timeline, setTimeline] = useState<gsap.core.Timeline | null>(null);
   const getPos = useCallback(
     (gap = FINAL_GAP) => ({
       left: width + width * x * gap,
