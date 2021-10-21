@@ -1,10 +1,11 @@
+import { useRouter } from 'next/router';
 import { createContext, useMemo, useReducer } from 'react';
 
 import type { Dispatch, ReactNode } from 'react';
 
 export enum Name {
-  Analytics = 0,
-  HCTK = 1,
+  Analytics = 'ANALYTICS',
+  HCTK = 'HCTK',
 }
 
 type State = Record<Name, boolean>;
@@ -15,15 +16,30 @@ interface Context {
   dispatch: Dispatch<Action>;
 }
 
-const initialState = Object.fromEntries(
-  Object.values(Name).map((dialog) => [dialog, false]),
-) as State;
+const dialogs = Object.values(Name);
+const initialState = Object.fromEntries(dialogs.map((name) => [name, false]));
 const reducer = (state: State, [n, v]: Action) => ({ ...state, [n]: v });
 
-export const DialogsContext = createContext({} as Context);
+function extractRouterState({ dialog }: Record<string, unknown>) {
+  if (typeof dialog === 'string') {
+    const name = dialog.toUpperCase() as Name;
 
+    if (dialogs.includes(name)) {
+      return { [name]: true };
+    }
+  }
+
+  return {};
+}
+
+export const DialogsContext = createContext({} as Context);
 export function DialogsProvider({ children }: { children: ReactNode }) {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const { query } = useRouter();
+  const routerState = extractRouterState(query);
+  const [state, dispatch] = useReducer(reducer, {
+    ...(initialState as State),
+    ...routerState,
+  });
   const memo = useMemo(() => ({ state, dispatch }), [state]);
 
   return (

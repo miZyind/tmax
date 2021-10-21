@@ -44,7 +44,7 @@ function useUnit() {
 }
 
 function Hexind({ className }: StyledProps) {
-  const { dispatch } = useContext(DialogsContext);
+  const { state, dispatch } = useContext(DialogsContext);
   const unit = useUnit();
   const isLoaded = Boolean(unit);
   const unitX = unit * ELEMENT_PROP;
@@ -52,7 +52,11 @@ function Hexind({ className }: StyledProps) {
   const width = unitX * SIZE_SCALE_PROP;
   const height = unitY * SIZE_SCALE_PROP;
   const iconSize = unitX * ICON_SCALE_PROP;
-  const props = { width: unitX, height: unitY };
+  const props = {
+    width: unitX,
+    height: unitY,
+    animate: !Object.values(state).filter((isOpened) => isOpened).length,
+  };
   const onAnalyticsClick = useCallback(
     () => dispatch([Name.Analytics, true]),
     [dispatch],

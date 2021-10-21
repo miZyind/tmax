@@ -12,6 +12,7 @@ interface Props extends StyledProps {
   id: keyof typeof HEXAGON_SET;
   width: number;
   height: number;
+  animate: boolean;
   onClick?: MouseEventHandler<HTMLDivElement>;
   children: ReactNode;
 }
@@ -25,7 +26,15 @@ function bypassTimeline(target: gsap.TweenTarget, vars: gsap.TweenVars) {
   });
 }
 
-function Hexagon({ className, id, width, height, onClick, children }: Props) {
+function Hexagon({
+  className,
+  id,
+  width,
+  height,
+  animate,
+  onClick,
+  children,
+}: Props) {
   const settings = get(CookieKey.Settings);
   const { x, y, color } = HEXAGON_SET[id];
   const ref = useRef<HTMLDivElement>(null);
@@ -39,7 +48,7 @@ function Hexagon({ className, id, width, height, onClick, children }: Props) {
   );
 
   useEffect(() => {
-    if (!settings.animate) {
+    if (!settings.animate || animate) {
       bypassTimeline(ref.current, getPos());
     } else if (timeline === null) {
       GSAP.set(ref.current, { ...getPos(BEGIN_GAP), filter: 'brightness(0%)' });
