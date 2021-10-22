@@ -4,12 +4,11 @@
 
 [![Netlify](https://img.shields.io/badge/netlify-00c7b7?style=for-the-badge&logo=netlify&logoColor=fff)](https://www.netlify.com)
 [![NodeJS](https://img.shields.io/badge/->=16-339933?style=for-the-badge&label=&logo=node.js&logoColor=fff)](https://nodejs.org)
-[![Yarn](https://img.shields.io/badge/-~=1.22-2c8ebb?style=for-the-badge&label=&logo=yarn&logoColor=fff)](https://classic.yarnpkg.com)
 [![ReactJS](https://img.shields.io/github/package-json/dependency-version/mizyind/tmax/react?style=for-the-badge&label=&color=61dafb&logo=react&logoColor=000)](https://reactjs.org)
 [![NextJS](https://img.shields.io/github/package-json/dependency-version/mizyind/tmax/next?style=for-the-badge&label=&color=e0234e&logo=next.js&logoColor=fff)](https://nextjs.org)
 [![BlueprintJS](https://img.shields.io/github/package-json/dependency-version/mizyind/tmax/@blueprintjs/core?style=for-the-badge&label=&color=137cbd&logo=blueprint&logoColor=fff)](https://blueprintjs.com)
 [![TypeScript](https://img.shields.io/github/package-json/dependency-version/mizyind/tmax/dev/typescript?style=for-the-badge&label=&color=007acc&logo=typescript&logoColor=fff)](https://www.typescriptlang.org)
-[![Prettier](https://img.shields.io/npm/dependency-version/eslint-plugin-mizyind/prettier?style=for-the-badge&label=&color=f7b93e&logo=prettier&logoColor=fff)](https://prettier.io)
+[![Prettier](https://img.shields.io/npm/dependency-version/eslint-plugin-mizyind/prettier?style=for-the-badge&label=&color=f7b93e&logo=prettier&logoColor=000)](https://prettier.io)
 [![ESLint](https://img.shields.io/npm/dependency-version/eslint-plugin-mizyind/eslint?style=for-the-badge&label=&color=4b32c3&logo=eslint&logoColor=fff)](https://eslint.org)
 
 TMAX, short for **Turbulent miZyind at Xion**.
