@@ -8,15 +8,14 @@ import { DialogsContext, Name } from '#contexts/dialogs';
 import AnalyticsIcon from '#icons/analytics';
 import { usePrices } from '#utils/swr';
 
-import { Code } from '../../utils/price-fetcher';
-
 const DIALOG = Name.Analytics;
 const PriceChart = dynamic(() => import('./price-chart'));
 
 function DialogAnalytics({ className }: StyledProps) {
   const { state, dispatch } = useContext(DialogsContext);
-  const theme = useContext(ThemeContext);
-  const prices = usePrices();
+  const { vars } = useContext(ThemeContext);
+  const data = usePrices();
+  const colors = [vars.$gold4, vars.$sepia4, vars.$blue4, vars.$cobalt4];
 
   return (
     <Dialog
@@ -27,33 +26,17 @@ function DialogAnalytics({ className }: StyledProps) {
       title='Analytics'
     >
       <div className={Classes.DIALOG_BODY}>
-        {prices && (
-          <>
-            <div className='chart-group'>
+        {data && (
+          <div className='charts'>
+            {Object.entries(data).map(([code, prices], index) => (
               <PriceChart
-                code={Code.E1VFVN30}
-                color={theme.vars.$gold4}
-                prices={prices[Code.E1VFVN30]}
+                key={code}
+                code={code}
+                prices={prices}
+                color={colors[index]}
               />
-              <PriceChart
-                code={Code.FUEVFVND}
-                color={theme.vars.$sepia4}
-                prices={prices[Code.FUEVFVND]}
-              />
-            </div>
-            <div className='chart-group'>
-              <PriceChart
-                code={Code.VNINDEX}
-                color={theme.vars.$blue4}
-                prices={prices[Code.VNINDEX]}
-              />
-              <PriceChart
-                code={Code.VCB}
-                color={theme.vars.$cobalt4}
-                prices={prices[Code.VCB]}
-              />
-            </div>
-          </>
+            ))}
+          </div>
         )}
       </div>
     </Dialog>
@@ -61,17 +44,17 @@ function DialogAnalytics({ className }: StyledProps) {
 }
 
 export default styled(DialogAnalytics)`
+  width: 100%;
+  margin: unset;
   padding: unset;
-  min-width: 1000px;
   background-color: ${({ theme }) => theme.vars['$dark-gray4']};
 
   .${Classes.ICON} {
     pointer-events: none;
   }
 
-  .chart-group {
+  .charts {
     display: flex;
-    column-gap: 20px;
-    flex-direction: row;
+    flex-wrap: wrap;
   }
 `;
