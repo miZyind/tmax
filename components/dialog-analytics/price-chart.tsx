@@ -187,9 +187,9 @@ function PriceChart({ className, code, prices, color }: Props) {
 }
 
 export default memo(styled(PriceChart)`
+  width: 50%;
+
   @media (max-width: ${({ theme }) => theme.sizes.tablet}) {
     width: 100%;
   }
-
-  width: 50%;
 `);
