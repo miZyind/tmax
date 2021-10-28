@@ -1,4 +1,3 @@
-import debounce from 'lodash/debounce';
 import { useCallback, useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
 
@@ -16,7 +15,6 @@ import {
   INITIAL_UNIT,
   PADDING,
   SIZE_SCALE_PROP,
-  UPDATE_UNIT_DELAY,
   WINDOW_PROP,
 } from './constant';
 import Hexagon from './hexagon';
@@ -31,13 +29,12 @@ function useUnit() {
         (Math.min(window.innerWidth, window.innerHeight) - PADDING) *
           WINDOW_PROP,
       );
-    const debouncedUpdateUnit = debounce(updateUnit, UPDATE_UNIT_DELAY);
 
-    window.addEventListener('resize', debouncedUpdateUnit);
+    window.addEventListener('resize', updateUnit);
 
     updateUnit();
 
-    return () => window.removeEventListener('resize', debouncedUpdateUnit);
+    return () => window.removeEventListener('resize', updateUnit);
   }, []);
 
   return unit;
