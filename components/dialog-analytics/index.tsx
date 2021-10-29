@@ -9,53 +9,68 @@ import { DialogsContext, Name } from '#contexts/dialogs';
 import AnalyticsIcon from '#icons/analytics';
 import { usePrices } from '#utils/swr';
 
+import type { Code } from '#utils/price-fetcher';
+
 const DIALOG = Name.Analytics;
+const CHARTS_RENDER_DELAY = 500;
 const PriceChart = dynamic(() => import('./price-chart'));
+const StyledSpinner = styled(Spinner)`
+  width: 100%;
+  z-index: 30;
+  position: absolute;
+
+  .${Classes.SPINNER_HEAD} {
+    stroke: white;
+  }
+`;
 
 function DialogAnalytics({ className }: StyledProps) {
   const data = usePrices();
   const { vars } = useContext(ThemeContext);
-  const { state, dispatch } = useContext(DialogsContext);
   const [loading, setLoading] = useState(true);
+  const { state, dispatch } = useContext(DialogsContext);
   const colors = [vars.$gold4, vars.$sepia4, vars.$blue4, vars.$cobalt4];
 
   useEffect(() => {
     if (data) {
-      setLoading(false);
+      setTimeout(() => setLoading(false), CHARTS_RENDER_DELAY);
     }
   }, [data]);
 
   return (
-    <Dialog
-      title='Analytics'
-      isOpen={state[DIALOG]}
-      icon={<AnalyticsIcon size={20} />}
-      className={clsx(className, Classes.DARK)}
-      onClose={useCallback(() => dispatch([DIALOG, false]), [dispatch])}
-    >
-      <div className={clsx(Classes.DIALOG_BODY)}>
-        <Spinner className={clsx({ loading })} size={80} />
-        {data && (
-          <div className={clsx('charts', { loading })}>
-            {Object.entries(data).map(([code, prices], index) => (
+    <>
+      {state[DIALOG] && loading && <StyledSpinner size={80} />}
+      <Dialog
+        style={loading ? { opacity: 0 } : {}}
+        title='Analytics'
+        isOpen={state[DIALOG]}
+        icon={<AnalyticsIcon size={20} />}
+        className={clsx(className, Classes.DARK)}
+        onClose={useCallback(() => dispatch([DIALOG, false]), [dispatch])}
+      >
+        <div className={Classes.DIALOG_BODY}>
+          {data &&
+            Object.entries(data).map(([code, prices], index) => (
               <PriceChart
                 key={code}
-                code={code}
+                code={code as Code}
                 prices={prices}
                 color={colors[index]}
               />
             ))}
-          </div>
-        )}
-      </div>
-    </Dialog>
+        </div>
+      </Dialog>
+    </>
   );
 }
 
 export default styled(DialogAnalytics)`
+  opacity: 1;
   width: 60%;
   margin: unset;
   padding: unset;
+  transition: opacity 0.3s
+    ${({ theme }) => theme.vars['$pt-transition-ease-bounce']};
   background-color: ${({ theme }) => theme.vars['$dark-gray4']};
 
   .${Classes.ICON} {
@@ -64,47 +79,22 @@ export default styled(DialogAnalytics)`
 
   .${Classes.DIALOG_BODY} {
     display: flex;
-    min-height: 50vh;
-    position: relative;
+    flex-wrap: wrap;
+    max-width: 100vw;
     align-items: center;
     justify-content: center;
   }
 
-  .${Classes.SPINNER} {
-    opacity: 0;
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    pointer-events: none;
-    transition: opacity 0.8s ease-in-out;
-
-    &.loading {
-      opacity: 1;
-    }
+  ${({ theme }) => theme.queries.laptop} {
+    width: 80%;
   }
 
-  .charts {
-    flex: 1;
-    display: flex;
-    flex-wrap: wrap;
-    opacity: 1;
-    transition: opacity 0.8s ease-in-out;
-
-    &.loading {
-      opacity: 0;
-    }
-  }
-
-  @media (max-width: ${({ theme }) => theme.sizes.tablet}) {
+  ${({ theme }) => theme.queries.tablet} {
     width: 100%;
+    min-height: 100vh;
 
     .${Classes.DIALOG_BODY} {
       margin: unset;
-      min-height: 100vh;
     }
-  }
-
-  @media (max-width: ${({ theme }) => theme.sizes.laptop}) {
-    width: 80%;
   }
 `;

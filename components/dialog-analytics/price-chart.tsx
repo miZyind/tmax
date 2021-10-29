@@ -8,7 +8,7 @@ import {
   Title,
   Tooltip,
 } from 'chart.js';
-import { createRef, memo, useEffect, useState } from 'react';
+import { createRef, useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import type { CartesianScaleOptions, Plugin } from 'chart.js';
@@ -53,8 +53,8 @@ const Y_SCALE_OPTIONS: DeepPartial<CartesianScaleOptions> = {
   grid: { display: false },
   ticks: {
     padding: 0,
-    backdropPadding: 0,
     color: TEXT_COLOR,
+    backdropPadding: 0,
     font: { size: 14 },
     showLabelBackdrop: false,
     callback: (v) => (v as number).toFixed(FRACTION_DIGITS),
@@ -101,11 +101,8 @@ function PriceChart({ className, code, prices, color }: Props) {
   const [chart, setChart] = useState<Chart | undefined>();
 
   useEffect(() => {
-    (() => {
-      if (ref.current && !chart) {
-        const labels = prices.map(({ date }) => date);
-        const data = prices.map(({ value }) => value);
-
+    if (ref.current && !chart) {
+      (() => {
         Chart.register(
           LineElement,
           PointElement,
@@ -115,6 +112,9 @@ function PriceChart({ className, code, prices, color }: Props) {
           Tooltip,
           Title,
         );
+
+        const labels = prices.map(({ date }) => date);
+        const data = prices.map(({ value }) => value);
 
         setChart(
           new Chart(ref.current, {
@@ -127,14 +127,13 @@ function PriceChart({ className, code, prices, color }: Props) {
               ],
             },
             options: {
-              responsive: false,
               animations: { numbers: false, visible: false },
               interaction: { mode: 'index', intersect: false },
               plugins: {
                 title: {
                   text: code,
-                  color: TEXT_COLOR,
                   display: true,
+                  color: TEXT_COLOR,
                   font: { size: 18 },
                 },
                 tooltip: {
@@ -171,8 +170,8 @@ function PriceChart({ className, code, prices, color }: Props) {
                 },
                 line: {
                   borderWidth: 2,
-                  borderCapStyle: 'round',
                   borderColor: color,
+                  borderCapStyle: 'round',
                 },
               },
               scales: {
@@ -202,19 +201,23 @@ function PriceChart({ className, code, prices, color }: Props) {
             plugins: [GUILDLINE_PLUGIN, CHART_AREA_BORDER_PLUGIN],
           }),
         );
-      }
-    })();
+      })();
+    }
+  }, [code, prices, color, ref, chart]);
 
-    return () => chart?.destroy();
-  }, [chart, code, color, prices, ref]);
+  useEffect(() => () => chart?.destroy(), [chart]);
 
-  return <canvas className={className} ref={ref} />;
+  return (
+    <div className={className}>
+      <canvas ref={ref} />
+    </div>
+  );
 }
 
-export default memo(styled(PriceChart)`
+export default styled(PriceChart)`
   width: 50%;
 
-  @media (max-width: ${({ theme }) => theme.sizes.tablet}) {
+  ${({ theme }) => theme.queries.tablet} {
     width: 100%;
   }
-`);
+`;
