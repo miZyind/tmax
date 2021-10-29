@@ -38,6 +38,7 @@
     "@commitlint/cli": "^13.2.1",
     "@commitlint/config-conventional": "^13.2.0",
     "@netlify/plugin-nextjs": "^3.9.2",
+    "@stylelint/postcss-css-in-js": "^0.37.2",
     "@types/lodash": "^4.14.176",
     "@types/node": "^16.11.6",
     "@types/react": "^17.0.33",
@@ -45,13 +46,14 @@
     "@types/styled-components": "^5.1.15",
     "babel-plugin-styled-components": "^1.13.3",
     "eslint-plugin-mizyind": "^3.2.0",
+    "eslint-plugin-react-hooks": "^4.2.1-alpha-9c8161ba8-20211028",
     "husky": "^7.0.4",
     "lint-staged": "^11.2.6",
+    "postcss-syntax": "^0.36.2",
     "stylelint": "^14.0.1",
     "stylelint-config-prettier": "^9.0.3",
-    "stylelint-config-standard": "^23.0.0",
+    "stylelint-config-recommended": "^6.0.0",
     "stylelint-config-styled-components": "^0.1.1",
-    "stylelint-processor-styled-components": "^1.10.0",
     "typescript": "^4.4.4",
     "typescript-styled-plugin": "^0.18.1"
   },
@@ -71,20 +73,18 @@
   "eslintConfig": {
     "extends": [
       "plugin:mizyind/next"
-    ],
-    "rules": {
-      "react-hooks/exhaustive-deps": "off"
-    }
+    ]
   },
   "stylelint": {
-    "processors": [
-      "stylelint-processor-styled-components"
-    ],
     "extends": [
       "stylelint-config-recommended",
       "stylelint-config-styled-components",
       "stylelint-config-prettier"
-    ]
+    ],
+    "customSyntax": "@stylelint/postcss-css-in-js",
+    "rules": {
+      "media-feature-name-no-unknown": null
+    }
   },
   "prettier": {
     "singleQuote": true,
