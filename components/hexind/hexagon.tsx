@@ -76,7 +76,7 @@ function Hexagon({
     } else if (!timeline.isActive()) {
       timeline.play();
     }
-  }, [settings.animate, timeline, getPos]);
+  }, [settings.animate, animate, timeline, getPos]);
 
   return (
     <div

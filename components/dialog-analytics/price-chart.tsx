@@ -11,7 +11,8 @@ import {
 import { createRef, memo, useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-import type { Plugin, Scale } from 'chart.js';
+import type { CartesianScaleOptions, Plugin } from 'chart.js';
+import type { DeepPartial } from 'chart.js/types/utils';
 import type { Code, Price } from '#utils/price-fetcher';
 
 interface Props extends StyledProps {
@@ -22,6 +23,45 @@ interface Props extends StyledProps {
 
 const TEXT_COLOR = '#FFF';
 const FRACTION_DIGITS = 2;
+const X_SCALE_OPTIONS: DeepPartial<CartesianScaleOptions> = {
+  grid: { display: false },
+  ticks: {
+    color: TEXT_COLOR,
+    callback(value, i, ticks) {
+      const FIRST = 0;
+      const LAST = 1;
+      const MIDDLE = 2;
+      const THIRD = 3;
+      const QUARTILE = 4;
+
+      if (
+        i === FIRST ||
+        i === ticks.length - LAST ||
+        i === Math.round(ticks.length / MIDDLE) ||
+        i === Math.round(ticks.length / QUARTILE) ||
+        i === Math.round((ticks.length / QUARTILE) * THIRD)
+      ) {
+        return this.getLabelForValue(value as number);
+      }
+
+      return null;
+    },
+  },
+};
+const Y_SCALE_OPTIONS: DeepPartial<CartesianScaleOptions> = {
+  afterFit(axis) {
+    axis.width = 62;
+    axis.maxWidth = 62;
+  },
+  ticks: {
+    padding: 0,
+    backdropPadding: 0,
+    color: TEXT_COLOR,
+    font: { size: 14 },
+    showLabelBackdrop: false,
+    callback: (v) => (v as number).toFixed(FRACTION_DIGITS),
+  },
+};
 const GUILDLINE_PLUGIN: Plugin = {
   id: 'guildline',
   beforeDatasetDraw({ ctx, chartArea, tooltip }) {
@@ -61,6 +101,9 @@ function PriceChart({ className, code, prices, color }: Props) {
   useEffect(() => {
     (() => {
       if (ref.current && !chart) {
+        const labels = prices.map(({ date }) => date);
+        const data = prices.map(({ value }) => value);
+
         Chart.register(
           LineElement,
           PointElement,
@@ -75,8 +118,11 @@ function PriceChart({ className, code, prices, color }: Props) {
           new Chart(ref.current, {
             type: 'line',
             data: {
-              labels: prices.map(({ date }) => date),
-              datasets: [{ data: prices.map(({ value }) => value) }],
+              labels,
+              datasets: [
+                { data, yAxisID: 'yl' },
+                { data, yAxisID: 'yr' },
+              ],
             },
             options: {
               responsive: false,
@@ -123,53 +169,25 @@ function PriceChart({ className, code, prices, color }: Props) {
                 },
               },
               scales: {
-                x: {
-                  grid: { display: false },
-                  ticks: {
-                    color: TEXT_COLOR,
-                    callback(value, i, ticks) {
-                      const FIRST = 0;
-                      const LAST = 1;
-                      const MIDDLE = 2;
-                      const THIRD = 3;
-                      const QUARTILE = 4;
+                x: X_SCALE_OPTIONS,
+                yl: {
+                  ...Y_SCALE_OPTIONS,
+                  position: 'left',
+                  afterBuildTicks(axis) {
+                    const INDEX = 1;
+                    const [{ data: v }] = axis.chart.data.datasets;
 
-                      if (
-                        i === FIRST ||
-                        i === ticks.length - LAST ||
-                        i === Math.round(ticks.length / MIDDLE) ||
-                        i === Math.round(ticks.length / QUARTILE) ||
-                        i === Math.round((ticks.length / QUARTILE) * THIRD)
-                      ) {
-                        return (this as Scale).getLabelForValue(
-                          value as number,
-                        );
-                      }
-
-                      return null;
-                    },
+                    axis.ticks = [{ value: v[INDEX] as number }];
                   },
                 },
-                y: {
-                  grid: { display: false },
+                yr: {
+                  ...Y_SCALE_OPTIONS,
                   position: 'right',
-                  afterFit(axis) {
-                    axis.width = 62;
-                    axis.maxWidth = 62;
-                  },
                   afterBuildTicks(axis) {
                     const OFFSET = 1;
                     const [{ data: v }] = axis.chart.data.datasets;
 
                     axis.ticks = [{ value: v[v.length - OFFSET] as number }];
-                  },
-                  ticks: {
-                    padding: 0,
-                    backdropPadding: 0,
-                    color: TEXT_COLOR,
-                    font: { size: 14 },
-                    showLabelBackdrop: false,
-                    callback: (v) => (v as number).toFixed(FRACTION_DIGITS),
                   },
                 },
               },
@@ -181,7 +199,7 @@ function PriceChart({ className, code, prices, color }: Props) {
     })();
 
     return () => chart?.destroy();
-  }, []);
+  }, [chart, code, color, prices, ref]);
 
   return <canvas className={className} ref={ref} />;
 }

@@ -99,8 +99,7 @@ export default styled(DialogAnalytics)`
     width: 100%;
 
     .${Classes.DIALOG_BODY} {
-      margin-top: unset;
-      margin-bottom: unset;
+      margin: unset;
       min-height: 100vh;
     }
   }

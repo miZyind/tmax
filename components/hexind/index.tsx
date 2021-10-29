@@ -43,6 +43,9 @@ function useUnit() {
 function Hexind({ className }: StyledProps) {
   const { state, dispatch } = useContext(DialogsContext);
   const unit = useUnit();
+  const [animate] = useState(
+    Boolean(Object.values(state).filter((isOpened) => isOpened).length),
+  );
   const isLoaded = Boolean(unit);
   const unitX = unit * ELEMENT_PROP;
   const unitY = unit;
@@ -52,7 +55,7 @@ function Hexind({ className }: StyledProps) {
   const props = {
     width: unitX,
     height: unitY,
-    animate: !Object.values(state).filter((isOpened) => isOpened).length,
+    animate,
   };
   const onAnalyticsClick = useCallback(
     () => dispatch([Name.Analytics, true]),
