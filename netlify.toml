@@ -4,6 +4,7 @@
   publish = ".next"
 
 [build.environment]
+  NODE_VERSION = "16"
   NEXT_PUBLIC_TITLE = "Turbulent miZyind at Xion"
 
 [[plugins]]
