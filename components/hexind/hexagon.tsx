@@ -1,3 +1,4 @@
+import clsx from 'classnames';
 import GSAP, { Expo } from 'gsap';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
@@ -39,6 +40,7 @@ function Hexagon({
   const { x, y, color } = HEXAGON_SET[id];
   const ref = useRef<HTMLDivElement>(null);
   const [timeline, setTimeline] = useState<gsap.core.Timeline | null>(null);
+  const [playing, setPlaying] = useState(settings.animate && !animate);
   const getPos = useCallback(
     (gap = FINAL_GAP) => ({
       left: width + width * x * gap,
@@ -53,7 +55,10 @@ function Hexagon({
     } else if (timeline === null) {
       GSAP.set(ref.current, { ...getPos(BEGIN_GAP), filter: 'brightness(0%)' });
       setTimeline(
-        GSAP.timeline({ defaults: { duration: 1, ease: Expo.easeOut } })
+        GSAP.timeline({
+          defaults: { duration: 1, ease: Expo.easeOut },
+          onComplete: () => setPlaying(false),
+        })
           .to(ref.current, { opacity: 1 })
           .to(ref.current, {
             ...getPos(MIDDLE_GAP),
@@ -81,7 +86,7 @@ function Hexagon({
   return (
     <div
       ref={ref}
-      className={className}
+      className={clsx(className, { playing })}
       style={{
         width,
         height,
@@ -104,5 +109,8 @@ export default styled(Hexagon)`
   clip-path: ${({ theme }) => theme.clipPaths.hexagon};
   &:hover {
     filter: brightness(120%) !important;
+  }
+  &.playing {
+    pointer-events: none;
   }
 `;
