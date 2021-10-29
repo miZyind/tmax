@@ -22,6 +22,7 @@ interface Props extends StyledProps {
 }
 
 const TEXT_COLOR = '#FFF';
+const TOOLTIP_TITLE_COLOR = '#666';
 const FRACTION_DIGITS = 2;
 const X_SCALE_OPTIONS: DeepPartial<CartesianScaleOptions> = {
   grid: { display: false },
@@ -146,12 +147,12 @@ function PriceChart({ className, code, prices, color }: Props) {
                   caretPadding: 10,
                   bodyAlign: 'center',
                   titleAlign: 'center',
-                  titleColor: '#666',
                   displayColors: false,
                   titleMarginBottom: 10,
                   bodyFont: { size: 14 },
                   backgroundColor: TEXT_COLOR,
                   filter: (_, index) => !index,
+                  titleColor: TOOLTIP_TITLE_COLOR,
                   titleFont: { size: 14, lineHeight: 1.75 },
                   callbacks: {
                     label: ({ raw }) =>
@@ -162,7 +163,9 @@ function PriceChart({ className, code, prices, color }: Props) {
               elements: {
                 point: {
                   radius: 0,
+                  borderWidth: 2,
                   hoverBorderWidth: 2,
+                  borderColor: TEXT_COLOR,
                   hoverBorderColor: TEXT_COLOR,
                   backgroundColor: color,
                 },
