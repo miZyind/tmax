@@ -14,8 +14,6 @@
     "prepare": "husky install",
     "dev": "next dev",
     "build": "yarn lint && next build",
-    "export": "next export",
-    "start": "next start",
     "lint": "yarn lint:js && yarn lint:css",
     "lint:js": "eslint \"*/**/*.{ts,tsx}\" --max-warnings 0",
     "lint:css": "stylelint \"*/**/*.tsx\" --max-warnings 0"
