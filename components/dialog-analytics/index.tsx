@@ -53,7 +53,7 @@ function DialogAnalytics({ className }: StyledProps) {
 }
 
 export default styled(DialogAnalytics)`
-  width: 80%;
+  width: 60%;
   margin: unset;
   padding: unset;
   background-color: ${({ theme }) => theme.vars['$dark-gray4']};
@@ -102,5 +102,9 @@ export default styled(DialogAnalytics)`
       margin: unset;
       min-height: 100vh;
     }
+  }
+
+  @media (max-width: ${({ theme }) => theme.sizes.laptop}) {
+    width: 80%;
   }
 `;

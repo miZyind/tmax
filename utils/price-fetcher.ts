@@ -1,10 +1,10 @@
 import { formatISO, subYears } from 'date-fns';
 
 export enum Code {
-  VNINDEX = 'VNINDEX',
-  VCB = 'VCB',
   E1VFVN30 = 'E1VFVN30',
   FUEVFVND = 'FUEVFVND',
+  VNINDEX = 'VNINDEX',
+  VCB = 'VCB',
 }
 
 interface Raw {

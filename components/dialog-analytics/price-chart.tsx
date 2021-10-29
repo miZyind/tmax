@@ -49,10 +49,7 @@ const X_SCALE_OPTIONS: DeepPartial<CartesianScaleOptions> = {
   },
 };
 const Y_SCALE_OPTIONS: DeepPartial<CartesianScaleOptions> = {
-  afterFit(axis) {
-    axis.width = 62;
-    axis.maxWidth = 62;
-  },
+  grid: { display: false },
   ticks: {
     padding: 0,
     backdropPadding: 0,
@@ -60,6 +57,10 @@ const Y_SCALE_OPTIONS: DeepPartial<CartesianScaleOptions> = {
     font: { size: 14 },
     showLabelBackdrop: false,
     callback: (v) => (v as number).toFixed(FRACTION_DIGITS),
+  },
+  afterFit(axis) {
+    axis.width = 62;
+    axis.maxWidth = 62;
   },
 };
 const GUILDLINE_PLUGIN: Plugin = {
@@ -140,14 +141,17 @@ function PriceChart({ className, code, prices, color }: Props) {
                   caretSize: 0,
                   mode: 'index',
                   cornerRadius: 0,
+                  bodyColor: color,
                   intersect: false,
                   caretPadding: 10,
+                  bodyAlign: 'center',
+                  titleAlign: 'center',
                   titleColor: '#666',
                   displayColors: false,
                   titleMarginBottom: 10,
                   bodyFont: { size: 14 },
-                  bodyColor: color,
                   backgroundColor: TEXT_COLOR,
+                  filter: (_, index) => !index,
                   titleFont: { size: 14, lineHeight: 1.75 },
                   callbacks: {
                     label: ({ raw }) =>
