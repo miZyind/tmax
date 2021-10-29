@@ -32,10 +32,10 @@ function DialogAnalytics({ className }: StyledProps) {
   const colors = [vars.$gold4, vars.$sepia4, vars.$blue4, vars.$cobalt4];
 
   useEffect(() => {
-    if (data) {
+    if (data && state[DIALOG] && loading) {
       setTimeout(() => setLoading(false), CHARTS_RENDER_DELAY);
     }
-  }, [data]);
+  }, [data, state, loading]);
 
   return (
     <>
