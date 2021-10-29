@@ -1,11 +1,9 @@
 # https://docs.netlify.com/configure-builds/file-based-configuration
 [build]
   command = "yarn build"
-  publish = "out"
+  publish = ".next"
 
 [build.environment]
-  NODE_VERSION = "16"
-  NEXT_SERVERLESS= "true"
   NEXT_PUBLIC_TITLE = "Turbulent miZyind at Xion"
 
 [[plugins]]
