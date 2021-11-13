@@ -1,2 +1,4 @@
 next.config.js linguist-language=TypeScript
 .env.example linguist-documentation
+public/** linguist-vendored
+.husky/** linguist-vendored
