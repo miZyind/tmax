@@ -8,12 +8,12 @@ module.exports = {
         destination: '/singularity/index.html',
       },
       {
-        source: '/wasm.js',
-        destination: '/singularity/wasm.js',
+        source: '/singularity.js',
+        destination: '/singularity/singularity.js',
       },
       {
-        source: '/wasm_bg.wasm',
-        destination: '/singularity/wasm_bg.wasm',
+        source: '/singularity_bg.wasm',
+        destination: '/singularity/singularity_bg.wasm',
       },
       {
         source: '/assets/:path*',
