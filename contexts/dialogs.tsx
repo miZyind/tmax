@@ -24,7 +24,8 @@ export const DialogsContext = createContext({} as Context);
 export function DialogsProvider({ children }: { children: ReactNode }) {
   const { query } = useRouter();
   const routerState =
-    typeof query.dialog === 'string' && dialogs.includes(query.dialog as Name)
+    typeof query.dialog === 'string' &&
+    dialogs.includes(query.dialog.toUpperCase() as Name)
       ? { [query.dialog.toUpperCase()]: true }
       : {};
   const [state, dispatch] = useReducer(reducer, {

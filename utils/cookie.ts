@@ -1,5 +1,7 @@
 import { parseCookies, setCookie } from 'nookies';
 
+import { COOKIE_MAX_AGE } from '#utils/constant';
+
 import type { GetServerSidePropsContext as Context } from 'next';
 
 export interface Settings {
@@ -30,5 +32,9 @@ export function get<T extends Record<string, unknown>>(
 }
 
 export function set(key: CookieKey, value: Partial<Settings>) {
-  setCookie(null, key, JSON.stringify({ ...get(key), ...value }));
+  setCookie(null, key, JSON.stringify({ ...get(key), ...value }), {
+    maxAge: COOKIE_MAX_AGE,
+    path: '/',
+    sameSite: 'lax',
+  });
 }
