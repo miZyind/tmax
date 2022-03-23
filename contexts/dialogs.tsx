@@ -20,22 +20,13 @@ const dialogs = Object.values(Name);
 const initialState = Object.fromEntries(dialogs.map((name) => [name, false]));
 const reducer = (state: State, [n, v]: Action) => ({ ...state, [n]: v });
 
-function extractRouterState({ dialog }: Record<string, unknown>) {
-  if (typeof dialog === 'string') {
-    const name = dialog.toUpperCase() as Name;
-
-    if (dialogs.includes(name)) {
-      return { [name]: true };
-    }
-  }
-
-  return {};
-}
-
 export const DialogsContext = createContext({} as Context);
 export function DialogsProvider({ children }: { children: ReactNode }) {
   const { query } = useRouter();
-  const routerState = extractRouterState(query);
+  const routerState =
+    typeof query.dialog === 'string' && dialogs.includes(query.dialog as Name)
+      ? { [query.dialog.toUpperCase()]: true }
+      : {};
   const [state, dispatch] = useReducer(reducer, {
     ...(initialState as State),
     ...routerState,

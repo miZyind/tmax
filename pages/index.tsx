@@ -50,7 +50,6 @@ export default styled(Index)`
   background-size: cover;
   background-repeat: no-repeat;
   background-image: url('/background.jpg');
-
   &:after {
     @keyframes ani-cloud {
       0% {
@@ -64,7 +63,6 @@ export default styled(Index)`
     animation-duration: 150s;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
-
     content: '';
     width: 100%;
     height: 100%;
@@ -74,13 +72,11 @@ export default styled(Index)`
     background-size: auto 100%;
     background-image: url('/cloud.png');
   }
-
   .button-animation {
     top: 0;
     right: 0;
     margin: 5px 10px;
     position: absolute;
-
     &:focus {
       outline: unset !important;
     }

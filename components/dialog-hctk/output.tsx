@@ -2,8 +2,9 @@ import clsx from 'classnames';
 import { useCallback } from 'react';
 import styled from 'styled-components';
 
-import { Classes, FormGroup, Icon, Popover, Position } from '@blueprintjs/core';
+import { Classes, FormGroup, Icon } from '@blueprintjs/core';
 import { IconNames } from '@blueprintjs/icons';
+import { Popover2, Classes as PopoverClasses } from '@blueprintjs/popover2';
 
 import type { MouseEvent } from 'react';
 
@@ -21,38 +22,43 @@ function Output({ className, value, isValidOutput }: Props) {
     },
     [value],
   );
-  const targetProps = {
-    id: 'hctk-output',
-    className: clsx(className, Classes.INPUT),
-    placeholder: 'Output keyboard keys...',
-    value,
-    onClick,
-    readOnly: true,
-    disabled: !isValidOutput,
-  };
 
   return (
-    <FormGroup label='Output' labelFor='hctk-output'>
+    <FormGroup className={className} label='Output' labelFor='hctk-output'>
       <div className={clsx(Classes.INPUT_GROUP, Classes.LARGE)}>
         <Icon icon={IconNames.LOG_OUT} />
-        <Popover
-          position={Position.BOTTOM_LEFT}
-          target={<input {...targetProps} />}
-          targetTagName='div'
+        <Popover2
+          fill
           content='Copied!'
           usePortal={false}
+          placement='left'
           disabled={!isValidOutput}
-        />
+        >
+          <input
+            readOnly
+            value={value}
+            id='hctk-output'
+            onClick={onClick}
+            disabled={!isValidOutput}
+            className={Classes.INPUT}
+            placeholder='Output keyboard keys...'
+          />
+        </Popover2>
       </div>
     </FormGroup>
   );
 }
 
 export default styled(Output)`
-  cursor: copy;
-  padding-left: ${({ theme }) => theme.vars['$pt-input-height-large']};
-
-  &:disabled {
-    cursor: default;
+  input {
+    cursor: copy;
+    padding-left: 40px;
+    &:disabled {
+      cursor: default;
+    }
+  }
+  .${PopoverClasses.POPOVER2_CONTENT} {
+    padding: 5px;
+    user-select: none;
   }
 `;

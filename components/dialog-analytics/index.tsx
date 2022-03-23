@@ -1,15 +1,15 @@
 import clsx from 'classnames';
 import dynamic from 'next/dynamic';
 import { useCallback, useContext, useEffect, useState } from 'react';
-import styled, { ThemeContext } from 'styled-components';
+import styled from 'styled-components';
 
-import { Classes, Dialog, Spinner } from '@blueprintjs/core';
+import { Classes, Colors, Dialog, Spinner } from '@blueprintjs/core';
 
+import { usePrices } from '#api/get-prices';
 import { DialogsContext, Name } from '#contexts/dialogs';
 import AnalyticsIcon from '#icons/analytics';
-import { usePrices } from '#utils/swr';
 
-import type { Code } from '#utils/price-fetcher';
+import type { Code } from '#utils/constant';
 
 const DIALOG = Name.Analytics;
 const CHARTS_RENDER_DELAY = 500;
@@ -18,7 +18,6 @@ const StyledSpinner = styled(Spinner)`
   width: 100%;
   z-index: 30;
   position: absolute;
-
   .${Classes.SPINNER_HEAD} {
     stroke: white;
   }
@@ -26,10 +25,9 @@ const StyledSpinner = styled(Spinner)`
 
 function DialogAnalytics({ className }: StyledProps) {
   const data = usePrices();
-  const { vars } = useContext(ThemeContext);
   const [loading, setLoading] = useState(true);
   const { state, dispatch } = useContext(DialogsContext);
-  const colors = [vars.$gold4, vars.$sepia4, vars.$blue4, vars.$cobalt4];
+  const colors = [Colors.GOLD4, Colors.SEPIA4, Colors.BLUE4, Colors.CERULEAN4];
 
   useEffect(() => {
     if (data && state[DIALOG] && loading) {
@@ -69,14 +67,11 @@ export default styled(DialogAnalytics)`
   width: 60%;
   margin: unset;
   padding: unset;
-  transition: opacity 0.3s
-    ${({ theme }) => theme.vars['$pt-transition-ease-bounce']};
-  background-color: ${({ theme }) => theme.vars['$dark-gray4']};
-
+  background-color: ${Colors.DARK_GRAY4};
+  transition: opacity 0.3s cubic-bezier(0.54, 1.12, 0.38, 1.11);
   .${Classes.ICON} {
     pointer-events: none;
   }
-
   .${Classes.DIALOG_BODY} {
     display: flex;
     flex-wrap: wrap;
@@ -84,15 +79,12 @@ export default styled(DialogAnalytics)`
     align-items: center;
     justify-content: center;
   }
-
   ${({ theme }) => theme.queries.laptop} {
     width: 80%;
   }
-
   ${({ theme }) => theme.queries.tablet} {
     width: 100%;
     min-height: 100vh;
-
     .${Classes.DIALOG_BODY} {
       margin: unset;
     }

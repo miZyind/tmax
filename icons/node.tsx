@@ -1,6 +1,6 @@
-import BaseIcon from './base';
+import BaseIcon from '#icons/base';
 
-import type { BaseIconProps } from './base';
+import type { BaseIconProps } from '#icons/base';
 
 export default function NodeIcon(props: BaseIconProps) {
   return (

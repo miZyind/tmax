@@ -1,6 +1,6 @@
 import { Icon } from '@blueprintjs/core';
 
-import type { BaseIconProps } from './base';
+import type { BaseIconProps } from '#icons/base';
 
 export default function AnalyticsIcon({
   size,

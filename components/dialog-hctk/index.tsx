@@ -1,15 +1,14 @@
 import { useCallback, useContext, useRef, useState } from 'react';
 import styled from 'styled-components';
+import useSWR from 'swr';
 
-import { Classes, Dialog } from '@blueprintjs/core';
+import { Classes, Colors, Dialog } from '@blueprintjs/core';
 
+import HeaderIcon from '#components/dialog-hctk/header-icon';
+import Input from '#components/dialog-hctk/input';
+import Output from '#components/dialog-hctk/output';
 import { DialogsContext, Name } from '#contexts/dialogs';
 import { decode } from '#utils/hctk-decoder';
-import { useCedict } from '#utils/swr';
-
-import HeaderIcon from './header-icon';
-import Input from './input';
-import Output from './output';
 
 const DIALOG = Name.HCTK;
 
@@ -17,7 +16,9 @@ function DialogHCTK({ className }: StyledProps) {
   const { state, dispatch } = useContext(DialogsContext);
   const [text, setText] = useState('');
   const inputRef = useRef<HTMLInputElement>(null);
-  const cedict = useCedict();
+  const cedict = useSWR<Cedict>('/cedict.json', {
+    revalidateOnFocus: false,
+  }).data;
   const output = decode(text, cedict);
   const isValidOutput = Boolean(output.length);
 
@@ -45,18 +46,12 @@ function DialogHCTK({ className }: StyledProps) {
 
 export default styled(DialogHCTK)`
   padding: unset;
-  background-color: ${({ theme }) => theme.vars['$dark-gray4']};
-
+  background-color: ${Colors.DARK_GRAY4};
   .${Classes.ICON} {
     pointer-events: none;
   }
-
   .${Classes.LABEL} {
+    font-size: 16px;
     user-select: none;
-    font-size: ${({ theme }) => theme.vars['$pt-font-size-large']};
-  }
-
-  .${Classes.POPOVER_CONTENT} {
-    padding: 5px;
   }
 `;

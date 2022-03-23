@@ -2,7 +2,7 @@
 {
   /* File Inclusion */
   "include": ["**/*"],
-  "exclude": ["node_modules", "next-env.d.ts"],
+  "exclude": ["node_modules"],
   "compilerOptions": {
     /* Project Options */
     "target": "ESNext",
@@ -25,11 +25,10 @@
     "esModuleInterop": true,
     "moduleResolution": "node",
     "paths": {
+      "#api/*": ["pages/api/*"],
       "#components/*": ["components/*"],
-      "#configs/*": ["configs/*"],
       "#contexts/*": ["contexts/*"],
       "#icons/*": ["icons/*"],
-      "#theme": ["theme"],
       "#utils/*": ["utils/*"]
     },
     "typeRoots": ["node_modules/@types", "@types"],

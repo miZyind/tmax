@@ -3,9 +3,13 @@ import GSAP, { Expo } from 'gsap';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 
+import {
+  BEGIN_GAP,
+  FINAL_GAP,
+  HEXAGON_SET,
+  MIDDLE_GAP,
+} from '#components/hexind/constant';
 import { CookieKey, get } from '#utils/cookie';
-
-import { BEGIN_GAP, FINAL_GAP, HEXAGON_SET, MIDDLE_GAP } from './constant';
 
 import type { MouseEventHandler, ReactNode } from 'react';
 
@@ -106,7 +110,7 @@ export default styled(Hexagon)`
   position: absolute;
   align-items: center;
   justify-content: center;
-  clip-path: ${({ theme }) => theme.clipPaths.hexagon};
+  clip-path: ${({ theme }) => theme.paths.hexagon};
   &:hover {
     filter: brightness(120%) !important;
   }

@@ -1,13 +1,5 @@
-import { useCallback, useContext, useEffect, useState } from 'react';
+import { useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import styled from 'styled-components';
-
-import { DialogsContext, Name } from '#contexts/dialogs';
-import AnalyticsIcon from '#icons/analytics';
-import GithubIcon from '#icons/github';
-import HCTKIcon from '#icons/hctk';
-import NodeIcon from '#icons/node';
-import ReactIcon from '#icons/react';
-import TypeScriptIcon from '#icons/typescript';
 
 import {
   ELEMENT_PROP,
@@ -16,9 +8,16 @@ import {
   PADDING,
   SIZE_SCALE_PROP,
   WINDOW_PROP,
-} from './constant';
-import Hexagon from './hexagon';
-import Logo from './logo';
+} from '#components/hexind/constant';
+import Hexagon from '#components/hexind/hexagon';
+import Logo from '#components/hexind/logo';
+import { DialogsContext, Name } from '#contexts/dialogs';
+import AnalyticsIcon from '#icons/analytics';
+import GithubIcon from '#icons/github';
+import HCTKIcon from '#icons/hctk';
+import NodeIcon from '#icons/node';
+import ReactIcon from '#icons/react';
+import TypeScriptIcon from '#icons/typescript';
 
 function useUnit() {
   const [unit, setUnit] = useState(INITIAL_UNIT);
@@ -43,8 +42,9 @@ function useUnit() {
 function Hexind({ className }: StyledProps) {
   const { state, dispatch } = useContext(DialogsContext);
   const unit = useUnit();
-  const [animate] = useState(
-    Boolean(Object.values(state).filter((isOpened) => isOpened).length),
+  const animate = useMemo(
+    () => Boolean(Object.values(state).filter((isOpened) => isOpened).length),
+    [state],
   );
   const isLoaded = Boolean(unit);
   const unitX = unit * ELEMENT_PROP;

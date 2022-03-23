@@ -13,7 +13,8 @@ import styled from 'styled-components';
 
 import type { CartesianScaleOptions, Plugin } from 'chart.js';
 import type { DeepPartial } from 'chart.js/types/utils';
-import type { Code, Price } from '#utils/price-fetcher';
+import type { Code } from '#utils/constant';
+import type { Price } from '#utils/model';
 
 interface Props extends StyledProps {
   code: Code;
@@ -216,7 +217,6 @@ function PriceChart({ className, code, prices, color }: Props) {
 
 export default styled(PriceChart)`
   width: 50%;
-
   ${({ theme }) => theme.queries.tablet} {
     width: 100%;
   }

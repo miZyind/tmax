@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { LOGO_SCALE_PROP } from './constant';
+import { LOGO_SCALE_PROP } from '#components/hexind/constant';
 
 export interface Props extends StyledProps {
   width: number;
@@ -26,8 +26,7 @@ export default styled(Logo)`
   align-items: center;
   justify-content: center;
   background-color: white;
-  clip-path: ${({ theme }) => theme.clipPaths.hexagon};
-
+  clip-path: ${({ theme }) => theme.paths.hexagon};
   > div {
     border-radius: 50%;
     background-size: cover;

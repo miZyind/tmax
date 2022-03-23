@@ -3,7 +3,7 @@ import { ServerStyleSheet } from 'styled-components';
 
 import type { DocumentContext } from 'next/document';
 
-export default class AppDocument extends Document {
+export default class extends Document {
   static async getInitialProps(ctx: DocumentContext) {
     const sheet = new ServerStyleSheet();
     const originalRenderPage = ctx.renderPage;
@@ -11,10 +11,8 @@ export default class AppDocument extends Document {
     try {
       ctx.renderPage = () =>
         originalRenderPage({
-          enhanceApp: (App) =>
-            function Enhancer(props) {
-              return sheet.collectStyles(<App {...props} />);
-            },
+          enhanceApp: (App) => (props) =>
+            sheet.collectStyles(<App {...props} />),
         });
 
       const initialProps = await Document.getInitialProps(ctx);
