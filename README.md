@@ -40,7 +40,7 @@ TMAX, short for **Turbulent miZyind at Xion**.
 - **[Stylelint](https://stylelint.io)** - A mighty, modern linter that helps you avoid errors and enforce conventions in your styles.
   - **[postcss-syntax](https://github.com/gucong3000/postcss-syntax)** - Automatically switch PostCSS syntax based on file extensions.
   - **[@stylelint/postcss-css-in-js](https://github.com/stylelint/postcss-css-in-js)** - PostCSS syntax for parsing CSS in JS literals.
-  - **[stylelint-config-prettier](https://github.com/prettier/stylelint-config-prettier)** - Lets you use your favorite shareable config without letting its stylistic.
+  - **[stylelint-config-prettier](https://github.com/prettier/stylelint-config-prettier)** - Lets you use your favorite shareable Stylelint config when using Prettier.
   - **[stylelint-config-recommended](https://github.com/stylelint/stylelint-config-recommended)** - The recommended shareable config for Stylelint.
   - **[stylelint-config-styled-components](https://github.com/styled-components/stylelint-config-styled-components)** - The shareable Stylelint config for styled-components.
 - **[Husky](https://github.com/typicode/husky)** - Git hooks made easy.
