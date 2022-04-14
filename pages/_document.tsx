@@ -1,4 +1,5 @@
 import Document from 'next/document';
+import { Fragment } from 'react';
 import { ServerStyleSheet } from 'styled-components';
 
 import type { DocumentContext } from 'next/document';
@@ -19,12 +20,12 @@ export default class extends Document {
 
       return {
         ...initialProps,
-        styles: (
-          <>
+        styles: [
+          <Fragment key='styled-components'>
             {initialProps.styles}
             {sheet.getStyleElement()}
-          </>
-        ),
+          </Fragment>,
+        ],
       };
     } finally {
       sheet.seal();
