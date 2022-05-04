@@ -1,4 +1,7 @@
 module.exports = {
+  compiler: {
+    styledComponents: true,
+  },
   reactStrictMode: true,
   eslint: { ignoreDuringBuilds: true },
   rewrites() {
