@@ -107,6 +107,7 @@ function Hexagon({
 
 export default styled(Hexagon)`
   display: flex;
+  cursor: pointer;
   position: absolute;
   align-items: center;
   justify-content: center;
@@ -115,6 +116,7 @@ export default styled(Hexagon)`
     filter: brightness(120%) !important;
   }
   &.playing {
+    cursor: default;
     pointer-events: none;
   }
 `;

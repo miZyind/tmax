@@ -55,11 +55,7 @@ function Hexind({ className }: StyledProps) {
   const width = unitX * SIZE_SCALE_PROP;
   const height = unitY * SIZE_SCALE_PROP;
   const iconSize = unitX * ICON_SCALE_PROP;
-  const props = {
-    width: unitX,
-    height: unitY,
-    animate,
-  };
+  const props = { width: unitX, height: unitY, animate };
   const onSingularityClick = useCallback(
     () => router.push('/singularity'),
     [router],
