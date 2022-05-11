@@ -1,16 +1,15 @@
 # https://docs.netlify.com/configure-builds/file-based-configuration
 [build]
-  command = "yarn build"
-  publish = ".next"
+command = "yarn build"
+publish = ".next"
 
 [build.environment]
-  NODE_VERSION = "16"
-  NEXT_PUBLIC_TITLE = "Turbulent miZyind at Xion"
+NODE_VERSION = "16"
 
 [[plugins]]
-  package = "@netlify/plugin-nextjs"
+package = "@netlify/plugin-nextjs"
 
 [[redirects]]
-  from = "https://mizyind.netlify.app"
-  to = "https://mizyind.dev"
-  force = true
+from = "https://mizyind.netlify.app"
+to = "https://mizyind.dev"
+force = true
