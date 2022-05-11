@@ -29,7 +29,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <GlobalStyle />
       <ThemeProvider theme={theme}>
         <SWRConfig value={{ fetcher }}>
-          <Component {...pageProps} />
+          <Component className={Classes.DARK} {...pageProps} />
         </SWRConfig>
       </ThemeProvider>
     </>

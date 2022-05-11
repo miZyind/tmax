@@ -1,4 +1,3 @@
-import clsx from 'classnames';
 import { useCallback, useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
 
@@ -39,11 +38,12 @@ function DialogAnalytics({ className }: StyledProps) {
     <>
       {state[DIALOG] && loading && <StyledSpinner size={80} />}
       <Dialog
-        style={loading ? { opacity: 0 } : {}}
         title='Analytics'
+        className={className}
         isOpen={state[DIALOG]}
+        portalClassName={Classes.DARK}
         icon={<AnalyticsIcon size={20} />}
-        className={clsx(className, Classes.DARK)}
+        style={loading ? { opacity: 0 } : {}}
         onClose={useCallback(() => dispatch([DIALOG, false]), [dispatch])}
       >
         <div className={Classes.DIALOG_BODY}>

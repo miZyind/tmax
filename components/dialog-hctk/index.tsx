@@ -24,19 +24,20 @@ function DialogHCTK({ className }: StyledProps) {
 
   return (
     <Dialog
-      className={`${className} ${Classes.DARK}`}
+      title='HCTK'
+      icon={<HeaderIcon />}
+      className={className}
       isOpen={state[DIALOG]}
+      portalClassName={Classes.DARK}
       onClose={useCallback(() => dispatch([DIALOG, false]), [dispatch])}
       onOpening={useCallback(() => inputRef.current?.focus(), [inputRef])}
-      icon={<HeaderIcon />}
-      title='HCTK'
     >
       <div className={Classes.DIALOG_BODY}>
         <Input
-          inputRef={inputRef}
           value={text}
-          isValidOutput={isValidOutput}
           onChange={setText}
+          inputRef={inputRef}
+          isValidOutput={isValidOutput}
         />
         <Output value={output} isValidOutput={isValidOutput} />
       </div>
