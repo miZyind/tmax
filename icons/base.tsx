@@ -1,16 +1,22 @@
 import type { ReactNode } from 'react';
 
-interface Props {
+interface Props extends StyledProps {
   size: number;
   color?: string;
   children: ReactNode;
 }
 
-export type BaseIconProps = Pick<Props, 'color' | 'size'>;
+export type BaseIconProps = Pick<Props, 'className' | 'color' | 'size'>;
 
-export default function BaseIcon({ size, color = 'white', children }: Props) {
+export default function BaseIcon({
+  className,
+  size,
+  color = 'white',
+  children,
+}: Props) {
   return (
     <svg
+      className={className}
       xmlns='http://www.w3.org/2000/svg'
       width={size}
       height={size}

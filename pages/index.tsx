@@ -52,17 +52,11 @@ export default styled(Index)`
   background-image: url('/background.jpg');
   &:after {
     @keyframes ani-cloud {
-      0% {
-        background-position: 0px;
-      }
       100% {
         background-position: 5440px;
       }
     }
-    animation-name: ani-cloud;
-    animation-duration: 150s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
+    animation: ani-cloud 150s linear infinite;
     content: '';
     width: 100%;
     height: 100%;

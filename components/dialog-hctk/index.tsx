@@ -29,7 +29,7 @@ function DialogHCTK({ className }: StyledProps) {
       onClose={useCallback(() => dispatch([DIALOG, false]), [dispatch])}
       onOpening={useCallback(() => inputRef.current?.focus(), [inputRef])}
       icon={<HeaderIcon />}
-      title='HantChar to Keyboard Keys'
+      title='HCTK'
     >
       <div className={Classes.DIALOG_BODY}>
         <Input

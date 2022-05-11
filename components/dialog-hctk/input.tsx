@@ -36,7 +36,7 @@ export default function Input({
         className={className}
         placeholder='Input HantChar...'
         value={value}
-        leftIcon='translate'
+        leftIcon='log-in'
         onChange={handleOnChange}
         large
       />

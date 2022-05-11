@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import { useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import styled from 'styled-components';
 
@@ -6,6 +7,7 @@ import {
   ICON_SCALE_PROP,
   INITIAL_UNIT,
   PADDING,
+  SINGULARITY_SCALE_PROP,
   SIZE_SCALE_PROP,
   WINDOW_PROP,
 } from '#components/hexind/constant';
@@ -13,11 +15,11 @@ import Hexagon from '#components/hexind/hexagon';
 import Logo from '#components/hexind/logo';
 import { DialogsContext, Name } from '#contexts/dialogs';
 import AnalyticsIcon from '#icons/analytics';
+import ChangelogIcon from '#icons/changelog';
 import GithubIcon from '#icons/github';
 import HCTKIcon from '#icons/hctk';
 import NodeIcon from '#icons/node';
-import ReactIcon from '#icons/react';
-import TypeScriptIcon from '#icons/typescript';
+import SingularityIcon from '#icons/singularity';
 
 function useUnit() {
   const [unit, setUnit] = useState(INITIAL_UNIT);
@@ -40,6 +42,7 @@ function useUnit() {
 }
 
 function Hexind({ className }: StyledProps) {
+  const router = useRouter();
   const { state, dispatch } = useContext(DialogsContext);
   const unit = useUnit();
   const animate = useMemo(
@@ -57,6 +60,10 @@ function Hexind({ className }: StyledProps) {
     height: unitY,
     animate,
   };
+  const onSingularityClick = useCallback(
+    () => router.push('/singularity'),
+    [router],
+  );
   const onAnalyticsClick = useCallback(
     () => dispatch([Name.Analytics, true]),
     [dispatch],
@@ -70,14 +77,17 @@ function Hexind({ className }: StyledProps) {
     <div className={className} style={{ width, height }}>
       {isLoaded && (
         <>
-          <Hexagon id={1} {...props}>
-            <NodeIcon size={iconSize} />
+          <Hexagon id={1} {...props} onClick={onSingularityClick}>
+            <SingularityIcon
+              className='singularity'
+              size={iconSize * SINGULARITY_SCALE_PROP}
+            />
           </Hexagon>
           <Hexagon id={2} {...props}>
-            <TypeScriptIcon size={iconSize} />
+            <NodeIcon size={iconSize} />
           </Hexagon>
           <Hexagon id={3} {...props}>
-            <ReactIcon size={iconSize} />
+            <ChangelogIcon size={iconSize} />
           </Hexagon>
           <Hexagon id={4} {...props} onClick={onAnalyticsClick}>
             <AnalyticsIcon size={iconSize} />
@@ -98,4 +108,12 @@ function Hexind({ className }: StyledProps) {
 export default styled(Hexind)`
   margin: auto;
   position: relative;
+  .singularity {
+    @keyframes ani-singularity {
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+    animation: ani-singularity 60s linear infinite;
+  }
 `;
