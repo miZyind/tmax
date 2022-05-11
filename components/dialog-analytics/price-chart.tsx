@@ -8,7 +8,7 @@ import {
   Title,
   Tooltip,
 } from 'chart.js';
-import { createRef, useEffect, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 
 import type { CartesianScaleOptions, Plugin } from 'chart.js';
@@ -98,119 +98,119 @@ const CHART_AREA_BORDER_PLUGIN: Plugin = {
 };
 
 function PriceChart({ className, code, prices, color }: Props) {
-  const ref = createRef<HTMLCanvasElement>();
-  const [chart, setChart] = useState<Chart | undefined>();
+  const canvas = useRef<HTMLCanvasElement>(null);
+  const chart = useRef<Chart | null>();
 
   useEffect(() => {
-    if (ref.current && !chart) {
-      (() => {
-        Chart.register(
-          LineElement,
-          PointElement,
-          LineController,
-          CategoryScale,
-          LinearScale,
-          Tooltip,
-          Title,
-        );
+    if (!canvas.current) return;
 
-        const labels = prices.map(({ date }) => date);
-        const data = prices.map(({ value }) => value);
+    Chart.register(
+      LineElement,
+      PointElement,
+      LineController,
+      CategoryScale,
+      LinearScale,
+      Tooltip,
+      Title,
+    );
 
-        setChart(
-          new Chart(ref.current, {
-            type: 'line',
-            data: {
-              labels,
-              datasets: [
-                { data, yAxisID: 'yl' },
-                { data, yAxisID: 'yr' },
-              ],
+    const labels = prices.map(({ date }) => date);
+    const data = prices.map(({ value }) => value);
+
+    chart.current = new Chart(canvas.current, {
+      type: 'line',
+      data: {
+        labels,
+        datasets: [
+          { data, yAxisID: 'yl' },
+          { data, yAxisID: 'yr' },
+        ],
+      },
+      options: {
+        animations: { numbers: false, visible: false },
+        interaction: { mode: 'index', intersect: false },
+        plugins: {
+          title: {
+            text: code,
+            display: true,
+            color: TEXT_COLOR,
+            font: { size: 18 },
+          },
+          tooltip: {
+            padding: 10,
+            caretSize: 0,
+            mode: 'index',
+            cornerRadius: 0,
+            bodyColor: color,
+            intersect: false,
+            caretPadding: 10,
+            bodyAlign: 'center',
+            titleAlign: 'center',
+            displayColors: false,
+            titleMarginBottom: 10,
+            bodyFont: { size: 14 },
+            backgroundColor: TEXT_COLOR,
+            filter: (_, index) => !index,
+            titleColor: TOOLTIP_TITLE_COLOR,
+            titleFont: { size: 14, lineHeight: 1.75 },
+            callbacks: {
+              label: ({ raw }) => (raw as number).toFixed(FRACTION_DIGITS),
             },
-            options: {
-              animations: { numbers: false, visible: false },
-              interaction: { mode: 'index', intersect: false },
-              plugins: {
-                title: {
-                  text: code,
-                  display: true,
-                  color: TEXT_COLOR,
-                  font: { size: 18 },
-                },
-                tooltip: {
-                  padding: 10,
-                  caretSize: 0,
-                  mode: 'index',
-                  cornerRadius: 0,
-                  bodyColor: color,
-                  intersect: false,
-                  caretPadding: 10,
-                  bodyAlign: 'center',
-                  titleAlign: 'center',
-                  displayColors: false,
-                  titleMarginBottom: 10,
-                  bodyFont: { size: 14 },
-                  backgroundColor: TEXT_COLOR,
-                  filter: (_, index) => !index,
-                  titleColor: TOOLTIP_TITLE_COLOR,
-                  titleFont: { size: 14, lineHeight: 1.75 },
-                  callbacks: {
-                    label: ({ raw }) =>
-                      (raw as number).toFixed(FRACTION_DIGITS),
-                  },
-                },
-              },
-              elements: {
-                point: {
-                  radius: 0,
-                  borderWidth: 2,
-                  hoverBorderWidth: 2,
-                  borderColor: TEXT_COLOR,
-                  hoverBorderColor: TEXT_COLOR,
-                  backgroundColor: color,
-                },
-                line: {
-                  borderWidth: 2,
-                  borderColor: color,
-                  borderCapStyle: 'round',
-                },
-              },
-              scales: {
-                x: X_SCALE_OPTIONS,
-                yl: {
-                  ...Y_SCALE_OPTIONS,
-                  position: 'left',
-                  afterBuildTicks(axis) {
-                    const INDEX = 1;
-                    const [{ data: v }] = axis.chart.data.datasets;
+          },
+        },
+        elements: {
+          point: {
+            radius: 0,
+            borderWidth: 2,
+            hoverBorderWidth: 2,
+            borderColor: TEXT_COLOR,
+            hoverBorderColor: TEXT_COLOR,
+            backgroundColor: color,
+          },
+          line: {
+            borderWidth: 2,
+            borderColor: color,
+            borderCapStyle: 'round',
+          },
+        },
+        scales: {
+          x: X_SCALE_OPTIONS,
+          yl: {
+            ...Y_SCALE_OPTIONS,
+            position: 'left',
+            afterBuildTicks(axis) {
+              const INDEX = 1;
+              const [{ data: v }] = axis.chart.data.datasets;
 
-                    axis.ticks = [{ value: v[INDEX] as number }];
-                  },
-                },
-                yr: {
-                  ...Y_SCALE_OPTIONS,
-                  position: 'right',
-                  afterBuildTicks(axis) {
-                    const OFFSET = 1;
-                    const [{ data: v }] = axis.chart.data.datasets;
-
-                    axis.ticks = [{ value: v[v.length - OFFSET] as number }];
-                  },
-                },
-              },
+              axis.ticks = [{ value: v[INDEX] as number }];
             },
-            plugins: [GUILDLINE_PLUGIN, CHART_AREA_BORDER_PLUGIN],
-          }),
-        );
-      })();
-    }
-  }, [code, prices, color, ref, chart]);
+          },
+          yr: {
+            ...Y_SCALE_OPTIONS,
+            position: 'right',
+            afterBuildTicks(axis) {
+              const OFFSET = 1;
+              const [{ data: v }] = axis.chart.data.datasets;
 
-  useEffect(() => () => chart?.destroy(), [chart]);
+              axis.ticks = [{ value: v[v.length - OFFSET] as number }];
+            },
+          },
+        },
+      },
+      plugins: [GUILDLINE_PLUGIN, CHART_AREA_BORDER_PLUGIN],
+    });
+
+    return () => {
+      if (chart.current) {
+        chart.current.destroy();
+        chart.current = null;
+      }
+    };
+  }, [code, prices, color]);
 
   return (
     <div className={className}>
-      <canvas ref={ref} />
+      <canvas ref={canvas} />
     </div>
   );
 }

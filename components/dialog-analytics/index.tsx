@@ -1,5 +1,4 @@
 import clsx from 'classnames';
-import dynamic from 'next/dynamic';
 import { useCallback, useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
 
@@ -9,11 +8,12 @@ import { usePrices } from '#api/get-prices';
 import { DialogsContext, Name } from '#contexts/dialogs';
 import AnalyticsIcon from '#icons/analytics';
 
+import PriceChart from './price-chart';
+
 import type { Code } from '#utils/constant';
 
 const DIALOG = Name.Analytics;
 const CHARTS_RENDER_DELAY = 500;
-const PriceChart = dynamic(() => import('./price-chart'));
 const StyledSpinner = styled(Spinner)`
   width: 100%;
   z-index: 30;
