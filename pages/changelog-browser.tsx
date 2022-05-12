@@ -9,7 +9,7 @@ import MainPanel from '#components/changelog-browser/main-panel';
 function ChangelogBrowser({ className }: StyledProps) {
   return (
     <div className={className}>
-      <PanelStack2 initialPanel={MainPanel} />
+      <PanelStack2 showPanelHeader={false} initialPanel={MainPanel} />
     </div>
   );
 }
@@ -19,15 +19,8 @@ export default styled(ChangelogBrowser)`
   background-color: #252a31;
   .${Classes.PANEL_STACK2} {
     height: 100%;
-    .content {
-      padding: 10px;
-      code {
-        color: #c7254e;
-        font-size: 90%;
-        padding: 2px 4px;
-        border-radius: 4px;
-        background-color: #f9f2f4;
-      }
-    }
+  }
+  .${Classes.PANEL_STACK2_VIEW} {
+    overflow: initial;
   }
 `;

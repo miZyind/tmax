@@ -1,17 +1,15 @@
-import 'highlight.js/styles/github-dark-dimmed.css';
-
 import { useCallback } from 'react';
 import styled from 'styled-components';
 
-import { Classes, Tree } from '@blueprintjs/core';
+import { Classes, Divider, H3, Tree } from '@blueprintjs/core';
 
 import { useChangelogs } from '#api/get-changelogs';
-import { decode } from '#utils/markdown-decoder';
+
+import ContentPanel from './content-panel';
 
 import type { PanelProps, TreeNodeInfo } from '@blueprintjs/core';
 
 interface NodeData {
-  title: string;
   content?: string;
 }
 
@@ -28,45 +26,41 @@ const MainPanel = styled(
           id: release.id,
           icon: 'tag',
           label: release.tag_name,
-          nodeData: {
-            title: `${name} ${release.tag_name}`,
-            content: release.body,
-          },
+          nodeData: { content: release.body },
         })),
       })) ?? [];
     const onNodeClick = useCallback(
       ({ nodeData }: TreeNodeInfo<NodeData>) => {
-        if (nodeData) {
-          const { title, content } = nodeData;
-
-          if (typeof content !== 'undefined') {
-            openPanel({
-              title,
-              renderPanel: () => (
-                <div
-                  className='content'
-                  // eslint-disable-next-line react/no-danger
-                  dangerouslySetInnerHTML={decode(content)}
-                />
-              ),
-            });
-          }
+        if (typeof nodeData?.content !== 'undefined') {
+          openPanel({
+            renderPanel: (props: PanelProps<object>) => (
+              <ContentPanel {...props} content={nodeData.content as string} />
+            ),
+          });
         }
       },
       [openPanel],
     );
 
     return (
-      <Tree
-        className={className}
-        contents={contents}
-        onNodeClick={onNodeClick}
-      />
+      <div className={className}>
+        <H3>{`miZyind's Changelog Browser`}</H3>
+        <p className={Classes.TEXT_LARGE}>
+          {`miZyind's Changelog Browser is a simple utility that you can use to track the changelogs for npm packages easily.`}
+        </p>
+        <Divider />
+        <Tree contents={contents} onNodeClick={onNodeClick} />
+      </div>
     );
   },
 )`
-  .${Classes.TREE_NODE_CONTENT} {
-    height: 40px;
+  padding: 20px;
+  h3,
+  p {
+    text-align: center;
+  }
+  .${Classes.DIVIDER} {
+    margin: 28px 6px;
   }
   .${Classes.TREE_NODE_LABEL} {
     font-size: 16px;
@@ -78,6 +72,5 @@ const MainPanel = styled(
 `;
 
 export default {
-  title: 'Changelog Browser',
   renderPanel: (props: PanelProps<object>) => <MainPanel {...props} />,
 };
