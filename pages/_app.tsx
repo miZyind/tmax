@@ -10,6 +10,7 @@ import { SWRConfig } from 'swr';
 
 import { Classes } from '@blueprintjs/core';
 
+import { SITE_TITLE } from '#utils/constant';
 import theme from '#utils/theme';
 
 import type { AppProps } from 'next/app';
@@ -27,7 +28,8 @@ export default function App({ Component, pageProps }: AppProps) {
     <>
       <Head>
         <meta name='viewport' content='width=device-width, initial-scale=1.0' />
-        <title>Turbulent miZyind at Xion</title>
+        <title>{SITE_TITLE}</title>
+        <meta name='description' content={SITE_TITLE} />
       </Head>
       <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} />
       <Script id='google-analytics'>
