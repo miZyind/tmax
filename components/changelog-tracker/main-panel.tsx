@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { Classes, Divider, H3, Tree } from '@blueprintjs/core';
 
 import { useChangelogs } from '#api/get-changelogs';
+import { TRACKER_DESC, TRACKER_TITLE } from '#utils/constant';
 
 import ContentPanel from './content-panel';
 
@@ -44,10 +45,8 @@ const MainPanel = styled(
 
     return (
       <div className={className}>
-        <H3>{`miZyind's Changelog Browser`}</H3>
-        <p className={Classes.TEXT_LARGE}>
-          {`miZyind's Changelog Browser is a simple utility that you can use to track the changelogs for npm packages easily.`}
-        </p>
+        <H3>{TRACKER_TITLE}</H3>
+        <p className={Classes.TEXT_LARGE}>{TRACKER_DESC}</p>
         <Divider />
         <Tree contents={contents} onNodeClick={onNodeClick} />
       </div>

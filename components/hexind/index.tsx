@@ -15,7 +15,7 @@ import Hexagon from '#components/hexind/hexagon';
 import Logo from '#components/hexind/logo';
 import { DialogsContext, Name } from '#contexts/dialogs';
 import AnalyticsIcon from '#icons/analytics';
-import ChangelogBrowserIcon from '#icons/changelog-browser';
+import ChangelogTrackerIcon from '#icons/changelog-tracker';
 import GithubIcon from '#icons/github';
 import HCTKIcon from '#icons/hctk';
 import NodeIcon from '#icons/node';
@@ -60,8 +60,8 @@ function Hexind({ className }: StyledProps) {
     () => router.push('/singularity'),
     [router],
   );
-  const onChangelogBrowserClick = useCallback(
-    () => router.push('/changelog-browser'),
+  const onChangelogTrackerClick = useCallback(
+    () => router.push('/changelog-tracker'),
     [router],
   );
   const onAnalyticsClick = useCallback(
@@ -86,8 +86,8 @@ function Hexind({ className }: StyledProps) {
           <Hexagon id={2} {...props}>
             <NodeIcon size={iconSize} />
           </Hexagon>
-          <Hexagon id={3} {...props} onClick={onChangelogBrowserClick}>
-            <ChangelogBrowserIcon size={iconSize} />
+          <Hexagon id={3} {...props} onClick={onChangelogTrackerClick}>
+            <ChangelogTrackerIcon size={iconSize} />
           </Hexagon>
           <Hexagon id={4} {...props} onClick={onAnalyticsClick}>
             <AnalyticsIcon size={iconSize} />

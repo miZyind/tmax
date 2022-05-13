@@ -26,8 +26,9 @@ function Index({ className, settings }: Props) {
         <DialogHCTK />
         <DialogAnalytics />
         <Button
-          className='button-animation'
+          large
           icon='social-media'
+          className='button-animation'
           intent={animate ? 'primary' : 'none'}
           onClick={useCallback(() => {
             set(CookieKey.Settings, { animate: !animate });
