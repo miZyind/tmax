@@ -1,13 +1,9 @@
 module.exports = {
-  compiler: {
-    styledComponents: true,
-  },
   reactStrictMode: true,
+  poweredByHeader: false,
+  compiler: { styledComponents: true },
   eslint: { ignoreDuringBuilds: true },
-  i18n: {
-    locales: ['en'],
-    defaultLocale: 'en',
-  },
+  i18n: { locales: ['en'], defaultLocale: 'en' },
   rewrites() {
     return [
       {
