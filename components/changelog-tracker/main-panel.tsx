@@ -1,7 +1,8 @@
-import { useCallback } from 'react';
+import clsx from 'classnames';
+import { useCallback, useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-import { Classes, Spinner, Tree } from '@blueprintjs/core';
+import { Classes, Spinner, SpinnerSize, Tree } from '@blueprintjs/core';
 
 import { useChangelogs } from '#api/get-changelogs';
 
@@ -15,8 +16,26 @@ interface NodeData {
   content: string;
 }
 
+const TREE_NODE_WIDTH = 160;
+const useWindowWidth = () => {
+  const [value, setValue] = useState(TREE_NODE_WIDTH);
+
+  useEffect(() => {
+    const handle = () => setValue(window.innerWidth);
+
+    window.addEventListener('resize', handle);
+
+    handle();
+
+    return () => window.removeEventListener('resize', handle);
+  }, []);
+
+  return value;
+};
+
 function MainPanel({ className, openPanel }: Props) {
   const changelogs = useChangelogs();
+  const windowWidth = useWindowWidth();
   const onNodeClick = useCallback(
     ({ nodeData }: TreeNodeInfo<NodeData>) => {
       if (typeof nodeData !== 'undefined') {
@@ -50,26 +69,49 @@ function MainPanel({ className, openPanel }: Props) {
     );
 
     return (
-      <div className={className}>
+      <div
+        style={{
+          width: Math.min(
+            changelogs.length * TREE_NODE_WIDTH,
+            windowWidth - (windowWidth % TREE_NODE_WIDTH),
+          ),
+        }}
+        className={className}
+      >
         <Tree contents={contents} onNodeClick={onNodeClick} />
       </div>
     );
   }
 
-  return <Spinner />;
+  return (
+    <div className={clsx(className, 'loading')}>
+      <Spinner size={SpinnerSize.LARGE} />
+    </div>
+  );
 }
 
 const StyledMainPanel = styled(MainPanel)`
-  padding: 16px;
-  .${Classes.TREE_ROOT} {
+  height: 100%;
+  margin: 8px auto auto;
+  min-width: ${TREE_NODE_WIDTH}px;
+  &.loading {
+    margin: unset;
     display: flex;
-    column-gap: 20px;
     justify-content: center;
   }
-  .${Classes.TREE_NODE} {
+  .${Classes.TREE_ROOT} {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .${Classes.TREE_NODE}.${Classes.TREE_NODE_EXPANDED} {
     flex: 1;
     cursor: pointer;
-    max-width: 150px;
+    margin-bottom: 8px;
+    min-width: ${TREE_NODE_WIDTH}px;
+    max-width: ${TREE_NODE_WIDTH}px;
+  }
+  .${Classes.TREE_NODE_CONTENT} {
+    padding-left: unset;
   }
   .${Classes.TREE_NODE_LABEL} {
     font-size: 16px;
