@@ -40,9 +40,9 @@ function Index({ className, settings }: Props) {
   );
 }
 
-export function getServerSideProps(ctx: GetServerSidePropsContext) {
-  return { props: { settings: get(CookieKey.Settings, ctx) } };
-}
+export const getServerSideProps = (ctx: GetServerSidePropsContext) => ({
+  props: { settings: get(CookieKey.Settings, ctx) },
+});
 
 export default styled(Index)`
   height: 100%;

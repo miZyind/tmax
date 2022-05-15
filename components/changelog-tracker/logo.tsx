@@ -14,10 +14,6 @@ function Logo({ className }: StyledProps) {
   );
 }
 
-export function getServerSideProps() {
-  return { props: {} };
-}
-
 export default styled(Logo)`
   display: flex;
   margin: 10px 0;

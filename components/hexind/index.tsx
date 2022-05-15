@@ -21,25 +21,25 @@ import HCTKIcon from '#icons/hctk';
 import NodeIcon from '#icons/node';
 import SingularityIcon from '#icons/singularity';
 
-function useUnit() {
-  const [unit, setUnit] = useState(INITIAL_UNIT);
+const useUnit = () => {
+  const [value, setValue] = useState(INITIAL_UNIT);
 
   useEffect(() => {
-    const updateUnit = () =>
-      setUnit(
+    const handle = () =>
+      setValue(
         (Math.min(window.innerWidth, window.innerHeight) - PADDING) *
           WINDOW_PROP,
       );
 
-    window.addEventListener('resize', updateUnit);
+    window.addEventListener('resize', handle);
 
-    updateUnit();
+    handle();
 
-    return () => window.removeEventListener('resize', updateUnit);
+    return () => window.removeEventListener('resize', handle);
   }, []);
 
-  return unit;
-}
+  return value;
+};
 
 function Hexind({ className }: StyledProps) {
   const router = useRouter();

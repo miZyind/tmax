@@ -74,9 +74,7 @@ function ChangelogTracker({ className }: StyledProps) {
   );
 }
 
-export function getServerSideProps() {
-  return { props: {} };
-}
+export const getServerSideProps = () => ({ props: {} });
 
 export default styled(ChangelogTracker)`
   height: 100%;

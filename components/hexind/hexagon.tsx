@@ -22,14 +22,13 @@ interface Props extends StyledProps {
   children: ReactNode;
 }
 
-function bypassTimeline(target: gsap.TweenTarget, vars: gsap.TweenVars) {
+const bypassTimeline = (target: gsap.TweenTarget, vars: gsap.TweenVars) =>
   GSAP.set(target, {
     ...vars,
     rotate: 0,
     opacity: 1,
     filter: 'brightness(100%)',
   });
-}
 
 function Hexagon({
   className,
