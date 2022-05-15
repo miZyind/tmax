@@ -5,6 +5,7 @@ publish = ".next"
 
 [build.environment]
 NODE_VERSION = "16"
+NEXT_PUBLIC_GA_ID = "G-50LPRQPF4H"
 
 [[plugins]]
 package = "@netlify/plugin-nextjs"
