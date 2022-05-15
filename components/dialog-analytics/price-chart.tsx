@@ -22,7 +22,7 @@ interface Props extends StyledProps {
   color: string;
 }
 
-const TEXT_COLOR = '#FFF';
+const TEXT_COLOR = 'white';
 const TOOLTIP_TITLE_COLOR = '#666';
 const FRACTION_DIGITS = 2;
 const X_SCALE_OPTIONS: DeepPartial<CartesianScaleOptions> = {
