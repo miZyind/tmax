@@ -7,20 +7,24 @@ module.exports = {
   rewrites() {
     return [
       {
-        source: '/singularity',
+        source: '/en/singularity',
         destination: '/singularity/index.html',
+        locale: false,
       },
       {
-        source: '/singularity.js',
+        source: '/en/singularity.js',
         destination: '/singularity/singularity.js',
+        locale: false,
       },
       {
-        source: '/singularity_bg.wasm',
+        source: '/en/singularity_bg.wasm',
         destination: '/singularity/singularity_bg.wasm',
+        locale: false,
       },
       {
-        source: '/assets/:path*',
+        source: '/en/assets/:path*',
         destination: '/singularity/assets/:path*',
+        locale: false,
       },
     ];
   },
