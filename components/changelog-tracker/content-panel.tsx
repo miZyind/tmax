@@ -1,56 +1,48 @@
 import 'highlight.js/styles/github-dark-dimmed.css';
 
-import { useEffect } from 'react';
 import styled from 'styled-components';
+
+import { Classes, Divider, H1 } from '@blueprintjs/core';
 
 import { decode } from '#utils/markdown-decoder';
 
-import Control from './control';
-
 import type { PanelProps } from '@blueprintjs/core';
 
-interface Props {
+interface Props extends StyledProps {
+  title: string;
   content: string;
 }
 
-function ContentPanel({
-  className,
-  content,
-  closePanel,
-}: PanelProps<Props> & StyledProps) {
-  useEffect(() => {
-    const updateUnit = (event: KeyboardEvent) => {
-      if (event.key === ' ') {
-        closePanel();
-      }
-    };
-
-    window.addEventListener('keydown', updateUnit);
-
-    return () => window.removeEventListener('keydown', updateUnit);
-  }, [closePanel]);
-
+function ContentPanel({ className, title, content }: PanelProps<Props>) {
   return (
-    <>
+    <div className={className}>
+      <H1>{title}</H1>
+      <Divider />
       <div
-        className={className}
-        // eslint-disable-next-line react/no-danger
+        className='markdown-body'
+        // eslint-disable-next-line react/no-danger -- Necessary to decode markdown content
         dangerouslySetInnerHTML={decode(content)}
       />
-      <Control onClick={closePanel} />
-    </>
+    </div>
   );
 }
 
 export default styled(ContentPanel)`
-  padding: 20px;
-  overflow-y: auto;
-  height: calc(100% - 60px);
-  code {
-    color: #c7254e;
-    font-size: 90%;
-    padding: 2px 4px;
-    border-radius: 4px;
-    background-color: #f9f2f4;
+  padding: 16px;
+  .${Classes.DIVIDER} {
+    margin: 20px 0;
+  }
+  .markdown-body {
+    font-size: 16px;
+    line-height: 24px;
+    *:first-child {
+      margin-top: 0;
+    }
+    code {
+      padding: 0.2em 0.4em;
+      font-size: 85%;
+      border-radius: 6px;
+      background-color: rgba(110, 118, 129, 0.4);
+    }
   }
 `;
