@@ -66,9 +66,13 @@ function ChangelogTracker({ className }: StyledProps) {
         showPanelHeader={false}
       />
       <footer className={clsx({ visible: isBackable(stack) })}>
-        <Button large intent='primary' onClick={onClose}>
-          Back
-        </Button>
+        <Button
+          large
+          text='Back'
+          intent='primary'
+          onClick={onClose}
+          rightIcon={<span className='shortcut'>Space</span>}
+        />
       </footer>
     </div>
   );
@@ -112,6 +116,19 @@ export default styled(ChangelogTracker)`
     .${Classes.BUTTON} {
       width: 50%;
       max-width: 200px;
+      position: relative;
+      .${Classes.BUTTON_TEXT} {
+        margin: unset;
+      }
+      .shortcut {
+        right: 15px;
+        opacity: 0.4;
+        font-size: 10px;
+        border-radius: 2px;
+        position: absolute;
+        padding: 0.2em 0.4em;
+        background-color: black;
+      }
     }
   }
 `;

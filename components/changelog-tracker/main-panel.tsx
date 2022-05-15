@@ -18,7 +18,7 @@ interface NodeData {
 
 const TREE_NODE_WIDTH = 160;
 const useWindowWidth = () => {
-  const [value, setValue] = useState(TREE_NODE_WIDTH);
+  const [value, setValue] = useState<number>();
 
   useEffect(() => {
     const handle = () => setValue(window.innerWidth);
@@ -49,7 +49,7 @@ function MainPanel({ className, openPanel }: Props) {
     [openPanel],
   );
 
-  if (changelogs) {
+  if (changelogs && typeof windowWidth !== 'undefined') {
     const contents: TreeNodeInfo<NodeData>[] = changelogs.map(
       ({ name, releases }) => ({
         id: name,

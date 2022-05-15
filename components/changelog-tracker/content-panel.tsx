@@ -35,6 +35,7 @@ export default styled(ContentPanel)`
   .markdown-body {
     font-size: 16px;
     line-height: 24px;
+    user-select: text;
     *:first-child {
       margin-top: 0;
     }

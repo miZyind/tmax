@@ -18,7 +18,7 @@ export default styled(Logo)`
   display: flex;
   margin: 10px 0;
   border-radius: 50%;
-  background-color: #fff;
+  background-color: white;
   &:hover {
     filter: brightness(120%);
   }
