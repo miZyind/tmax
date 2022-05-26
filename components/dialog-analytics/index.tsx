@@ -36,7 +36,7 @@ function DialogAnalytics({ className }: StyledProps) {
 
   return (
     <>
-      {state[DIALOG] && loading && <StyledSpinner size={80} />}
+      {state[DIALOG] && loading ? <StyledSpinner size={80} /> : null}
       <Dialog
         title='Analytics'
         className={className}
@@ -47,15 +47,16 @@ function DialogAnalytics({ className }: StyledProps) {
         onClose={useCallback(() => dispatch([DIALOG, false]), [dispatch])}
       >
         <div className={Classes.DIALOG_BODY}>
-          {data &&
-            Object.entries(data).map(([code, prices], index) => (
-              <PriceChart
-                key={code}
-                code={code as Code}
-                prices={prices}
-                color={colors[index]}
-              />
-            ))}
+          {data
+            ? Object.entries(data).map(([code, prices], index) => (
+                <PriceChart
+                  key={code}
+                  code={code as Code}
+                  prices={prices}
+                  color={colors[index]}
+                />
+              ))
+            : null}
         </div>
       </Dialog>
     </>

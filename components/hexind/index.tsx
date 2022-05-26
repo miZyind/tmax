@@ -75,7 +75,7 @@ function Hexind({ className }: StyledProps) {
 
   return (
     <div className={className} style={{ width, height }}>
-      {isLoaded && (
+      {isLoaded ? (
         <>
           <Hexagon id={1} {...props} onClick={onSingularityClick}>
             <SingularityIcon
@@ -99,7 +99,7 @@ function Hexind({ className }: StyledProps) {
             <GithubIcon size={iconSize} />
           </Hexagon>
         </>
-      )}
+      ) : null}
       <Logo {...props} />
     </div>
   );
