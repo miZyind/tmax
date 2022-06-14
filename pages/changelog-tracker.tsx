@@ -115,6 +115,7 @@ export default styled(ChangelogTracker)`
     }
     .${Classes.BUTTON} {
       width: 50%;
+      min-width: 150px;
       max-width: 200px;
       position: relative;
       .${Classes.BUTTON_TEXT} {
@@ -126,8 +127,16 @@ export default styled(ChangelogTracker)`
         font-size: 10px;
         border-radius: 2px;
         position: absolute;
+        visibility: visible;
         padding: 0.2em 0.4em;
         background-color: black;
+        transition-duration: 0.4s;
+        transition-timing-function: ease-out;
+        transition-property: opacity, visibility;
+        ${({ theme }) => theme.queries.tablet} {
+          opacity: 0;
+          visibility: hidden;
+        }
       }
     }
   }
