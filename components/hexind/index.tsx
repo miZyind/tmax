@@ -5,11 +5,8 @@ import styled from 'styled-components';
 import {
   ELEMENT_PROP,
   ICON_SCALE_PROP,
-  INITIAL_UNIT,
-  PADDING,
   SINGULARITY_SCALE_PROP,
   SIZE_SCALE_PROP,
-  WINDOW_PROP,
 } from '#components/hexind/constant';
 import Hexagon from '#components/hexind/hexagon';
 import Logo from '#components/hexind/logo';
@@ -20,17 +17,7 @@ import GithubIcon from '#icons/github';
 import HCTKIcon from '#icons/hctk';
 import NodeIcon from '#icons/node';
 import SingularityIcon from '#icons/singularity';
-import { useWindowSize } from '#utils/hook';
-
-const useUnit = () => {
-  const [windowWidth, windowHeight] = useWindowSize();
-
-  if (typeof windowWidth === 'number' && typeof windowHeight === 'number') {
-    return (Math.min(windowWidth, windowHeight) - PADDING) * WINDOW_PROP;
-  }
-
-  return INITIAL_UNIT;
-};
+import { useUnit } from '#utils/hook';
 
 function Hexind({ className }: StyledProps) {
   const router = useRouter();

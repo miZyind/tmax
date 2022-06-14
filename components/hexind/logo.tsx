@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 import { LOGO_SCALE_PROP } from '#components/hexind/constant';
+import { LogoPath } from '#utils/constant';
 
 export interface Props extends StyledProps {
   width: number;
@@ -30,6 +31,6 @@ export default styled(Logo)`
   > div {
     border-radius: 50%;
     background-size: cover;
-    background-image: url('/mizyind.png');
+    background-image: url(${LogoPath.Original});
   }
 `;

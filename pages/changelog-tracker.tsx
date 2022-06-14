@@ -5,11 +5,12 @@ import Head from 'next/head';
 import { useCallback, useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-import { Button, Classes, H3, PanelStack2 } from '@blueprintjs/core';
+import { Button, Classes, Colors, H3, PanelStack2 } from '@blueprintjs/core';
 
 import Logo from '#components/changelog-tracker/logo';
 import MainPanel from '#components/changelog-tracker/main-panel';
 import { TRACKER_DESC, TRACKER_TITLE } from '#utils/constant';
+import { withPageTransitionDelay } from '#utils/hoc';
 
 import type { Panel as BPPanel } from '@blueprintjs/core';
 
@@ -78,14 +79,14 @@ function ChangelogTracker({ className }: StyledProps) {
   );
 }
 
-export const getServerSideProps = () => ({ props: {} });
+export const getServerSideProps = withPageTransitionDelay();
 
 export default styled(ChangelogTracker)`
   height: 100%;
   display: flex;
   user-select: none;
   flex-direction: column;
-  background-color: #252a31;
+  background-color: ${Colors.DARK_GRAY2};
   header {
     display: flex;
     align-items: center;

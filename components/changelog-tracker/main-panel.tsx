@@ -97,6 +97,7 @@ const StyledMainPanel = styled(MainPanel)`
     max-width: ${TREE_NODE_WIDTH}px;
   }
   .${Classes.TREE_NODE_CONTENT} {
+    height: 40px;
     padding-left: unset;
   }
   .${Classes.TREE_NODE_CONTENT}-0 {

@@ -10,6 +10,7 @@ import { SWRConfig } from 'swr';
 
 import { Classes, FocusStyleManager } from '@blueprintjs/core';
 
+import PageTransition from '#components/page-transition';
 import { SITE_TITLE } from '#utils/constant';
 import theme from '#utils/theme';
 
@@ -44,6 +45,7 @@ export default function App({ Component, pageProps }: AppProps) {
         `}
       </Script>
       <GlobalStyle />
+      <PageTransition />
       <ThemeProvider theme={theme}>
         <SWRConfig value={{ fetcher }}>
           <Component className={Classes.DARK} {...pageProps} />

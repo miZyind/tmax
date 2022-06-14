@@ -4,11 +4,13 @@ import Image from 'next/image';
 import Link from 'next/link';
 import styled from 'styled-components';
 
+import { LogoPath } from '#utils/constant';
+
 function Logo({ className }: StyledProps) {
   return (
     <Link href='/'>
       <a className={className}>
-        <Image title='logo' src='/mizyind.png' width={100} height={100} />
+        <Image width={100} height={100} title='logo' src={LogoPath.Original} />
       </a>
     </Link>
   );

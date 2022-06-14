@@ -16,3 +16,7 @@ export enum Code {
   VNINDEX = 'VNINDEX',
   VCB = 'VCB',
 }
+export enum LogoPath {
+  Original = '/logo.png',
+  Alternate = '/logo-alternate.png',
+}

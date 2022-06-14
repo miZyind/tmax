@@ -8,8 +8,8 @@ import DialogHCTK from '#components/dialog-hctk';
 import Hexind from '#components/hexind';
 import { DialogsProvider } from '#contexts/dialogs';
 import { CookieKey, get, set } from '#utils/cookie';
+import { withPageTransitionDelay } from '#utils/hoc';
 
-import type { GetServerSidePropsContext } from 'next';
 import type { Settings } from '#utils/cookie';
 
 interface Props extends StyledProps {
@@ -40,9 +40,9 @@ function Index({ className, settings }: Props) {
   );
 }
 
-export const getServerSideProps = (ctx: GetServerSidePropsContext) => ({
+export const getServerSideProps = withPageTransitionDelay((ctx) => ({
   props: { settings: get(CookieKey.Settings, ctx) },
-});
+}));
 
 export default styled(Index)`
   height: 100%;
