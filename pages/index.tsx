@@ -72,8 +72,5 @@ export default styled(Index)`
     right: 0;
     margin: 5px 10px;
     position: absolute;
-    &:focus {
-      outline: unset !important;
-    }
   }
 `;

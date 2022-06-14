@@ -109,11 +109,6 @@ const StyledMainPanel = styled(MainPanel)`
     font-size: 16px;
     line-height: 22px;
   }
-  .${Classes.ICON} {
-    &:focus {
-      outline: unset !important;
-    }
-  }
 `;
 
 export default {

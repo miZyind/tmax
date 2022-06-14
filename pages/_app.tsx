@@ -8,7 +8,7 @@ import Script from 'next/script';
 import { ThemeProvider, createGlobalStyle } from 'styled-components';
 import { SWRConfig } from 'swr';
 
-import { Classes } from '@blueprintjs/core';
+import { Classes, FocusStyleManager } from '@blueprintjs/core';
 
 import { SITE_TITLE } from '#utils/constant';
 import theme from '#utils/theme';
@@ -20,6 +20,8 @@ const GlobalStyle = createGlobalStyle`
   .${Classes.OVERLAY}.${Classes.OVERLAY_SCROLL_CONTAINER} { overflow-x: hidden; }
 `;
 const fetcher = (url: string) => fetch(url).then((response) => response.json());
+
+FocusStyleManager.onlyShowFocusOnTabs();
 
 export default function App({ Component, pageProps }: AppProps) {
   const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
