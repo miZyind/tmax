@@ -1,10 +1,11 @@
 import clsx from 'classnames';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback } from 'react';
 import styled from 'styled-components';
 
 import { Classes, Spinner, SpinnerSize, Tree } from '@blueprintjs/core';
 
 import { useChangelogs } from '#api/get-changelogs';
+import { useWindowSize } from '#utils/hook';
 
 import ContentPanel from './content-panel';
 
@@ -17,25 +18,10 @@ interface NodeData {
 }
 
 const TREE_NODE_WIDTH = 160;
-const useWindowWidth = () => {
-  const [value, setValue] = useState<number>();
-
-  useEffect(() => {
-    const handle = () => setValue(window.innerWidth);
-
-    window.addEventListener('resize', handle);
-
-    handle();
-
-    return () => window.removeEventListener('resize', handle);
-  }, []);
-
-  return value;
-};
 
 function MainPanel({ className, openPanel }: Props) {
   const changelogs = useChangelogs();
-  const windowWidth = useWindowWidth();
+  const [windowWidth] = useWindowSize();
   const onNodeClick = useCallback(
     ({ nodeData }: TreeNodeInfo<NodeData>) => {
       if (typeof nodeData !== 'undefined') {
