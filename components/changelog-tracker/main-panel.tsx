@@ -99,9 +99,20 @@ const StyledMainPanel = styled(MainPanel)`
   .${Classes.TREE_NODE_CONTENT} {
     padding-left: unset;
   }
+  .${Classes.TREE_NODE_CONTENT}-0 {
+    &:hover,
+    &:active {
+      background-color: unset;
+    }
+  }
   .${Classes.TREE_NODE_LABEL} {
     font-size: 16px;
     line-height: 22px;
+  }
+  .${Classes.ICON} {
+    &:focus {
+      outline: unset !important;
+    }
   }
 `;
 

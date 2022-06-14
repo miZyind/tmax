@@ -16,7 +16,7 @@ import theme from '#utils/theme';
 import type { AppProps } from 'next/app';
 
 const GlobalStyle = createGlobalStyle`
-  html, body, #__next { height: 100%; }
+  html, body, #__next { height: 100%; -webkit-tap-highlight-color: transparent; }
   .${Classes.OVERLAY}.${Classes.OVERLAY_SCROLL_CONTAINER} { overflow-x: hidden; }
 `;
 const fetcher = (url: string) => fetch(url).then((response) => response.json());
