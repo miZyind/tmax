@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { useCallback, useContext, useEffect, useMemo, useState } from 'react';
+import { useCallback, useContext, useMemo } from 'react';
 import styled from 'styled-components';
 
 import {
@@ -20,25 +20,16 @@ import GithubIcon from '#icons/github';
 import HCTKIcon from '#icons/hctk';
 import NodeIcon from '#icons/node';
 import SingularityIcon from '#icons/singularity';
+import { useWindowSize } from '#utils/hook';
 
 const useUnit = () => {
-  const [value, setValue] = useState(INITIAL_UNIT);
+  const [windowWidth, windowHeight] = useWindowSize();
 
-  useEffect(() => {
-    const handle = () =>
-      setValue(
-        (Math.min(window.innerWidth, window.innerHeight) - PADDING) *
-          WINDOW_PROP,
-      );
+  if (typeof windowWidth === 'number' && typeof windowHeight === 'number') {
+    return (Math.min(windowWidth, windowHeight) - PADDING) * WINDOW_PROP;
+  }
 
-    window.addEventListener('resize', handle);
-
-    handle();
-
-    return () => window.removeEventListener('resize', handle);
-  }, []);
-
-  return value;
+  return INITIAL_UNIT;
 };
 
 function Hexind({ className }: StyledProps) {
