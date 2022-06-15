@@ -1,6 +1,5 @@
 import 'highlight.js/styles/github-dark-dimmed.css';
 
-import clsx from 'classnames';
 import Head from 'next/head';
 import { useCallback, useEffect, useState } from 'react';
 import styled from 'styled-components';
@@ -9,6 +8,7 @@ import { Button, Classes, Colors, H3, PanelStack2 } from '@blueprintjs/core';
 
 import Logo from '#components/changelog-tracker/logo';
 import MainPanel from '#components/changelog-tracker/main-panel';
+import ManagementPanel from '#components/changelog-tracker/management-panel';
 import { TRACKER_DESC, TRACKER_TITLE } from '#utils/constant';
 import { withPageTransitionDelay } from '#utils/hoc';
 
@@ -23,6 +23,7 @@ const isBackable = (stack: Panel[]) => stack.length > STACK_BACKABLE_FACTOR;
 
 function ChangelogTracker({ className }: StyledProps) {
   const [stack, setStack] = useState<Panel[]>([MainPanel]);
+  const backable = isBackable(stack);
   const onOpen = useCallback<(panel: Panel) => void>(
     (panel) => setStack((state) => [...state, panel]),
     [],
@@ -36,18 +37,26 @@ function ChangelogTracker({ className }: StyledProps) {
       ),
     [],
   );
+  const onClick = useCallback(() => {
+    if (backable) {
+      onClose();
+    } else {
+      setStack((state) => [...state, ManagementPanel]);
+    }
+  }, [backable, onClose]);
 
   useEffect(() => {
     const updateUnit = (event: KeyboardEvent) => {
       if (event.key === ' ') {
-        onClose();
+        event.preventDefault();
+        onClick();
       }
     };
 
-    window.addEventListener('keydown', updateUnit);
+    window.addEventListener('keypress', updateUnit);
 
-    return () => window.removeEventListener('keydown', updateUnit);
-  }, [onClose]);
+    return () => window.removeEventListener('keypress', updateUnit);
+  }, [backable, onClick]);
 
   return (
     <div className={className}>
@@ -66,12 +75,12 @@ function ChangelogTracker({ className }: StyledProps) {
         onClose={onClose}
         showPanelHeader={false}
       />
-      <footer className={clsx({ visible: isBackable(stack) })}>
+      <footer>
         <Button
           large
-          text='Back'
-          intent='primary'
-          onClick={onClose}
+          text={backable ? 'Back' : 'Manage'}
+          intent={backable ? 'success' : 'primary'}
+          onClick={onClick}
           rightIcon={<span className='shortcut'>Space</span>}
         />
       </footer>
@@ -101,44 +110,34 @@ export default styled(ChangelogTracker)`
     flex: 1;
   }
   footer {
-    opacity: 0;
     display: flex;
     padding: 10px;
-    visibility: hidden;
     align-items: center;
     justify-content: center;
+  }
+  .${Classes.BUTTON} {
+    width: 200px;
+    position: relative;
+    transition: background-color 0.4s ease-out;
+  }
+  .${Classes.BUTTON_TEXT} {
+    margin: unset;
+  }
+  .shortcut {
+    right: 15px;
+    opacity: 0.4;
+    font-size: 10px;
+    border-radius: 2px;
+    position: absolute;
+    visibility: visible;
+    padding: 0.2em 0.4em;
+    background-color: black;
     transition-duration: 0.4s;
     transition-timing-function: ease-out;
     transition-property: opacity, visibility;
-    &.visible {
-      opacity: 1;
-      visibility: visible;
-    }
-    .${Classes.BUTTON} {
-      width: 50%;
-      min-width: 150px;
-      max-width: 200px;
-      position: relative;
-      .${Classes.BUTTON_TEXT} {
-        margin: unset;
-      }
-      .shortcut {
-        right: 15px;
-        opacity: 0.4;
-        font-size: 10px;
-        border-radius: 2px;
-        position: absolute;
-        visibility: visible;
-        padding: 0.2em 0.4em;
-        background-color: black;
-        transition-duration: 0.4s;
-        transition-timing-function: ease-out;
-        transition-property: opacity, visibility;
-        ${({ theme }) => theme.queries.tablet} {
-          opacity: 0;
-          visibility: hidden;
-        }
-      }
+    ${({ theme }) => theme.queries.tablet} {
+      opacity: 0;
+      visibility: hidden;
     }
   }
 `;
