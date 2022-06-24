@@ -6,6 +6,7 @@ export const CHANGELOG_TRACKING_LIST = [
   'conventional-changelog/commitlint',
   'chartjs/Chart.js',
   'netlify/plugin-nextjs',
+  'semantic-release/semantic-release',
 ];
 export const SITE_TITLE = 'Turbulent miZyind at Xion';
 export const TRACKER_TITLE = `Changelog Tracker`;
