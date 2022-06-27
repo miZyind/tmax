@@ -18,6 +18,7 @@ const handler: NextApiHandler = async (req, res) => {
         client_id: Config.GH_CLIENT_ID,
         client_secret: Config.GH_CLIENT_SECRET,
         code: req.query.code,
+        redirect_uri: Config.GH_REDIRECT_URI,
       }),
     });
 

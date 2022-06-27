@@ -1,4 +1,4 @@
-import { parseCookies, setCookie } from 'nookies';
+import { destroyCookie, parseCookies, setCookie } from 'nookies';
 
 import { COOKIE_MAX_AGE } from '#utils/constant';
 
@@ -62,4 +62,13 @@ export function set(key: Key, input: unknown, ctx: Ctx | null = null) {
       options,
     );
   }
+}
+
+export function destroy(key: Key.Token, ctx: Ctx) {
+  return destroyCookie(ctx, key, {
+    httpOnly: true,
+    maxAge: COOKIE_MAX_AGE,
+    path: '/',
+    sameSite: 'lax',
+  });
 }
