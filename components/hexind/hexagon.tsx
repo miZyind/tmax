@@ -9,7 +9,7 @@ import {
   HEXAGON_SET,
   MIDDLE_GAP,
 } from '#components/hexind/constant';
-import { CookieKey, get } from '#utils/cookie';
+import { Key, get } from '#utils/cookie';
 
 import type { MouseEventHandler, ReactNode } from 'react';
 
@@ -39,7 +39,7 @@ function Hexagon({
   onClick,
   children,
 }: Props) {
-  const settings = get(CookieKey.Settings);
+  const settings = get(Key.Settings);
   const { x, y, color } = HEXAGON_SET[id];
   const ref = useRef<HTMLDivElement>(null);
   const [timeline, setTimeline] = useState<gsap.core.Timeline | null>(null);

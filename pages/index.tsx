@@ -7,7 +7,7 @@ import DialogAnalytics from '#components/dialog-analytics';
 import DialogHCTK from '#components/dialog-hctk';
 import Hexind from '#components/hexind';
 import { DialogsProvider } from '#contexts/dialogs';
-import { CookieKey, get, set } from '#utils/cookie';
+import { Key, get, set } from '#utils/cookie';
 import { withPageTransitionDelay } from '#utils/hoc';
 
 import type { Settings } from '#utils/cookie';
@@ -18,6 +18,10 @@ interface Props extends StyledProps {
 
 function Index({ className, settings }: Props) {
   const [animate, setAnimate] = useState(settings.animate);
+  const handleClick = useCallback(() => {
+    set(Key.Settings, { animate: !animate });
+    setAnimate(!animate);
+  }, [animate]);
 
   return (
     <div className={className}>
@@ -28,12 +32,9 @@ function Index({ className, settings }: Props) {
         <Button
           large
           icon='social-media'
+          onClick={handleClick}
           className='button-animation'
           intent={animate ? 'primary' : 'none'}
-          onClick={useCallback(() => {
-            set(CookieKey.Settings, { animate: !animate });
-            setAnimate(!animate);
-          }, [animate])}
         />
       </DialogsProvider>
     </div>
@@ -41,7 +42,7 @@ function Index({ className, settings }: Props) {
 }
 
 export const getServerSideProps = withPageTransitionDelay((ctx) => ({
-  props: { settings: get(CookieKey.Settings, ctx) },
+  props: { settings: get(Key.Settings, ctx) },
 }));
 
 export default styled(Index)`
