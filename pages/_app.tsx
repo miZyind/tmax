@@ -13,6 +13,7 @@ import { Classes, FocusStyleManager } from '@blueprintjs/core';
 import PageTransition from '#components/page-transition';
 import Config from '#utils/config';
 import { SITE_TITLE } from '#utils/constant';
+import fetcher from '#utils/fetcher';
 import theme from '#utils/theme';
 
 import type { AppProps } from 'next/app';
@@ -21,7 +22,6 @@ const GlobalStyle = createGlobalStyle`
   html, body, #__next { height: 100%; -webkit-tap-highlight-color: transparent; }
   .${Classes.OVERLAY}.${Classes.OVERLAY_SCROLL_CONTAINER} { overflow-x: hidden; }
 `;
-const fetcher = (url: string) => fetch(url).then((response) => response.json());
 
 FocusStyleManager.onlyShowFocusOnTabs();
 

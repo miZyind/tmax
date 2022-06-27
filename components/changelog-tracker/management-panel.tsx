@@ -23,9 +23,7 @@ function ManagementPanel({ className }: Props) {
     <div className={className}>
       <H4>Packages Management</H4>
       <Divider />
-      {typeof token === 'string' ? (
-        <div>{token}</div>
-      ) : (
+      {token === null ? (
         <div className='auth-container'>
           <Button
             large
@@ -35,6 +33,8 @@ function ManagementPanel({ className }: Props) {
             icon={<GithubIcon size={20} />}
           />
         </div>
+      ) : (
+        <div>{token}</div>
       )}
     </div>
   );

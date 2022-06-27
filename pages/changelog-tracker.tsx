@@ -47,14 +47,14 @@ function ChangelogTracker({ className, token }: Props) {
     const updateUnit = (event: KeyboardEvent) => {
       if (event.key === ' ') {
         event.preventDefault();
-        onClick();
+        setStack(updateStack([Management]));
       }
     };
 
     window.addEventListener('keypress', updateUnit);
 
     return () => window.removeEventListener('keypress', updateUnit);
-  }, [onClick]);
+  }, [token]);
 
   return (
     <div className={className}>

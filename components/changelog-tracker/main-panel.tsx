@@ -2,12 +2,21 @@ import clsx from 'classnames';
 import { useCallback } from 'react';
 import styled from 'styled-components';
 
-import { Classes, Spinner, SpinnerSize, Tree } from '@blueprintjs/core';
+import {
+  Classes,
+  Colors,
+  InputGroup,
+  ProgressBar,
+  Spinner,
+  SpinnerSize,
+  Tag,
+  Tree,
+} from '@blueprintjs/core';
 
 import { useChangelogs } from '#api/get-changelogs';
+import ContentPanel from '#components/changelog-tracker/content-panel';
+import { useToken } from '#contexts/token';
 import { useWindowSize } from '#utils/hook';
-
-import ContentPanel from './content-panel';
 
 import type { PanelProps, TreeNodeInfo } from '@blueprintjs/core';
 
@@ -18,9 +27,13 @@ interface NodeData {
 }
 
 const TREE_NODE_WIDTH = 160;
+const RATE_LIMIT_THRESHOLD = 0.3;
+const COLOR_MAP = { success: Colors.GREEN5, danger: Colors.RED5 };
 
 function MainPanel({ className, openPanel }: Props) {
-  const changelogs = useChangelogs();
+  const token = useToken();
+  const hasToken = token !== null;
+  const response = useChangelogs(hasToken);
   const [windowWidth] = useWindowSize();
   const onNodeClick = useCallback(
     ({ nodeData }: TreeNodeInfo<NodeData>) => {
@@ -35,7 +48,10 @@ function MainPanel({ className, openPanel }: Props) {
     [openPanel],
   );
 
-  if (changelogs && typeof windowWidth !== 'undefined') {
+  if (response && typeof windowWidth !== 'undefined') {
+    const { changelogs, limit, remaining } = response;
+    const intent =
+      remaining / limit > RATE_LIMIT_THRESHOLD ? 'success' : 'danger';
     const contents: TreeNodeInfo<NodeData>[] = changelogs.map(
       ({ name, releases }) => ({
         id: name,
@@ -56,14 +72,31 @@ function MainPanel({ className, openPanel }: Props) {
 
     return (
       <div
+        className={className}
         style={{
           width: Math.min(
             changelogs.length * TREE_NODE_WIDTH,
             windowWidth - (windowWidth % TREE_NODE_WIDTH),
           ),
         }}
-        className={className}
       >
+        <div className='rate-limit-indicator'>
+          <InputGroup
+            disabled
+            leftIcon='user'
+            intent={intent}
+            style={{ color: COLOR_MAP[intent] }}
+            rightElement={
+              <Tag minimal intent={intent}>{`${remaining} / ${limit}`}</Tag>
+            }
+            value={`${hasToken ? 'Authorized' : 'Unauthorized'} API Rate Limit`}
+          />
+          <ProgressBar
+            intent={intent}
+            animate={false}
+            value={limit ? remaining / limit : limit}
+          />
+        </div>
         <Tree contents={contents} onNodeClick={onNodeClick} />
       </div>
     );
@@ -84,6 +117,22 @@ const StyledMainPanel = styled(MainPanel)`
     margin: unset;
     display: flex;
     justify-content: center;
+  }
+  .rate-limit-indicator {
+    min-width: 275px;
+    max-width: 635px;
+    margin: auto auto 8px auto;
+    background-color: ${Colors.DARK_GRAY2};
+  }
+  .${Classes.INPUT_GROUP} {
+    pointer-events: none;
+  }
+  .${Classes.INPUT} {
+    font-size: 14px !important;
+    background-color: unset !important;
+  }
+  .${Classes.PROGRESS_BAR}, .${Classes.PROGRESS_METER} {
+    border-radius: unset !important;
   }
   .${Classes.TREE_ROOT} {
     display: flex;
