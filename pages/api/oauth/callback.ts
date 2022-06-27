@@ -3,25 +3,23 @@ import { Key, set } from '#utils/cookie';
 
 import type { NextApiHandler } from 'next';
 
+const LOGIN_URL = `${Config.GH_OAUTH_URL}/access_token`;
 const REDIRECT_URL = '/changelog-tracker?panel=management';
 
 const handler: NextApiHandler = async (req, res) => {
   if (typeof req.query.code === 'string') {
-    const response = await fetch(
-      'https://github.com/login/oauth/access_token',
-      {
-        method: 'POST',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          client_id: Config.GH_CLIENT_ID,
-          client_secret: Config.GH_CLIENT_SECRET,
-          code: req.query.code,
-        }),
+    const response = await fetch(LOGIN_URL, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
       },
-    );
+      body: JSON.stringify({
+        client_id: Config.GH_CLIENT_ID,
+        client_secret: Config.GH_CLIENT_SECRET,
+        code: req.query.code,
+      }),
+    });
 
     if (response.statusText === 'OK') {
       const data = (await response.json()) as { access_token: string };

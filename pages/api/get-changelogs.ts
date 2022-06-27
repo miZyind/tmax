@@ -1,5 +1,6 @@
 import useSWR from 'swr';
 
+import Config from '#utils/config';
 import { CHANGELOG_TRACKING_LIST } from '#utils/constant';
 
 import type { NextApiHandler } from 'next';
@@ -179,7 +180,7 @@ const handler: NextApiHandler = async (_, res) => {
       CHANGELOG_TRACKING_LIST.map(async (repo) => {
         const [, name] = repo.split('/');
         const response = await fetch(
-          `https://api.github.com/repos/${repo}/releases?per_page=5`,
+          `${Config.GH_API_URL}/repos/${repo}/releases?per_page=5`,
         );
 
         return {

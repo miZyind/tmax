@@ -1,5 +1,3 @@
-import 'highlight.js/styles/github-dark-dimmed.css';
-
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useCallback, useEffect, useState } from 'react';
@@ -8,47 +6,42 @@ import styled from 'styled-components';
 import { Button, Classes, Colors, H3, PanelStack2 } from '@blueprintjs/core';
 
 import Logo from '#components/changelog-tracker/logo';
-import MainPanel from '#components/changelog-tracker/main-panel';
-import ManagementPanel from '#components/changelog-tracker/management-panel';
+import Main from '#components/changelog-tracker/main-panel';
+import Management from '#components/changelog-tracker/management-panel';
+import { TokenContext } from '#contexts/token';
 import { TRACKER_DESC, TRACKER_TITLE } from '#utils/constant';
 import { Key, get } from '#utils/cookie';
 import { withPageTransitionDelay } from '#utils/hoc';
 
+import type { NextRouter } from 'next/router';
 import type { Panel as BPPanel } from '@blueprintjs/core';
+
+interface Props extends StyledProps {
+  token: string | null;
+}
 
 type Panel = BPPanel<object>;
 
 const STACK_SLICE_START = 0;
 const STACK_SLICE_END = -1;
 const STACK_BACKABLE_FACTOR = 1;
+const initPanels = ({ query }: NextRouter) =>
+  [Main].concat(query.panel === 'management' ? [Management] : []);
 const isBackable = (stack: Panel[]) => stack.length > STACK_BACKABLE_FACTOR;
+const updateStack =
+  (newStack: Panel[] = []) =>
+  (stack: Panel[]) =>
+    isBackable(stack)
+      ? stack.slice(STACK_SLICE_START, STACK_SLICE_END)
+      : [...stack, ...newStack];
 
-function ChangelogTracker({ className }: StyledProps) {
-  const { query } = useRouter();
-  const [stack, setStack] = useState<Panel[]>(
-    query.panel === 'management' ? [MainPanel, ManagementPanel] : [MainPanel],
-  );
+function ChangelogTracker({ className, token }: Props) {
+  const router = useRouter();
+  const [stack, setStack] = useState<Panel[]>(initPanels(router));
   const backable = isBackable(stack);
-  const onOpen = useCallback<(panel: Panel) => void>(
-    (panel) => setStack((state) => [...state, panel]),
-    [],
-  );
-  const onClose = useCallback(
-    () =>
-      setStack((state) =>
-        isBackable(state)
-          ? state.slice(STACK_SLICE_START, STACK_SLICE_END)
-          : state,
-      ),
-    [],
-  );
-  const onClick = useCallback(() => {
-    if (backable) {
-      onClose();
-    } else {
-      setStack((state) => [...state, ManagementPanel]);
-    }
-  }, [backable, onClose]);
+  const onOpen = useCallback((v: Panel) => setStack(updateStack([v])), []);
+  const onClose = useCallback(() => setStack(updateStack()), []);
+  const onClick = useCallback(() => setStack(updateStack([Management])), []);
 
   useEffect(() => {
     const updateUnit = (event: KeyboardEvent) => {
@@ -61,7 +54,7 @@ function ChangelogTracker({ className }: StyledProps) {
     window.addEventListener('keypress', updateUnit);
 
     return () => window.removeEventListener('keypress', updateUnit);
-  }, [backable, onClick]);
+  }, [onClick]);
 
   return (
     <div className={className}>
@@ -74,12 +67,14 @@ function ChangelogTracker({ className }: StyledProps) {
         <H3>{TRACKER_TITLE}</H3>
         <p className={Classes.TEXT_LARGE}>{TRACKER_DESC}</p>
       </header>
-      <PanelStack2
-        stack={stack}
-        onOpen={onOpen}
-        onClose={onClose}
-        showPanelHeader={false}
-      />
+      <TokenContext.Provider value={token}>
+        <PanelStack2
+          stack={stack}
+          onOpen={onOpen}
+          onClose={onClose}
+          showPanelHeader={false}
+        />
+      </TokenContext.Provider>
       <footer>
         <Button
           large

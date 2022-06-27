@@ -1,28 +1,23 @@
-import 'highlight.js/styles/github-dark-dimmed.css';
-
 import { useRouter } from 'next/router';
 import { useCallback } from 'react';
 import styled from 'styled-components';
 
 import { Button, Classes, Divider, H4 } from '@blueprintjs/core';
 
+import { useToken } from '#contexts/token';
 import GithubIcon from '#icons/github';
-import { Key, get } from '#utils/cookie';
+import Config from '#utils/config';
 
 import type { PanelProps } from '@blueprintjs/core';
 
 type Props = PanelProps<StyledProps>;
 
+const AUTHORIZE_URL = `${Config.GH_OAUTH_URL}/authorize?client_id=${Config.GH_CLIENT_ID}`;
+
 function ManagementPanel({ className }: Props) {
   const router = useRouter();
-  const onSignIn = useCallback(
-    () =>
-      router.push(
-        'https://github.com/login/oauth/authorize?client_id=89586b42f4bb2b598272',
-      ),
-    [router],
-  );
-  const token = get(Key.Token);
+  const token = useToken();
+  const onSignIn = useCallback(() => router.push(AUTHORIZE_URL), [router]);
 
   return (
     <div className={className}>
