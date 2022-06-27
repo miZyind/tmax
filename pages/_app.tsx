@@ -11,6 +11,7 @@ import { SWRConfig } from 'swr';
 import { Classes, FocusStyleManager } from '@blueprintjs/core';
 
 import PageTransition from '#components/page-transition';
+import Config from '#utils/config';
 import { SITE_TITLE } from '#utils/constant';
 import theme from '#utils/theme';
 
@@ -25,7 +26,7 @@ const fetcher = (url: string) => fetch(url).then((response) => response.json());
 FocusStyleManager.onlyShowFocusOnTabs();
 
 export default function App({ Component, pageProps }: AppProps) {
-  const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
+  const { GA_ID } = Config;
 
   return (
     <>

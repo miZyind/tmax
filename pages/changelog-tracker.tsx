@@ -1,6 +1,7 @@
 import 'highlight.js/styles/github-dark-dimmed.css';
 
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 import { useCallback, useEffect, useState } from 'react';
 import styled from 'styled-components';
 
@@ -10,6 +11,7 @@ import Logo from '#components/changelog-tracker/logo';
 import MainPanel from '#components/changelog-tracker/main-panel';
 import ManagementPanel from '#components/changelog-tracker/management-panel';
 import { TRACKER_DESC, TRACKER_TITLE } from '#utils/constant';
+import { Key, get } from '#utils/cookie';
 import { withPageTransitionDelay } from '#utils/hoc';
 
 import type { Panel as BPPanel } from '@blueprintjs/core';
@@ -22,7 +24,10 @@ const STACK_BACKABLE_FACTOR = 1;
 const isBackable = (stack: Panel[]) => stack.length > STACK_BACKABLE_FACTOR;
 
 function ChangelogTracker({ className }: StyledProps) {
-  const [stack, setStack] = useState<Panel[]>([MainPanel]);
+  const { query } = useRouter();
+  const [stack, setStack] = useState<Panel[]>(
+    query.panel === 'management' ? [MainPanel, ManagementPanel] : [MainPanel],
+  );
   const backable = isBackable(stack);
   const onOpen = useCallback<(panel: Panel) => void>(
     (panel) => setStack((state) => [...state, panel]),
@@ -88,7 +93,9 @@ function ChangelogTracker({ className }: StyledProps) {
   );
 }
 
-export const getServerSideProps = withPageTransitionDelay();
+export const getServerSideProps = withPageTransitionDelay((ctx) => ({
+  props: { token: get(Key.Token, ctx) },
+}));
 
 export default styled(ChangelogTracker)`
   height: 100%;
@@ -118,7 +125,6 @@ export default styled(ChangelogTracker)`
   .${Classes.BUTTON} {
     width: 200px;
     position: relative;
-    transition: background-color 0.4s ease-out;
   }
   .${Classes.BUTTON_TEXT} {
     margin: unset;

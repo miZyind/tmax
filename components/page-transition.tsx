@@ -20,21 +20,21 @@ function PageTransition({ className }: StyledProps) {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    const handleStart = () => {
+    const onStart = () => {
       setLoading(true);
       GSAP.to(ref.current, { ...GSAP_VARS, opacity: 1 });
     };
-    const handleStop = () =>
+    const onStop = () =>
       loading && GSAP.to(ref.current, { ...GSAP_VARS, opacity: 0 });
 
-    router.events.on('routeChangeStart', handleStart);
-    router.events.on('routeChangeComplete', handleStop);
-    router.events.on('routeChangeError', handleStop);
+    router.events.on('routeChangeStart', onStart);
+    router.events.on('routeChangeComplete', onStop);
+    router.events.on('routeChangeError', onStop);
 
     return () => {
-      router.events.off('routeChangeStart', handleStart);
-      router.events.off('routeChangeComplete', handleStop);
-      router.events.off('routeChangeError', handleStop);
+      router.events.off('routeChangeStart', onStart);
+      router.events.off('routeChangeComplete', onStop);
+      router.events.off('routeChangeError', onStop);
     };
   }, [loading, router]);
 

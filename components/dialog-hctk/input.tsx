@@ -17,15 +17,15 @@ export default function Input({
   inputRef,
   value,
   isValidOutput,
-  onChange,
+  onChange: onChangeRef,
 }: Props) {
   const modifier = isValidOutput
     ? Classes.INTENT_SUCCESS
     : Classes.INTENT_DANGER;
   const className = clsx({ [modifier]: value.length });
-  const handleOnChange = useCallback(
-    (e: ChangeEvent<HTMLInputElement>) => onChange(e.target.value),
-    [onChange],
+  const onChange = useCallback(
+    (e: ChangeEvent<HTMLInputElement>) => onChangeRef(e.target.value),
+    [onChangeRef],
   );
 
   return (
@@ -37,7 +37,7 @@ export default function Input({
         placeholder='Input HantChar...'
         value={value}
         leftIcon='log-in'
-        onChange={handleOnChange}
+        onChange={onChange}
         large
       />
     </FormGroup>

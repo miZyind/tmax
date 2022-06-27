@@ -21,16 +21,16 @@ export enum Key {
 }
 
 export function get(key: Key.Settings, ctx?: SSRCtx): Settings;
-export function get(key: Key.Token, ctx?: SSRCtx): string;
+export function get(key: Key.Token, ctx?: SSRCtx): string | null;
 export function get(key: Key, ctx?: SSRCtx) {
   const value = parseCookies(ctx)[key];
+  const hasValue = typeof value === 'string';
 
-  if (typeof value === 'string') {
-    return JSON.parse(value) as Settings | string;
-  }
   switch (key) {
     case Key.Settings:
-      return { animate: true };
+      return hasValue ? (JSON.parse(value) as Settings) : { animate: true };
+    case Key.Token:
+      return hasValue ? value : null;
     default:
       return null;
   }
@@ -55,6 +55,11 @@ export function set(key: Key, input: unknown, ctx: Ctx | null = null) {
     options.httpOnly = true;
   }
   if (value !== null) {
-    setCookie(ctx, key, JSON.stringify(value), options);
+    setCookie(
+      ctx,
+      key,
+      typeof value === 'string' ? value : JSON.stringify(value),
+      options,
+    );
   }
 }

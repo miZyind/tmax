@@ -18,7 +18,7 @@ interface Props extends StyledProps {
 
 function Index({ className, settings }: Props) {
   const [animate, setAnimate] = useState(settings.animate);
-  const handleClick = useCallback(() => {
+  const onClick = useCallback(() => {
     set(Key.Settings, { animate: !animate });
     setAnimate(!animate);
   }, [animate]);
@@ -32,7 +32,7 @@ function Index({ className, settings }: Props) {
         <Button
           large
           icon='social-media'
-          onClick={handleClick}
+          onClick={onClick}
           className='button-animation'
           intent={animate ? 'primary' : 'none'}
         />

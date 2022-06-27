@@ -1,4 +1,5 @@
 export default {
-  GH_CLIENT_ID: String(process.env.GH_CLIENT_ID),
+  GA_ID: String(process.env.NEXT_PUBLIC_GA_ID),
+  GH_CLIENT_ID: String(process.env.NEXT_PUBLIC_GH_CLIENT_ID),
   GH_CLIENT_SECRET: String(process.env.GH_CLIENT_SECRET),
 };
