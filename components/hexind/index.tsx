@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { useCallback, useContext, useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 import styled from 'styled-components';
 
 import {
@@ -10,7 +10,7 @@ import {
 } from '#components/hexind/constant';
 import Hexagon from '#components/hexind/hexagon';
 import Logo from '#components/hexind/logo';
-import { DialogsContext, Name } from '#contexts/dialogs';
+import { Name, useDialogs } from '#contexts/dialogs';
 import AnalyticsIcon from '#icons/analytics';
 import ChangelogTrackerIcon from '#icons/changelog-tracker';
 import GithubIcon from '#icons/github';
@@ -21,7 +21,7 @@ import { useUnit } from '#utils/hook';
 
 function Hexind({ className }: StyledProps) {
   const router = useRouter();
-  const { state, dispatch } = useContext(DialogsContext);
+  const { state, dispatch } = useDialogs();
   const unit = useUnit();
   const animate = useMemo(
     () => Boolean(Object.values(state).filter((isOpened) => isOpened).length),

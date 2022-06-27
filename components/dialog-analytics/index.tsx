@@ -1,10 +1,10 @@
-import { useCallback, useContext, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import { Classes, Colors, Dialog, Spinner } from '@blueprintjs/core';
 
 import { usePrices } from '#api/get-prices';
-import { DialogsContext, Name } from '#contexts/dialogs';
+import { Name, useDialogs } from '#contexts/dialogs';
 import AnalyticsIcon from '#icons/analytics';
 
 import PriceChart from './price-chart';
@@ -25,7 +25,7 @@ const StyledSpinner = styled(Spinner)`
 function DialogAnalytics({ className }: StyledProps) {
   const data = usePrices();
   const [loading, setLoading] = useState(true);
-  const { state, dispatch } = useContext(DialogsContext);
+  const { state, dispatch } = useDialogs();
   const colors = [Colors.GOLD4, Colors.SEPIA4, Colors.BLUE4, Colors.CERULEAN4];
 
   useEffect(() => {

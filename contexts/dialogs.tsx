@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { createContext, useMemo, useReducer } from 'react';
+import { createContext, useContext, useMemo, useReducer } from 'react';
 
 import type { Dispatch, ReactNode } from 'react';
 
@@ -19,8 +19,9 @@ interface Context {
 const dialogs = Object.values(Name);
 const initialState = Object.fromEntries(dialogs.map((name) => [name, false]));
 const reducer = (state: State, [n, v]: Action) => ({ ...state, [n]: v });
+const DialogsContext = createContext({} as Context);
 
-export const DialogsContext = createContext({} as Context);
+export const useDialogs = () => useContext(DialogsContext);
 export function DialogsProvider({ children }: { children: ReactNode }) {
   const { query } = useRouter();
   const routerState =
