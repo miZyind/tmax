@@ -50,8 +50,10 @@ const getChangelogs = async (token?: string) => {
 };
 
 export const useChangelogs = (hasToken: boolean) =>
-  useSWR<Changelogs>('/api/get-changelogs', (url: string) =>
-    hasToken ? fetcher<Changelogs>(url) : getChangelogs(),
+  useSWR<Changelogs>(
+    '/api/get-changelogs',
+    (url: string) => (hasToken ? fetcher<Changelogs>(url) : getChangelogs()),
+    { revalidateOnFocus: false },
   ).data;
 
 const handler: NextApiHandler = async ({ cookies }, res) =>

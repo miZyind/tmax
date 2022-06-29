@@ -1,12 +1,12 @@
-import { Key, destroy } from '#utils/cookie';
+import { destroy } from '#utils/cookie';
 import fetcher from '#utils/fetcher';
 
 import type { NextApiHandler } from 'next';
 
-export const signOut = () => fetcher('/api/oauth/sign-out');
+export const signOut = () => fetcher('/api/oauth/sign-out', { method: 'POST' });
 
 const handler: NextApiHandler = (_, res) => {
-  destroy(Key.Token, { res });
+  destroy(res);
   res.json({});
 };
 

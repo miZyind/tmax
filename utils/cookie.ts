@@ -64,8 +64,8 @@ export function set(key: Key, input: unknown, ctx: Ctx | null = null) {
   }
 }
 
-export function destroy(key: Key.Token, ctx: Ctx) {
-  return destroyCookie(ctx, key, {
+export function destroy(res: Ctx['res']) {
+  return destroyCookie({ res }, Key.Token, {
     httpOnly: true,
     maxAge: COOKIE_MAX_AGE,
     path: '/',
