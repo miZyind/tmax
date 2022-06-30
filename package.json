@@ -64,7 +64,10 @@
     ],
     "extends": [
       "plugin:mizyind/next"
-    ]
+    ],
+    "rules": {
+      "@next/next/no-assign-module-variable": "off"
+    }
   },
   "stylelint": {
     "extends": [
