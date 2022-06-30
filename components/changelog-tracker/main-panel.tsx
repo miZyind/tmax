@@ -26,7 +26,8 @@ interface NodeData {
   content: string;
 }
 
-const TREE_NODE_WIDTH = 160;
+const TREE_NODE_WIDTH = 185;
+const WIDTH_SCALE_FACTOR = 2;
 const RATE_LIMIT_THRESHOLD = 0.3;
 const COLOR_MAP = { success: Colors.GREEN5, danger: Colors.RED5 };
 
@@ -112,7 +113,7 @@ function MainPanel({ className, openPanel }: Props) {
 const StyledMainPanel = styled(MainPanel)`
   height: 100%;
   margin: 8px auto auto;
-  min-width: ${TREE_NODE_WIDTH}px;
+  min-width: ${TREE_NODE_WIDTH * WIDTH_SCALE_FACTOR}px;
   &.loading {
     margin: unset;
     display: flex;

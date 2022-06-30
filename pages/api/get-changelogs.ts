@@ -14,6 +14,7 @@ interface Changelogs {
   remaining: number;
 }
 
+const normalizeName = (name: string) => name.replace('plugin-nextjs-', '');
 const getChangelogs = async (token?: string) => {
   const limits: number[] = [];
   const remainings: number[] = [];
@@ -38,7 +39,13 @@ const getChangelogs = async (token?: string) => {
         releases = (await response.json()) as Changelog['releases'];
       }
 
-      return { name, releases };
+      return {
+        name,
+        releases: releases.map((data) => ({
+          ...data,
+          tag_name: normalizeName(data.tag_name),
+        })),
+      };
     }),
   );
 
