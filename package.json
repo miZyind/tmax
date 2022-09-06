@@ -36,6 +36,7 @@
     "swr": "^1.3.0"
   },
   "devDependencies": {
+    "@blueprintjs/eslint-plugin": "^2.4.1",
     "@commitlint/cli": "^17.1.2",
     "@commitlint/config-conventional": "^17.1.0",
     "@netlify/plugin-nextjs": "^4.21.1",
@@ -63,7 +64,8 @@
       "next-env.d.ts"
     ],
     "extends": [
-      "plugin:mizyind/next"
+      "plugin:mizyind/next",
+      "plugin:@blueprintjs/recommended"
     ]
   },
   "stylelint": {
