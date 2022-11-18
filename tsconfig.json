@@ -30,7 +30,7 @@
       "#contexts/*": ["contexts/*"],
       "#icons/*": ["icons/*"],
       "#utils/*": ["utils/*"],
-      "#singularity": ["public/singularity/singularity.js"]
+      "#singularity": ["public/singularity.js"]
     },
     "typeRoots": ["node_modules/@types", "@types"],
     /* Linter Checks */
