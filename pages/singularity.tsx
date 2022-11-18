@@ -45,6 +45,8 @@ function Singularity({ className }: StyledProps) {
   );
 }
 
+export const getServerSideProps = () => ({ props: {} });
+
 export default styled(Singularity)`
   opacity: 0;
   width: 100%;
