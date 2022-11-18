@@ -6,12 +6,7 @@ module.exports = {
   rewrites() {
     return [
       {
-        source: '/en/singularity_bg.wasm',
-        destination: '/singularity/singularity_bg.wasm',
-        locale: false,
-      },
-      {
-        source: '/en/assets/:path*',
+        source: '/assets/:path*',
         destination: '/singularity/assets/:path*',
         locale: false,
       },
