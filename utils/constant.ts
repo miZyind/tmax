@@ -20,4 +20,5 @@ export enum Code {
 export enum LogoPath {
   Original = '/logo.png',
   Alternate = '/logo-alternate.png',
+  Singularity = '/singularity/logo.png',
 }

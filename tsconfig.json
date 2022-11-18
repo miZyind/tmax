@@ -29,7 +29,8 @@
       "#components/*": ["components/*"],
       "#contexts/*": ["contexts/*"],
       "#icons/*": ["icons/*"],
-      "#utils/*": ["utils/*"]
+      "#utils/*": ["utils/*"],
+      "#singularity": ["public/singularity/singularity.js"]
     },
     "typeRoots": ["node_modules/@types", "@types"],
     /* Linter Checks */
