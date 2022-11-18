@@ -28,8 +28,8 @@ function Singularity({ className }: StyledProps) {
   }, []);
 
   return (
-    <>
-      <div ref={ref} className={className}>
+    <div className={className}>
+      <div ref={ref} className='loader'>
         <Spinner size={unit + SPINNER_SCALE_SIZE} />
         <Image
           title='logo'
@@ -40,35 +40,51 @@ function Singularity({ className }: StyledProps) {
         />
         <div className='text'>Loading game assets...</div>
       </div>
-      <canvas id='singularity' />
-    </>
+      <div className='canvas-container'>
+        <canvas id='singularity' />
+      </div>
+    </div>
   );
 }
 
 export const getServerSideProps = () => ({ props: {} });
 
 export default styled(Singularity)`
-  opacity: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 999;
   display: flex;
-  position: absolute;
+  width: inherit;
+  height: inherit;
   align-items: center;
-  pointer-events: none;
   justify-content: center;
-  background-color: #140023;
-  .${Classes.SPINNER} {
+  background-color: #1e1e22;
+  .loader {
+    top: 0;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+    display: flex;
     position: absolute;
+    align-items: center;
+    pointer-events: none;
+    justify-content: center;
+    background-color: #140023;
+    .${Classes.SPINNER} {
+      position: absolute;
+    }
+    .${Classes.SPINNER_HEAD} {
+      stroke: #2489a9 !important;
+    }
+    .text {
+      bottom: 10%;
+      font-size: 16px;
+      color: #eecf8c;
+      position: absolute;
+      font-family: Endor, sans-serif;
+    }
   }
-  .${Classes.SPINNER_HEAD} {
-    stroke: #2489a9 !important;
-  }
-  .text {
-    bottom: 10%;
-    font-size: 16px;
-    color: #eecf8c;
-    position: absolute;
-    font-family: Endor, sans-serif;
+  .canvas-container {
+    width: 100%;
+    max-height: 100%;
+    aspect-ratio: 16/9;
   }
 `;
