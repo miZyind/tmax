@@ -10,7 +10,13 @@ function Logo({ className }: StyledProps) {
   return (
     <Link href='/'>
       <a className={className}>
-        <Image width={100} height={100} title='logo' src={LogoPath.Original} />
+        <Image
+          alt='logo'
+          title='logo'
+          width={100}
+          height={100}
+          src={LogoPath.Original}
+        />
       </a>
     </Link>
   );

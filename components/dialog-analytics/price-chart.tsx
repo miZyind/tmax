@@ -11,8 +11,7 @@ import {
 import { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 
-import type { CartesianScaleOptions, Plugin } from 'chart.js';
-import type { DeepPartial } from 'chart.js/types/utils';
+import type { Plugin, ScaleOptions } from 'chart.js';
 import type { Code } from '#utils/constant';
 import type { Price } from '#utils/model';
 
@@ -25,7 +24,7 @@ interface Props extends StyledProps {
 const TEXT_COLOR = 'white';
 const TOOLTIP_TITLE_COLOR = '#666';
 const FRACTION_DIGITS = 2;
-const X_SCALE_OPTIONS: DeepPartial<CartesianScaleOptions> = {
+const X_SCALE_OPTIONS: ScaleOptions<'linear'> = {
   grid: { display: false },
   ticks: {
     color: TEXT_COLOR,
@@ -50,7 +49,7 @@ const X_SCALE_OPTIONS: DeepPartial<CartesianScaleOptions> = {
     },
   },
 };
-const Y_SCALE_OPTIONS: DeepPartial<CartesianScaleOptions> = {
+const Y_SCALE_OPTIONS: ScaleOptions<'linear'> = {
   grid: { display: false },
   ticks: {
     padding: 0,
@@ -217,6 +216,7 @@ function PriceChart({ className, code, prices, color }: Props) {
 
 export default styled(PriceChart)`
   width: 50%;
+  aspect-ratio: 2/1;
   ${({ theme }) => theme.queries.tablet} {
     width: 100%;
   }

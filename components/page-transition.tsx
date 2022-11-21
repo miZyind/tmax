@@ -42,6 +42,7 @@ function PageTransition({ className }: StyledProps) {
     <div ref={ref} className={className}>
       <Spinner intent='primary' size={unit + SPINNER_SCALE_SIZE} />
       <Image
+        alt='logo'
         title='logo'
         width={unit}
         height={unit}

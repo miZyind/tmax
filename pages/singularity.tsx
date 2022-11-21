@@ -32,6 +32,7 @@ function Singularity({ className }: StyledProps) {
       <div ref={ref} className='loader'>
         <Spinner size={unit + SPINNER_SCALE_SIZE} />
         <Image
+          alt='logo'
           title='logo'
           width={unit}
           height={unit}
