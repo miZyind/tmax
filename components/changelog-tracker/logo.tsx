@@ -8,16 +8,14 @@ import { LogoPath } from '#utils/constant';
 
 function Logo({ className }: StyledProps) {
   return (
-    <Link href='/'>
-      <a className={className}>
-        <Image
-          alt='logo'
-          title='logo'
-          width={100}
-          height={100}
-          src={LogoPath.Original}
-        />
-      </a>
+    <Link href='/' className={className}>
+      <Image
+        alt='logo'
+        title='logo'
+        width={100}
+        height={100}
+        src={LogoPath.Original}
+      />
     </Link>
   );
 }
