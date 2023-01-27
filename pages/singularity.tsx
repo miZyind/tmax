@@ -19,8 +19,19 @@ function Singularity({ className }: StyledProps) {
   const unit = useUnit() * SPINNER_PROP;
 
   useEffect(() => {
+    const canvas = document.querySelector('#singularity');
+
     GSAP.to(ref.current, { ...GSAP_VARS, opacity: 1 });
-    void init().catch(() => null);
+
+    void init(canvas, {
+      dataUrl: '/WebGL.data',
+      frameworkUrl: '/WebGL.framework.js',
+      codeUrl: '/WebGL.wasm',
+      streamingAssetsUrl: 'StreamingAssets',
+      companyName: 'miZyind Studio',
+      productName: 'Singularity',
+      productVersion: '0.1',
+    }).catch(() => null);
     setTimeout(
       () => GSAP.to(ref.current, { ...GSAP_VARS, opacity: 0 }),
       LOADING_DELAY,
@@ -32,6 +43,7 @@ function Singularity({ className }: StyledProps) {
       <div ref={ref} className='loader'>
         <Spinner size={unit + SPINNER_SCALE_SIZE} />
         <Image
+          priority
           alt='logo'
           title='logo'
           width={unit}
@@ -83,9 +95,9 @@ export default styled(Singularity)`
       font-family: Endor, sans-serif;
     }
   }
-  .canvas-container {
+  canvas {
     width: 100%;
-    max-height: 100%;
+    height: 100%;
     aspect-ratio: 16/9;
   }
 `;
