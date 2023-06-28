@@ -24,37 +24,36 @@
     "chart.js": "^4.3.0",
     "classnames": "^2.3.2",
     "date-fns": "^2.30.0",
-    "gsap": "^3.11.5",
+    "gsap": "^3.12.1",
     "highlight.js": "^11.8.0",
     "lodash": "^4.17.21",
     "markdown-it": "^13.0.1",
-    "next": "^13.4.1",
+    "next": "^13.4.7",
     "nookies": "^2.5.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "styled-components": "^5.3.10",
-    "swr": "^2.1.5"
+    "swr": "^2.2.0"
   },
   "devDependencies": {
     "@blueprintjs/eslint-plugin": "^2.7.8",
-    "@commitlint/cli": "^17.6.3",
-    "@commitlint/config-conventional": "^17.6.3",
-    "@netlify/plugin-nextjs": "^4.36.0",
-    "@stylelint/postcss-css-in-js": "^0.38.0",
-    "@types/lodash": "^4.14.194",
+    "@commitlint/cli": "^17.6.6",
+    "@commitlint/config-conventional": "^17.6.6",
+    "@netlify/plugin-nextjs": "^4.38.1",
+    "@types/lodash": "^4.14.195",
     "@types/markdown-it": "^12.2.3",
-    "@types/node": "^20.1.0",
-    "@types/react": "18.0.0",
-    "@types/react-dom": "18.0.0",
+    "@types/node": "^20.3.2",
+    "@types/react": "18.2.14",
+    "@types/react-dom": "18.2.6",
     "@types/styled-components": "^5.1.26",
-    "babel-plugin-styled-components": "^2.1.1",
-    "eslint-plugin-mizyind": "^4.10.0",
+    "babel-plugin-styled-components": "^2.1.4",
+    "eslint-plugin-mizyind": "4.13.0",
     "husky": "^8.0.3",
-    "lint-staged": "^13.2.2",
-    "postcss-syntax": "^0.36.2",
-    "stylelint": "^15.6.1",
+    "lint-staged": "^13.2.3",
+    "postcss-styled-syntax": "^0.4.0",
+    "stylelint": "^15.9.0",
     "stylelint-config-recommended": "^12.0.0",
-    "typescript": "^5.0.4",
+    "typescript": "^5.1.5",
     "typescript-styled-plugin": "^0.18.3"
   },
   "eslintConfig": {
@@ -71,10 +70,7 @@
     "extends": [
       "stylelint-config-recommended"
     ],
-    "customSyntax": "@stylelint/postcss-css-in-js",
-    "rules": {
-      "function-no-unknown": null
-    }
+    "customSyntax": "postcss-styled-syntax"
   },
   "prettier": {
     "singleQuote": true,
