@@ -2,9 +2,8 @@ import clsx from 'classnames';
 import { useCallback } from 'react';
 import styled from 'styled-components';
 
-import { Classes, FormGroup, Icon } from '@blueprintjs/core';
+import { Classes, FormGroup, Icon, Popover } from '@blueprintjs/core';
 import { IconNames } from '@blueprintjs/icons';
-import { Popover2, Classes as PopoverClasses } from '@blueprintjs/popover2';
 
 import type { MouseEvent } from 'react';
 
@@ -27,7 +26,7 @@ function Output({ className, value, isValidOutput }: Props) {
     <FormGroup className={className} label='Output' labelFor='hctk-output'>
       <div className={clsx(Classes.INPUT_GROUP, Classes.LARGE)}>
         <Icon icon={IconNames.LOG_OUT} />
-        <Popover2
+        <Popover
           fill
           content='Copied!'
           usePortal={false}
@@ -43,7 +42,7 @@ function Output({ className, value, isValidOutput }: Props) {
             className={Classes.INPUT}
             placeholder='Output keyboard keys...'
           />
-        </Popover2>
+        </Popover>
       </div>
     </FormGroup>
   );
@@ -57,7 +56,7 @@ export default styled(Output)`
       cursor: default;
     }
   }
-  .${PopoverClasses.POPOVER2_CONTENT} {
+  .${Classes.POPOVER_CONTENT} {
     padding: 5px;
     user-select: none;
   }

@@ -31,8 +31,9 @@ function Index({ className, settings }: Props) {
         <DialogAnalytics />
         <Button
           large
-          icon='social-media'
           onClick={onClick}
+          icon='social-media'
+          title='Toggle animation'
           className='button-animation'
           intent={animate ? 'primary' : 'none'}
         />

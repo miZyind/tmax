@@ -1,11 +1,14 @@
 import 'normalize.css/normalize.css';
 import '@blueprintjs/core/lib/css/blueprint.css';
 import '@blueprintjs/icons/lib/css/blueprint-icons.css';
-import '@blueprintjs/popover2/lib/css/blueprint-popover2.css';
 
 import Head from 'next/head';
 import Script from 'next/script';
-import { ThemeProvider, createGlobalStyle } from 'styled-components';
+import {
+  StyleSheetManager,
+  ThemeProvider,
+  createGlobalStyle,
+} from 'styled-components';
 import { SWRConfig } from 'swr';
 
 import { Classes, FocusStyleManager } from '@blueprintjs/core';
@@ -22,6 +25,7 @@ const GlobalStyle = createGlobalStyle`
   html, body, #__next { height: 100%; -webkit-tap-highlight-color: transparent; }
   .${Classes.OVERLAY}.${Classes.OVERLAY_SCROLL_CONTAINER} { overflow-x: hidden; }
 `;
+const shouldForwardProp = () => true;
 
 FocusStyleManager.onlyShowFocusOnTabs();
 
@@ -46,12 +50,14 @@ export default function App({ Component, pageProps }: AppProps) {
         `}
       </Script>
       <GlobalStyle />
-      <PageTransition />
-      <ThemeProvider theme={theme}>
-        <SWRConfig value={{ fetcher }}>
-          <Component className={Classes.DARK} {...pageProps} />
-        </SWRConfig>
-      </ThemeProvider>
+      <StyleSheetManager shouldForwardProp={shouldForwardProp}>
+        <PageTransition />
+        <ThemeProvider theme={theme}>
+          <SWRConfig value={{ fetcher }}>
+            <Component className={Classes.DARK} {...pageProps} />
+          </SWRConfig>
+        </ThemeProvider>
+      </StyleSheetManager>
     </>
   );
 }

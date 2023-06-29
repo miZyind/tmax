@@ -19,7 +19,6 @@ TMAX, short for **Turbulent miZyind at Xion**.
   - **[NextJS](https://nextjs.org)** - The React Framework for Production.
     - **[Nookies](https://github.com/maticzav/nookies)** - A set of cookie helpers for NextJS.
   - **[BlueprintJS](https://blueprintjs.com)** - A React-based UI toolkit for the web.
-    - **[BlueprintJS-Popover2](https://www.npmjs.com/package/@blueprintjs/popover2)** - Provides successors to Popover and Tooltip in BlueprintJS.
   - **[styled-components](https://styled-components.com)** - Visual primitives for the component age.
     - **[babel-plugin-styled-components](https://github.com/styled-components/babel-plugin-styled-components)** - Improve the debugging experience and add SSR support.
   - **[SWR](https://swr.vercel.app)** - React Hooks library for remote data fetching.
