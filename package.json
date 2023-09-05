@@ -19,7 +19,7 @@
     "lint:css": "stylelint \"*/**/*.tsx\" --max-warnings 0"
   },
   "dependencies": {
-    "@blueprintjs/core": "^5.2.1",
+    "@blueprintjs/core": "^5.3.0",
     "chart.js": "^4.4.0",
     "classnames": "^2.3.2",
     "date-fns": "^2.30.0",
@@ -32,21 +32,21 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "styled-components": "^6.0.7",
-    "swr": "^2.2.1"
+    "swr": "^2.2.2"
   },
   "devDependencies": {
-    "@blueprintjs/eslint-plugin": "^3.0.1",
+    "@blueprintjs/eslint-plugin": "^4.0.0",
     "@commitlint/cli": "^17.7.1",
     "@commitlint/config-conventional": "^17.7.0",
     "@netlify/plugin-nextjs": "^4.40.1",
     "@styled/typescript-styled-plugin": "^1.0.0",
     "@types/lodash": "^4.14.197",
-    "@types/markdown-it": "^13.0.0",
-    "@types/node": "^20.5.6",
+    "@types/markdown-it": "^13.0.1",
+    "@types/node": "^20.5.9",
     "@types/react": "^18.2.21",
     "@types/react-dom": "^18.2.7",
     "babel-plugin-styled-components": "^2.1.4",
-    "eslint-plugin-mizyind": "^4.14.0",
+    "eslint-plugin-mizyind": "^4.15.0",
     "husky": "^8.0.3",
     "lint-staged": "^14.0.1",
     "postcss-styled-syntax": "^0.4.0",
