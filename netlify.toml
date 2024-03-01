@@ -4,7 +4,7 @@ command = "yarn build"
 publish = ".next"
 
 [build.environment]
-NODE_VERSION = "18"
+NODE_VERSION = "20"
 NEXT_PUBLIC_GA_ID = "G-50LPRQPF4H"
 NEXT_PUBLIC_GH_CLIENT_ID = "89586b42f4bb2b598272"
 
