@@ -3,10 +3,9 @@ export const decode = (input: string, cedict: Cedict = {}) =>
     ? ''
     : input
         .split('')
-        .map(
-          (char) =>
-            Object.entries(cedict)
-              .find(([key]) => key === char)
-              ?.pop(),
+        .map((char) =>
+          Object.entries(cedict)
+            .find(([key]) => key === char)
+            ?.pop(),
         )
         .join('');
