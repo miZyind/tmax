@@ -15,7 +15,7 @@ import AnalyticsIcon from '#icons/analytics';
 import ChangelogTrackerIcon from '#icons/changelog-tracker';
 import GithubIcon from '#icons/github';
 import HCTKIcon from '#icons/hctk';
-import NodeIcon from '#icons/node';
+import MediumIcon from '#icons/medium';
 import SingularityIcon from '#icons/singularity';
 import { useUnit } from '#utils/hook';
 
@@ -38,6 +38,10 @@ function Hexind({ className }: StyledProps) {
     () => router.push('/singularity'),
     [router],
   );
+  const onMediumClick = useCallback(
+    () => router.push('https://medium.com/mizyind-singularity'),
+    [router],
+  );
   const onChangelogTrackerClick = useCallback(
     () => router.push('/changelog-tracker'),
     [router],
@@ -50,6 +54,10 @@ function Hexind({ className }: StyledProps) {
     () => dispatch([Name.HCTK, true]),
     [dispatch],
   );
+  const onGitHubClick = useCallback(
+    () => router.push('https://github.com/miZyind'),
+    [router],
+  );
 
   return (
     <div className={className} style={{ width, height }}>
@@ -61,8 +69,8 @@ function Hexind({ className }: StyledProps) {
               size={iconSize * SINGULARITY_SCALE_PROP}
             />
           </Hexagon>
-          <Hexagon id={2} {...props}>
-            <NodeIcon size={iconSize} />
+          <Hexagon id={2} {...props} onClick={onMediumClick}>
+            <MediumIcon size={iconSize} />
           </Hexagon>
           <Hexagon id={3} {...props} onClick={onChangelogTrackerClick}>
             <ChangelogTrackerIcon size={iconSize} />
@@ -73,7 +81,7 @@ function Hexind({ className }: StyledProps) {
           <Hexagon id={5} {...props} onClick={onHCTKClick}>
             <HCTKIcon size={iconSize} />
           </Hexagon>
-          <Hexagon id={6} {...props}>
+          <Hexagon id={6} {...props} onClick={onGitHubClick}>
             <GithubIcon size={iconSize} />
           </Hexagon>
         </>
