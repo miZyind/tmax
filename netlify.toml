@@ -15,3 +15,10 @@ package = "@netlify/plugin-nextjs"
 from = "https://mizyind.netlify.app"
 to = "https://mizyind.dev"
 force = true
+
+[functions]
+included_files = [
+  "node_modules/next/dist/server/future/route-modules/pages/vendored/contexts/amp-context*",
+  "node_modules/next/dist/server/future/route-modules/pages/vendored/contexts/router-context*",
+  "node_modules/next/dist/server/future/route-modules/pages/vendored/contexts/head-manager-context*",
+]
