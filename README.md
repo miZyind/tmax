@@ -67,7 +67,7 @@ $ yarn start
 
 ## 🖋 Author
 
-miZyind <mizyind@gmail.com>
+miZyind <mizyind.dev>
 
 ## 📇 License
 
