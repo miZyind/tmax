@@ -11,6 +11,8 @@ import {
 import { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 
+import { ZERO } from '#components/hexind/constant';
+
 import type { Plugin, ScaleOptions } from 'chart.js';
 import type { Code } from '#utils/constant';
 import type { Price } from '#utils/model';
@@ -57,7 +59,8 @@ const Y_SCALE_OPTIONS: ScaleOptions<'linear'> = {
     backdropPadding: 0,
     font: { size: 14 },
     showLabelBackdrop: false,
-    callback: (v) => (v as number).toFixed(FRACTION_DIGITS),
+    callback: (v) =>
+      (v as number | undefined)?.toFixed(FRACTION_DIGITS) ?? ZERO,
   },
   afterFit(axis) {
     axis.width = 62;

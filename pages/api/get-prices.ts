@@ -17,7 +17,7 @@ const handler: NextApiHandler = async (_, res) => {
       const targetDate = subYears(new Date(), SUB_YEAR_OFFSET);
       const formattedDate = formatISO(targetDate, { representation: 'date' });
       const type = code === Code.VNINDEX ? 'vnmarket_prices' : 'stock_prices';
-      const url = `https://finfo-api.vndirect.com.vn/v4/${type}?sort=date:asc&size=500`;
+      const url = `https://api-finfo.vndirect.com.vn/v4/${type}?sort=date:asc&size=500`;
       const input = `${url}&q=code:${code}~date:gte:${formattedDate}`;
 
       try {

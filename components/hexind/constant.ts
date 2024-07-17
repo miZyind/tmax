@@ -1,7 +1,7 @@
 const WIDTH_PROP = 15;
 const HEIGHT_PROP = 17;
 
-export const INITIAL_UNIT = 0;
+export const ZERO = 0;
 export const BEGIN_GAP = 0.15;
 export const MIDDLE_GAP = 0.35;
 export const FINAL_GAP = 1.2;

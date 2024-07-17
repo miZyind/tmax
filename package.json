@@ -3,29 +3,27 @@
   "version": "1.0.0",
   "description": "TMAX, short for Turbulent miZyind at Xion.",
   "repository": "git@github.com:miZyind/tmax.git",
-  "author": "miZyind <mizyind@gmail.com>",
+  "author": "miZyind <mizyind.dev>",
   "license": "MIT",
-  "homepage": "https://mizyind.dev",
-  "bugs": "https://github.com/miZyind/tmax/issues",
+  "scripts": {
+    "prepare": "husky",
+    "clean": "rm -rf .next",
+    "dev": "next dev",
+    "build": "next build",
+    "lint": "eslint \"*/**/*.{ts,tsx}\" --max-warnings 0"
+  },
   "engines": {
     "node": ">=20"
   },
-  "scripts": {
-    "prepare": "husky install",
-    "dev": "next dev",
-    "build": "yarn lint && next build",
-    "lint": "eslint \"*/**/*.{ts,tsx}\" --max-warnings 0"
-  },
   "dependencies": {
-    "@blueprintjs/core": "^5.10.4",
+    "@blueprintjs/core": "^5.10.5",
     "chart.js": "^4.4.3",
-    "classnames": "^2.5.1",
     "date-fns": "^3.6.0",
     "gsap": "^3.12.5",
-    "highlight.js": "^11.9.0",
+    "highlight.js": "^11.10.0",
     "lodash": "^4.17.21",
     "markdown-it": "^14.1.0",
-    "next": "^14.2.4",
+    "next": "^14.2.5",
     "nookies": "^2.5.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
@@ -36,18 +34,22 @@
     "@blueprintjs/eslint-plugin": "^6.1.2",
     "@commitlint/cli": "^19.3.0",
     "@commitlint/config-conventional": "^19.2.2",
-    "@netlify/plugin-nextjs": "^5.4.0",
+    "@netlify/plugin-nextjs": "^5.5.1",
     "@styled/typescript-styled-plugin": "^1.0.1",
-    "@types/lodash": "^4.17.6",
+    "@types/lodash": "^4.17.7",
     "@types/markdown-it": "^14.1.1",
-    "@types/node": "^20.14.9",
+    "@types/node": "^20.14.11",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
-    "babel-plugin-styled-components": "^2.1.4",
     "eslint-plugin-mizyind": "^5.2.1",
     "husky": "^9.0.11",
     "lint-staged": "^15.2.7",
     "typescript": "^5.5.3"
+  },
+  "prettier": {
+    "singleQuote": true,
+    "jsxSingleQuote": true,
+    "trailingComma": "all"
   },
   "eslintConfig": {
     "ignorePatterns": [
@@ -59,19 +61,14 @@
       "plugin:@blueprintjs/recommended"
     ]
   },
-  "prettier": {
-    "singleQuote": true,
-    "jsxSingleQuote": true,
-    "trailingComma": "all"
-  },
-  "lint-staged": {
-    "*.{ts,tsx}": [
-      "yarn lint"
-    ]
-  },
   "commitlint": {
     "extends": [
       "@commitlint/config-conventional"
+    ]
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "eslint --max-warnings 0"
     ]
   }
 }

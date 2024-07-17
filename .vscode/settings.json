@@ -1,15 +1,12 @@
 {
-  "editor.formatOnSave": true,
-  "editor.insertSpaces": true,
-  "editor.tabSize": 2,
-  "editor.trimAutoWhitespace": true,
-  "files.eol": "\n",
   "files.exclude": {
-    "**/.DS_Store": true,
-    "**/.git": true,
-    "**/node_modules": true,
-    ".vscode": true
-  },
-  "files.insertFinalNewline": true,
-  "files.trimTrailingWhitespace": true
+    ".git": true,
+    ".next": true,
+    ".husky": true,
+    ".vscode": true,
+    ".github": true,
+    ".DS_Store": true,
+    "node_modules": true,
+    "next-env.d.ts": true
+  }
 }
