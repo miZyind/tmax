@@ -1,29 +1,20 @@
-/* TSConfig Reference https://www.typescriptlang.org/tsconfig */
 {
-  /* File Inclusion */
   "include": ["**/*"],
   "exclude": ["node_modules"],
   "compilerOptions": {
-    /* Project Options */
+    /* General */
     "target": "ESNext",
     "module": "ESNext",
     "jsx": "preserve",
-    "noEmit": true,
+    "strict": true,
     "allowJs": true,
-    "sourceMap": true,
     "incremental": true,
-    "importHelpers": true,
-    "isolatedModules": true,
-    "removeComments": true,
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "plugins": [{ "name": "@styled/typescript-styled-plugin" }],
-    /* Strict Checks */
-    "strict": true,
-    /* Module Resolution */
-    "allowSyntheticDefaultImports": true,
+    /* Modules: https://www.typescriptlang.org/tsconfig#Modules_6244 */
     "baseUrl": ".",
-    "esModuleInterop": true,
-    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "moduleResolution": "bundler",
     "paths": {
       "#api/*": ["pages/api/*"],
       "#components/*": ["components/*"],
@@ -33,18 +24,20 @@
       "#singularity": ["public/singularity.js"]
     },
     "typeRoots": ["node_modules/@types", "@types"],
-    /* Linter Checks */
-    "noFallthroughCasesInSwitch": true,
-    "noImplicitReturns": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    /* Experimental */
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    /* Advanced */
-    "forceConsistentCasingInFileNames": true,
+    /* Emit: https://www.typescriptlang.org/tsconfig#Emit_6246 */
+    "noEmit": true,
+    "importHelpers": true,
+    "removeComments": true,
     "preserveConstEnums": true,
-    "resolveJsonModule": true,
+    /* Type Checking: https://www.typescriptlang.org/tsconfig#Type_Checking_6248 */
+    "noUnusedLocals": true,
+    "noImplicitReturns": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    /* Interop Constraints: https://www.typescriptlang.org/tsconfig#Interop_Constraints_6252 */
+    "esModuleInterop": true,
+    "isolatedModules": true,
+    /* Completeness: https://www.typescriptlang.org/tsconfig#Completeness_6257 */
     "skipLibCheck": true
   }
 }

@@ -16,7 +16,7 @@
     "node": ">=20"
   },
   "dependencies": {
-    "@blueprintjs/core": "^5.10.5",
+    "@blueprintjs/core": "^5.11.0",
     "chart.js": "^4.4.3",
     "date-fns": "^3.6.0",
     "gsap": "^3.12.5",
@@ -27,39 +27,29 @@
     "nookies": "^2.5.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "styled-components": "^6.1.11",
+    "styled-components": "^6.1.12",
     "swr": "^2.2.5"
   },
   "devDependencies": {
-    "@blueprintjs/eslint-plugin": "^6.1.2",
+    "@blueprintjs/eslint-plugin": "^6.1.3",
     "@commitlint/cli": "^19.3.0",
     "@commitlint/config-conventional": "^19.2.2",
     "@netlify/plugin-nextjs": "^5.5.1",
     "@styled/typescript-styled-plugin": "^1.0.1",
     "@types/lodash": "^4.17.7",
-    "@types/markdown-it": "^14.1.1",
-    "@types/node": "^20.14.11",
+    "@types/markdown-it": "^14.1.2",
+    "@types/node": "^22.0.0",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
-    "eslint-plugin-mizyind": "^5.2.1",
-    "husky": "^9.0.11",
+    "eslint-plugin-mizyind": "^6.0.7",
+    "husky": "^9.1.3",
     "lint-staged": "^15.2.7",
-    "typescript": "^5.5.3"
+    "typescript": "^5.5.4"
   },
   "prettier": {
     "singleQuote": true,
     "jsxSingleQuote": true,
     "trailingComma": "all"
-  },
-  "eslintConfig": {
-    "ignorePatterns": [
-      "next-env.d.ts",
-      "public/**/*.js"
-    ],
-    "extends": [
-      "plugin:mizyind/next",
-      "plugin:@blueprintjs/recommended"
-    ]
   },
   "commitlint": {
     "extends": [
