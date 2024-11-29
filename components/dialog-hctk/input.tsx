@@ -4,10 +4,10 @@ import { useCallback } from 'react';
 import { Classes, FormGroup, InputGroup } from '@blueprintjs/core';
 
 import type { ChangeEvent } from 'react';
-import type { InputGroupProps2 } from '@blueprintjs/core';
+import type { InputGroupProps } from '@blueprintjs/core';
 
 interface Props {
-  inputRef: InputGroupProps2['inputRef'];
+  inputRef: InputGroupProps['inputRef'];
   value: string;
   isValidOutput: boolean;
   onChange: (value: string) => void;

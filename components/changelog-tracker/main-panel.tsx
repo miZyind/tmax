@@ -18,9 +18,13 @@ import ContentPanel from '#components/changelog-tracker/content-panel';
 import { useToken } from '#contexts/token';
 import { useWindowSize } from '#utils/hook';
 
-import type { PanelProps, TreeNodeInfo } from '@blueprintjs/core';
+import type { TreeNodeInfo } from '@blueprintjs/core';
+import type { PanelActions } from '@blueprintjs/core/lib/esm/components/panel-stack2/panelTypes';
 
-type Props = PanelProps<StyledProps>;
+interface Props extends StyledProps {
+  openPanel: PanelActions['openPanel'];
+  closePanel: PanelActions['closePanel'];
+}
 interface NodeData {
   title: string;
   content: string;
