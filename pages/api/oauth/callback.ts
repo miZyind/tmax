@@ -25,7 +25,7 @@ const handler: NextApiHandler = async (req, res) => {
     if (response.ok) {
       const data = (await response.json()) as { access_token: string };
 
-      set(Key.Token, data.access_token, { res });
+      set(Key.Token, data.access_token, { req, res });
     }
   }
 

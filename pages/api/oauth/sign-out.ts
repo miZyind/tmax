@@ -5,8 +5,8 @@ import type { NextApiHandler } from 'next';
 
 export const signOut = () => fetcher('/api/oauth/sign-out', { method: 'POST' });
 
-const handler: NextApiHandler = (_, res) => {
-  destroy(res);
+const handler: NextApiHandler = async (req, res) => {
+  await destroy({ req, res });
   res.json({});
 };
 
