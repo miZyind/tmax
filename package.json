@@ -8,7 +8,7 @@
   "scripts": {
     "prepare": "husky",
     "clean": "rm -rf .next",
-    "dev": "next dev",
+    "dev": "next dev --turbopack",
     "build": "next build",
     "lint": "eslint \"*/**/*.{ts,tsx}\" --max-warnings 0"
   },
