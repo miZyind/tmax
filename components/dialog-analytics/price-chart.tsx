@@ -101,7 +101,7 @@ const CHART_AREA_BORDER_PLUGIN: Plugin = {
 
 function PriceChart({ className, code, prices, color }: Props) {
   const canvas = useRef<HTMLCanvasElement>(null);
-  const chart = useRef<Chart | null>();
+  const chart = useRef<Chart | null>(null);
 
   useEffect(() => {
     if (!canvas.current) return;
