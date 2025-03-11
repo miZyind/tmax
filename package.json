@@ -13,43 +13,41 @@
     "lint": "eslint \"*/**/*.{ts,tsx}\" --max-warnings 0"
   },
   "engines": {
-    "node": ">=20",
+    "node": ">=22",
     "yarn": ">=1.22.19"
   },
   "packageManager": "yarn@1.22.22",
   "dependencies": {
-    "@blueprintjs/core": "^5.16.0",
-    "chart.js": "^4.4.6",
-    "cookies-next": "^5.0.2",
+    "@blueprintjs/core": "^5.17.5",
+    "chart.js": "^4.4.8",
+    "cookies-next": "^5.1.0",
     "date-fns": "^4.1.0",
-    "gsap": "^3.12.5",
-    "highlight.js": "^11.10.0",
+    "eslint": "9.22.0",
+    "gsap": "^3.12.7",
+    "highlight.js": "^11.11.1",
     "lodash": "^4.17.21",
     "markdown-it": "^14.1.0",
-    "next": "^15.0.3",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "styled-components": "^6.1.13",
-    "swr": "^2.2.5"
+    "next": "^15.2.1",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "styled-components": "^6.1.15",
+    "swr": "^2.3.3"
   },
   "devDependencies": {
-    "@blueprintjs/eslint-plugin": "^6.1.5",
-    "@commitlint/cli": "^19.6.0",
-    "@commitlint/config-conventional": "^19.6.0",
-    "@netlify/plugin-nextjs": "^5.8.1",
+    "@blueprintjs/eslint-plugin": "^6.1.11",
+    "@commitlint/cli": "^19.8.0",
+    "@commitlint/config-conventional": "^19.8.0",
+    "@netlify/plugin-nextjs": "^5.10.0",
     "@styled/typescript-styled-plugin": "^1.0.1",
-    "@types/lodash": "^4.17.13",
+    "@types/lodash": "^4.17.16",
     "@types/markdown-it": "^14.1.2",
-    "@types/node": "^22.10.1",
-    "@types/react": "^18.3.12",
-    "@types/react-dom": "^18.3.1",
-    "eslint-plugin-mizyind": "^6.0.10",
+    "@types/node": "^22.13.10",
+    "@types/react": "^19.0.10",
+    "@types/react-dom": "^19.0.4",
+    "eslint-plugin-mizyind": "^7.0.0",
     "husky": "^9.1.7",
-    "lint-staged": "^15.2.10",
-    "typescript": "^5.7.2"
-  },
-  "resolutions": {
-    "eslint": "9.15.0"
+    "lint-staged": "^15.4.3",
+    "typescript": "^5.8.2"
   },
   "prettier": {
     "singleQuote": true,
@@ -63,7 +61,7 @@
   },
   "lint-staged": {
     "*.{ts,tsx}": [
-      "eslint --max-warnings 0"
+      "eslint --no-warn-ignored --ignore-pattern next-env.d.ts --max-warnings 0"
     ]
   }
 }

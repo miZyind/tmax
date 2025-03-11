@@ -31,14 +31,14 @@ export default function Input({
   return (
     <FormGroup label='Input' labelFor='hctk-input'>
       <InputGroup
-        inputRef={inputRef}
-        id='hctk-input'
-        className={className}
-        placeholder='Input HantChar...'
+        size='large'
         value={value}
+        id='hctk-input'
         leftIcon='log-in'
         onChange={onChange}
-        large
+        inputRef={inputRef}
+        className={className}
+        placeholder='Input HantChar...'
       />
     </FormGroup>
   );

@@ -77,11 +77,11 @@ function ChangelogTracker({ className, token }: Props) {
       </TokenContext.Provider>
       <footer>
         <Button
-          large
+          size='large'
+          onClick={onClick}
           text={backable ? 'Back' : 'Manage'}
           intent={backable ? 'success' : 'primary'}
-          onClick={onClick}
-          rightIcon={<span className='shortcut'>Space</span>}
+          endIcon={<span className='shortcut'>Space</span>}
         />
       </footer>
     </div>

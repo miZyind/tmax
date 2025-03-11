@@ -30,7 +30,7 @@ function Index({ className, settings }: Props) {
         <DialogHCTK />
         <DialogAnalytics />
         <Button
-          large
+          size='large'
           onClick={onClick}
           icon='social-media'
           title='Toggle animation'

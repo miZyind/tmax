@@ -32,7 +32,7 @@ function ManagementPanel({ className }: Props) {
       {token === null ? (
         <div className='auth-container'>
           <Button
-            large
+            size='large'
             intent='primary'
             onClick={onSignIn}
             text='Sign in with GitHub'
@@ -42,7 +42,7 @@ function ManagementPanel({ className }: Props) {
       ) : (
         <div className='auth-container'>
           <Button
-            large
+            size='large'
             icon='log-out'
             text='Sign out'
             intent='primary'
