@@ -1,5 +1,5 @@
 {
-  "include": ["**/*"],
+  "include": ["**/*", ".next/types/**/*.ts"],
   "exclude": ["node_modules"],
   "compilerOptions": {
     /* General */
@@ -23,7 +23,6 @@
       "#utils/*": ["utils/*"],
       "#singularity": ["public/singularity.js"]
     },
-    "typeRoots": ["node_modules/@types", "@types"],
     /* Emit: https://www.typescriptlang.org/tsconfig#Emit_6246 */
     "noEmit": true,
     "importHelpers": true,
