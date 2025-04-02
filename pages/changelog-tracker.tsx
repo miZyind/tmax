@@ -47,7 +47,7 @@ function ChangelogTracker({ className, token }: Props) {
     const updateUnit = (event: KeyboardEvent) => {
       if (event.key === ' ') {
         event.preventDefault();
-        setStack(updateStack([Management]));
+        // FIXME: BlueprintJS not yet support React 19: setStack(updateStack([Management]));
       }
     };
 
@@ -77,6 +77,7 @@ function ChangelogTracker({ className, token }: Props) {
       </TokenContext.Provider>
       <footer>
         <Button
+          disabled
           size='large'
           onClick={onClick}
           text={backable ? 'Back' : 'Manage'}

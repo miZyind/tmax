@@ -42,7 +42,8 @@ function MainPanel({ className, openPanel }: Props) {
   const [windowWidth] = useWindowSize();
   const onNodeClick = useCallback(
     ({ nodeData }: TreeNodeInfo<NodeData>) => {
-      if (typeof nodeData !== 'undefined') {
+      // FIXME: BlueprintJS not yet support React 19: if (typeof nodeData !== 'undefined') {
+      if (typeof nodeData !== 'undefined' && nodeData.title === '') {
         openPanel({
           renderPanel: (props: Props) => (
             <ContentPanel {...props} {...nodeData} />
