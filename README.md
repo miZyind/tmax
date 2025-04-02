@@ -3,7 +3,7 @@
 # TMAX
 
 [![Netlify](https://img.shields.io/badge/netlify-00c7b7?style=for-the-badge&logo=netlify&logoColor=fff)](https://www.netlify.com)
-[![NodeJS](https://img.shields.io/badge/->=20-339933?style=for-the-badge&label=&logo=node.js&logoColor=fff)](https://nodejs.org)
+[![NodeJS](https://img.shields.io/badge/->=22-339933?style=for-the-badge&label=&logo=node.js&logoColor=fff)](https://nodejs.org)
 [![ReactJS](https://img.shields.io/github/package-json/dependency-version/mizyind/tmax/react?style=for-the-badge&label=&color=61dafb&logo=react&logoColor=000)](https://reactjs.org)
 [![NextJS](https://img.shields.io/github/package-json/dependency-version/mizyind/tmax/next?style=for-the-badge&label=&color=e0234e&logo=next.js&logoColor=fff)](https://nextjs.org)
 [![BlueprintJS](https://img.shields.io/github/package-json/dependency-version/mizyind/tmax/@blueprintjs/core?style=for-the-badge&label=&color=137cbd&logo=blueprint&logoColor=fff)](https://blueprintjs.com)
