@@ -5,9 +5,9 @@ import styled from 'styled-components';
 import { Button, Classes, Divider, H4 } from '@blueprintjs/core';
 
 import { signOut } from '#api/oauth/sign-out';
-import { useToken } from '#contexts/token';
-import GithubIcon from '#icons/github';
-import Config from '#utils/config';
+import { useToken } from '#context/token';
+import GithubIcon from '#icon/github';
+import Config from '#lib/config';
 
 import type { PanelProps } from '@blueprintjs/core';
 

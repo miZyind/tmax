@@ -11,11 +11,11 @@ import {
 import { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 
-import { ZERO } from '#components/hexind/constant';
+import { ZERO } from '#component/hexind/constant';
 
 import type { Plugin, ScaleOptions } from 'chart.js';
-import type { Code } from '#utils/constant';
-import type { Price } from '#utils/model';
+import type { Code } from '#lib/constant';
+import type { Price } from '#lib/model';
 
 interface Props extends StyledProps {
   code: Code;
@@ -25,6 +25,7 @@ interface Props extends StyledProps {
 
 const TEXT_COLOR = 'white';
 const TOOLTIP_TITLE_COLOR = '#666';
+const FRACTION_THRESHOLD = 1000;
 const FRACTION_DIGITS = 2;
 const X_SCALE_OPTIONS: ScaleOptions<'linear'> = {
   grid: { display: false },
@@ -59,8 +60,13 @@ const Y_SCALE_OPTIONS: ScaleOptions<'linear'> = {
     backdropPadding: 0,
     font: { size: 14 },
     showLabelBackdrop: false,
-    callback: (v) =>
-      (v as number | undefined)?.toFixed(FRACTION_DIGITS) ?? ZERO,
+    callback: (v) => {
+      if (typeof v === 'number') {
+        return v >= FRACTION_THRESHOLD ? v : v.toFixed(FRACTION_DIGITS);
+      }
+
+      return ZERO;
+    },
   },
   afterFit(axis) {
     axis.width = 62;
@@ -156,7 +162,13 @@ function PriceChart({ className, code, prices, color }: Props) {
             titleColor: TOOLTIP_TITLE_COLOR,
             titleFont: { size: 14, lineHeight: 1.75 },
             callbacks: {
-              label: ({ raw }) => (raw as number).toFixed(FRACTION_DIGITS),
+              label: ({ raw }) => {
+                const v = raw as number;
+
+                return v >= FRACTION_THRESHOLD
+                  ? v.toString()
+                  : v.toFixed(FRACTION_DIGITS);
+              },
             },
           },
         },

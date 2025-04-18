@@ -6,8 +6,8 @@ import styled from 'styled-components';
 
 import { Classes, Colors, Spinner } from '@blueprintjs/core';
 
-import { LogoPath } from '#utils/constant';
-import { useUnit } from '#utils/hook';
+import { LogoPath } from '#lib/constant';
+import { useUnit } from '#lib/hook';
 
 const SPINNER_PROP = 0.8;
 const SPINNER_SCALE_SIZE = 20;

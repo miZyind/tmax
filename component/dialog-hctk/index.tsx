@@ -4,11 +4,11 @@ import useSWR from 'swr';
 
 import { Classes, Colors, Dialog } from '@blueprintjs/core';
 
-import HeaderIcon from '#components/dialog-hctk/header-icon';
-import Input from '#components/dialog-hctk/input';
-import Output from '#components/dialog-hctk/output';
-import { Name, useDialogs } from '#contexts/dialogs';
-import { decode } from '#utils/hctk-decoder';
+import HeaderIcon from '#component/dialog-hctk/header-icon';
+import Input from '#component/dialog-hctk/input';
+import Output from '#component/dialog-hctk/output';
+import { Name, useDialogs } from '#context/dialogs';
+import { decode } from '#lib/hctk-decoder';
 
 const DIALOG = Name.HCTK;
 

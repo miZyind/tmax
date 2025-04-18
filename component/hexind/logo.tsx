@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
-import { LOGO_SCALE_PROP } from '#components/hexind/constant';
-import { LogoPath } from '#utils/constant';
+import { LOGO_SCALE_PROP } from '#component/hexind/constant';
+import { LogoPath } from '#lib/constant';
 
 export interface Props extends StyledProps {
   width: number;

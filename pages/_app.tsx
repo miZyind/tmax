@@ -13,11 +13,11 @@ import { SWRConfig } from 'swr';
 
 import { Classes, FocusStyleManager } from '@blueprintjs/core';
 
-import PageTransition from '#components/page-transition';
-import Config from '#utils/config';
-import { SITE_TITLE } from '#utils/constant';
-import fetcher from '#utils/fetcher';
-import theme from '#utils/theme';
+import PageTransition from '#component/page-transition';
+import Config from '#lib/config';
+import { SITE_TITLE } from '#lib/constant';
+import fetcher from '#lib/fetcher';
+import theme from '#lib/theme';
 
 import type { AppProps } from 'next/app';
 

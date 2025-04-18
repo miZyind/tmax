@@ -1,6 +1,6 @@
 import { deleteCookie, getCookie, setCookie } from 'cookies-next';
 
-import { COOKIE_MAX_AGE } from '#utils/constant';
+import { COOKIE_MAX_AGE } from '#lib/constant';
 
 import type { HttpContext } from 'cookies-next';
 import type { GetServerSidePropsContext as SSRCtx } from 'next';

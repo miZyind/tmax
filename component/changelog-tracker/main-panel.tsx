@@ -14,9 +14,9 @@ import {
 } from '@blueprintjs/core';
 
 import { useChangelogs } from '#api/get-changelogs';
-import ContentPanel from '#components/changelog-tracker/content-panel';
-import { useToken } from '#contexts/token';
-import { useWindowSize } from '#utils/hook';
+import ContentPanel from '#component/changelog-tracker/content-panel';
+import { useToken } from '#context/token';
+import { useWindowSize } from '#lib/hook';
 
 import type { TreeNodeInfo } from '@blueprintjs/core';
 import type { PanelActions } from '@blueprintjs/core/lib/esm/components/panel-stack2/panelTypes';

@@ -1,12 +1,10 @@
-import Config from '#utils/config';
-import { Key, set } from '#utils/cookie';
-
-import type { NextApiHandler } from 'next';
+import Config from '#lib/config';
+import { Key, set } from '#lib/cookie';
 
 const LOGIN_URL = `${Config.GH_OAUTH_URL}/access_token`;
 const REDIRECT_URL = '/changelog-tracker?panel=management';
 
-const handler: NextApiHandler = async (req, res) => {
+export default async function handler(...[req, res]: Handler) {
   if (typeof req.query.code === 'string') {
     const response = await fetch(LOGIN_URL, {
       method: 'POST',
@@ -30,6 +28,4 @@ const handler: NextApiHandler = async (req, res) => {
   }
 
   res.redirect(REDIRECT_URL);
-};
-
-export default handler;
+}

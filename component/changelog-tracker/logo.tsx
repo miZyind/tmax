@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import styled from 'styled-components';
 
-import { LogoPath } from '#utils/constant';
+import { LogoPath } from '#lib/constant';
 
 function Logo({ className }: StyledProps) {
   return (

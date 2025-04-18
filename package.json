@@ -5,6 +5,8 @@
   "repository": "git@github.com:miZyind/tmax.git",
   "author": "miZyind <mizyind.dev>",
   "license": "MIT",
+  "homepage": "https://mizyind.dev",
+  "bugs": "https://github.com/miZyind/tmax/issues",
   "scripts": {
     "prepare": "husky",
     "clean": "rm -rf .next",

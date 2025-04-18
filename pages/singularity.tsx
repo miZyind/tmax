@@ -5,9 +5,9 @@ import styled from 'styled-components';
 
 import { Classes, Spinner } from '@blueprintjs/core';
 
+import { LogoPath } from '#lib/constant';
+import { useUnit } from '#lib/hook';
 import init from '#singularity';
-import { LogoPath } from '#utils/constant';
-import { useUnit } from '#utils/hook';
 
 const LOADING_DELAY = 5000;
 const SPINNER_PROP = 0.8;

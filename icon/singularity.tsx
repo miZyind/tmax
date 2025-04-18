@@ -1,6 +1,6 @@
-import BaseIcon from '#icons/base';
+import BaseIcon from '#icon/base';
 
-import type { BaseIconProps } from '#icons/base';
+import type { BaseIconProps } from '#icon/base';
 
 export default function SingularityIcon({ className, size }: BaseIconProps) {
   return (

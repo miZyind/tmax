@@ -1,13 +1,9 @@
-import { destroy } from '#utils/cookie';
-import fetcher from '#utils/fetcher';
-
-import type { NextApiHandler } from 'next';
+import { destroy } from '#lib/cookie';
+import fetcher from '#lib/fetcher';
 
 export const signOut = () => fetcher('/api/oauth/sign-out', { method: 'POST' });
 
-const handler: NextApiHandler = async (req, res) => {
+export default async function handler(...[req, res]: Handler) {
   await destroy({ req, res });
   res.json({});
-};
-
-export default handler;
+}

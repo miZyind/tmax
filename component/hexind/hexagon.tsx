@@ -8,8 +8,8 @@ import {
   FINAL_GAP,
   HEXAGON_SET,
   MIDDLE_GAP,
-} from '#components/hexind/constant';
-import { Key, get } from '#utils/cookie';
+} from '#component/hexind/constant';
+import { Key, get } from '#lib/cookie';
 
 import type { MouseEventHandler, ReactNode } from 'react';
 

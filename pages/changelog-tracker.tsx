@@ -5,13 +5,13 @@ import styled from 'styled-components';
 
 import { Button, Classes, Colors, H3, PanelStack2 } from '@blueprintjs/core';
 
-import Logo from '#components/changelog-tracker/logo';
-import Main from '#components/changelog-tracker/main-panel';
-import Management from '#components/changelog-tracker/management-panel';
-import { TokenContext } from '#contexts/token';
-import { TRACKER_DESC, TRACKER_TITLE } from '#utils/constant';
-import { Key, get } from '#utils/cookie';
-import { withPageTransitionDelay } from '#utils/hoc';
+import Logo from '#component/changelog-tracker/logo';
+import Main from '#component/changelog-tracker/main-panel';
+import Management from '#component/changelog-tracker/management-panel';
+import { TokenContext } from '#context/token';
+import { TRACKER_DESC, TRACKER_TITLE } from '#lib/constant';
+import { Key, get } from '#lib/cookie';
+import { withPageTransitionDelay } from '#lib/hoc';
 
 import type { NextRouter } from 'next/router';
 import type { Panel as BPPanel } from '@blueprintjs/core';

@@ -3,14 +3,14 @@ import styled from 'styled-components';
 
 import { Button } from '@blueprintjs/core';
 
-import DialogAnalytics from '#components/dialog-analytics';
-import DialogHCTK from '#components/dialog-hctk';
-import Hexind from '#components/hexind';
-import { DialogsProvider } from '#contexts/dialogs';
-import { Key, get, set } from '#utils/cookie';
-import { withPageTransitionDelay } from '#utils/hoc';
+import DialogAnalytics from '#component/dialog-analytics';
+import DialogHCTK from '#component/dialog-hctk';
+import Hexind from '#component/hexind';
+import { DialogsProvider } from '#context/dialogs';
+import { Key, get, set } from '#lib/cookie';
+import { withPageTransitionDelay } from '#lib/hoc';
 
-import type { Settings } from '#utils/cookie';
+import type { Settings } from '#lib/cookie';
 
 interface Props extends StyledProps {
   settings: Settings;

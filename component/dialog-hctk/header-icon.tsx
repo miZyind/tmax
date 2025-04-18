@@ -1,6 +1,6 @@
 import { Classes } from '@blueprintjs/core';
 
-import HCTKIcon from '#icons/hctk';
+import HCTKIcon from '#icon/hctk';
 
 export default function HeaderIcon() {
   return (

@@ -7,17 +7,17 @@ import {
   ICON_SCALE_PROP,
   SINGULARITY_SCALE_PROP,
   SIZE_SCALE_PROP,
-} from '#components/hexind/constant';
-import Hexagon from '#components/hexind/hexagon';
-import Logo from '#components/hexind/logo';
-import { Name, useDialogs } from '#contexts/dialogs';
-import AnalyticsIcon from '#icons/analytics';
-import ChangelogTrackerIcon from '#icons/changelog-tracker';
-import GithubIcon from '#icons/github';
-import HCTKIcon from '#icons/hctk';
-import MediumIcon from '#icons/medium';
-import SingularityIcon from '#icons/singularity';
-import { useUnit } from '#utils/hook';
+} from '#component/hexind/constant';
+import Hexagon from '#component/hexind/hexagon';
+import Logo from '#component/hexind/logo';
+import { Name, useDialogs } from '#context/dialogs';
+import AnalyticsIcon from '#icon/analytics';
+import ChangelogTrackerIcon from '#icon/changelog-tracker';
+import GithubIcon from '#icon/github';
+import HCTKIcon from '#icon/hctk';
+import MediumIcon from '#icon/medium';
+import SingularityIcon from '#icon/singularity';
+import { useUnit } from '#lib/hook';
 
 function Hexind({ className }: StyledProps) {
   const router = useRouter();

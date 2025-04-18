@@ -1,6 +1,6 @@
 import { Icon } from '@blueprintjs/core';
 
-import type { BaseIconProps } from '#icons/base';
+import type { BaseIconProps } from '#icon/base';
 
 export default function ChangelogBrowserIcon({
   size,

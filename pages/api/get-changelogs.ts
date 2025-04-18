@@ -1,12 +1,11 @@
 import useSWR from 'swr';
 
-import Config from '#utils/config';
-import { CHANGELOG_TRACKING_LIST } from '#utils/constant';
-import { Key } from '#utils/cookie';
-import fetcher from '#utils/fetcher';
+import Config from '#lib/config';
+import { CHANGELOG_TRACKING_LIST } from '#lib/constant';
+import { Key } from '#lib/cookie';
+import fetcher from '#lib/fetcher';
 
-import type { NextApiHandler } from 'next';
-import type { Changelog } from '#utils/model';
+import type { Changelog } from '#lib/model';
 
 interface Changelogs {
   changelogs: Changelog[];
@@ -63,7 +62,6 @@ export const useChangelogs = (hasToken: boolean) =>
     { revalidateOnFocus: false },
   ).data;
 
-const handler: NextApiHandler = async ({ cookies }, res) =>
+export default async function handler(...[{ cookies }, res]: Handler) {
   res.json(await getChangelogs(cookies[Key.Token]));
-
-export default handler;
+}

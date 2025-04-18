@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import { Classes, Divider, H1 } from '@blueprintjs/core';
 
-import { decode } from '#utils/markdown-decoder';
+import { decode } from '#lib/markdown-decoder';
 
 import type { PanelProps } from '@blueprintjs/core';
 

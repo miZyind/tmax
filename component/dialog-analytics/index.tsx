@@ -4,12 +4,12 @@ import styled from 'styled-components';
 import { Classes, Colors, Dialog, Spinner } from '@blueprintjs/core';
 
 import { usePrices } from '#api/get-prices';
-import { Name, useDialogs } from '#contexts/dialogs';
-import AnalyticsIcon from '#icons/analytics';
+import { Name, useDialogs } from '#context/dialogs';
+import AnalyticsIcon from '#icon/analytics';
 
 import PriceChart from './price-chart';
 
-import type { Code } from '#utils/constant';
+import type { Code } from '#lib/constant';
 
 const DIALOG = Name.Analytics;
 const CHARTS_RENDER_DELAY = 500;

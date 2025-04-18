@@ -17,10 +17,10 @@
     "moduleResolution": "bundler",
     "paths": {
       "#api/*": ["pages/api/*"],
-      "#components/*": ["components/*"],
-      "#contexts/*": ["contexts/*"],
-      "#icons/*": ["icons/*"],
-      "#utils/*": ["utils/*"],
+      "#component/*": ["component/*"],
+      "#context/*": ["context/*"],
+      "#icon/*": ["icon/*"],
+      "#lib/*": ["lib/*"],
       "#singularity": ["public/singularity.js"]
     },
     /* Emit: https://www.typescriptlang.org/tsconfig#Emit_6246 */
