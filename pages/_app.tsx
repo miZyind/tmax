@@ -11,7 +11,11 @@ import {
 } from 'styled-components';
 import { SWRConfig } from 'swr';
 
-import { Classes, FocusStyleManager } from '@blueprintjs/core';
+import {
+  BlueprintProvider,
+  Classes,
+  FocusStyleManager,
+} from '@blueprintjs/core';
 
 import PageTransition from '#component/page-transition';
 import Config from '#lib/config';
@@ -54,7 +58,9 @@ export default function App({ Component, pageProps }: AppProps) {
         <PageTransition />
         <ThemeProvider theme={theme}>
           <SWRConfig value={{ fetcher }}>
-            <Component className={Classes.DARK} {...pageProps} />
+            <BlueprintProvider>
+              <Component className={Classes.DARK} {...pageProps} />
+            </BlueprintProvider>
           </SWRConfig>
         </ThemeProvider>
       </StyleSheetManager>

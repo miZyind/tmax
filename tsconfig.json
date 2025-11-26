@@ -5,7 +5,7 @@
     /* General */
     "target": "ESNext",
     "module": "ESNext",
-    "jsx": "preserve",
+    "jsx": "react-jsx",
     "strict": true,
     "allowJs": true,
     "incremental": true,
