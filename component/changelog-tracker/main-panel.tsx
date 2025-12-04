@@ -19,7 +19,7 @@ import { useToken } from '#context/token';
 import { useWindowSize } from '#lib/hook';
 
 import type { TreeNodeInfo } from '@blueprintjs/core';
-import type { PanelActions } from '@blueprintjs/core/lib/esm/components/panel-stack2/panelTypes';
+import type { PanelActions } from '@blueprintjs/core/lib/esm/components/panel-stack/panelTypes';
 
 interface Props extends StyledProps {
   openPanel: PanelActions['openPanel'];
@@ -43,7 +43,7 @@ function MainPanel({ className, openPanel }: Props) {
   const onNodeClick = useCallback(
     ({ nodeData }: TreeNodeInfo<NodeData>) => {
       // FIXME: BlueprintJS not yet support React 19: if (typeof nodeData !== 'undefined') {
-      if (typeof nodeData !== 'undefined' && nodeData.title === '') {
+      if (nodeData?.title === '') {
         openPanel({
           renderPanel: (props: Props) => (
             <ContentPanel {...props} {...nodeData} />

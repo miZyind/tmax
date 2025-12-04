@@ -10,9 +10,9 @@
   "scripts": {
     "prepare": "husky",
     "clean": "rm -rf .next",
-    "dev": "next dev --turbo",
+    "dev": "next dev",
     "lint": "eslint \"*/**/*.{ts,tsx}\" --max-warnings 0",
-    "build": "next build --no-lint",
+    "build": "next build",
     "start": "next start"
   },
   "engines": {
@@ -21,7 +21,7 @@
   },
   "packageManager": "yarn@1.22.22",
   "dependencies": {
-    "@blueprintjs/core": "^6.3.4",
+    "@blueprintjs/core": "^6.4.1",
     "chart.js": "^4.5.1",
     "cookies-next": "^6.1.1",
     "date-fns": "^4.1.0",
@@ -29,23 +29,24 @@
     "highlight.js": "^11.11.1",
     "lodash": "^4.17.21",
     "markdown-it": "^14.1.0",
-    "next": "^16.0.4",
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0",
+    "next": "^16.0.7",
+    "react": "^19.2.1",
+    "react-dom": "^19.2.1",
     "styled-components": "^6.1.19",
-    "swr": "^2.3.6"
+    "swr": "^2.3.7"
   },
   "devDependencies": {
-    "@blueprintjs/eslint-plugin": "^6.1.18",
+    "@blueprintjs/eslint-plugin": "^6.1.19",
     "@commitlint/cli": "^20.1.0",
     "@commitlint/config-conventional": "^20.0.0",
-    "@netlify/plugin-nextjs": "^5.14.7",
+    "@netlify/plugin-nextjs": "^5.15.1",
     "@styled/typescript-styled-plugin": "^1.0.1",
     "@types/lodash": "^4.17.21",
     "@types/markdown-it": "^14.1.2",
     "@types/node": "^24.10.1",
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
+    "baseline-browser-mapping": "^2.9.0",
     "eslint": "^9.39.1",
     "eslint-plugin-mizyind": "^8.2.2",
     "husky": "^9.1.7",
