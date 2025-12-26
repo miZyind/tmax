@@ -265,7 +265,7 @@ export default async function handler(...[, res]: Handler) {
       },
     } as unknown as ReactNode,
     {
-      width: 800,
+      width: 1000,
       height: 251,
       fonts: [
         { name: 'Inter', weight: 400, data: INTER_REGULAR },
