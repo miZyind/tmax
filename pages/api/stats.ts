@@ -4,18 +4,12 @@ import satori from 'satori';
 
 import type { ReactNode } from 'react';
 
-const DATA = {
-  width: 800,
-  height: 300,
-  fonts: [
-    {
-      name: 'Inter_18pt-Regular',
-      data: fs.readFileSync(
-        path.join(process.cwd(), 'public/Inter_18pt-Regular.ttf'),
-      ),
-    },
-  ],
-};
+const INTER_REGULAR = fs.readFileSync(
+  path.join(process.cwd(), 'public/fonts/Inter-Regular.ttf'),
+);
+const INTER_BOLD = fs.readFileSync(
+  path.join(process.cwd(), 'public/fonts/Inter-Bold.ttf'),
+);
 const LANGS = [
   { name: 'MANDARIN', level: 'NATIVE', color: '#3182ce' },
   { name: 'HOKKIEN', level: 'NATIVE', color: '#3182ce' },
@@ -34,11 +28,11 @@ const LANGS = [
         type: 'div',
         props: {
           style: {
-            display: 'flex',
             flex: 1,
+            display: 'flex',
             padding: '4px 8px',
-            background: '#30363d',
             justifyContent: 'center',
+            backgroundColor: '#30363d',
           },
           children: v.name,
         },
@@ -47,11 +41,11 @@ const LANGS = [
         type: 'div',
         props: {
           style: {
-            display: 'flex',
             flex: 1,
+            display: 'flex',
             padding: '4px 8px',
-            background: v.color,
             justifyContent: 'center',
+            backgroundColor: v.color,
           },
           children: v.level,
         },
@@ -68,7 +62,12 @@ const STATS = [
 ].map(([k, v]) => ({
   type: 'div',
   props: {
-    style: { display: 'flex', justifyContent: 'space-between' },
+    style: {
+      display: 'flex',
+      fontSize: '12px',
+      fontWeight: 700,
+      justifyContent: 'space-between',
+    },
     children: [
       { type: 'span', props: { children: k } },
       { type: 'span', props: { children: v } },
@@ -95,6 +94,7 @@ export default async function handler(...[, res]: Handler) {
           color: 'white',
           display: 'flex',
           padding: '16px',
+          fontFamily: 'Inter',
           borderRadius: '12px',
           flexDirection: 'column',
           backgroundColor: '#0d1117',
@@ -120,7 +120,8 @@ export default async function handler(...[, res]: Handler) {
                       gap: '16px',
                       display: 'flex',
                       padding: '16px',
-                      backgroundColor: '#161b22',
+                      alignItems: 'center',
+                      backgroundColor: '#1f2430',
                     },
                     children: [
                       {
@@ -128,7 +129,7 @@ export default async function handler(...[, res]: Handler) {
                         props: {
                           style: {
                             flex: 1,
-                            gap: '12px',
+                            gap: '16px',
                             display: 'flex',
                             flexDirection: 'column',
                           },
@@ -173,92 +174,85 @@ export default async function handler(...[, res]: Handler) {
                   type: 'div',
                   props: {
                     style: {
-                      width: '50%',
+                      flex: 1,
+                      gap: '16px',
                       display: 'flex',
                       padding: '16px',
-                      backgroundColor: '#161b22',
+                      flexDirection: 'column',
+                      backgroundColor: '#1f2430',
                     },
                     children: [
                       {
                         type: 'div',
                         props: {
                           style: {
-                            gap: '16px',
-                            display: 'flex',
-                            flexDirection: 'column',
+                            fontSize: '18px',
+                            fontWeight: 700,
+                            color: '#e3b341',
                           },
-                          children: [
-                            {
-                              type: 'div',
-                              props: {
-                                style: {
-                                  fontSize: '20px',
-                                  color: '#e3b341',
-                                },
-                                children: 'Most Used Languages',
+                          children: 'Most Used Languages',
+                        },
+                      },
+                      {
+                        type: 'div',
+                        props: {
+                          style: { height: '10px', display: 'flex' },
+                          children: languages.map((lang) => ({
+                            type: 'div',
+                            props: {
+                              style: {
+                                width: `${lang.percent}%`,
+                                backgroundColor: lang.color,
                               },
                             },
-                            {
-                              type: 'div',
-                              props: {
-                                style: {
-                                  height: '10px',
-                                  display: 'flex',
-                                },
-                                children: languages.map((lang) => ({
+                          })),
+                        },
+                      },
+                      {
+                        type: 'div',
+                        props: {
+                          style: {
+                            height: '84px',
+                            rowGap: '12px',
+                            display: 'flex',
+                            flexWrap: 'wrap',
+                            flexDirection: 'column',
+                          },
+                          children: languages.map((lang) => ({
+                            type: 'div',
+                            props: {
+                              style: {
+                                gap: '8px',
+                                width: '50%',
+                                height: '20px',
+                                display: 'flex',
+                                alignItems: 'center',
+                              },
+                              children: [
+                                {
                                   type: 'div',
                                   props: {
                                     style: {
-                                      width: `${lang.percent}%`,
+                                      width: '10px',
+                                      height: '10px',
+                                      borderRadius: '50%',
                                       backgroundColor: lang.color,
                                     },
                                   },
-                                })),
-                              },
-                            },
-                            {
-                              type: 'div',
-                              props: {
-                                style: {
-                                  display: 'flex',
-                                  flexWrap: 'wrap',
-                                  width: '100%',
                                 },
-                                children: languages.map((lang) => ({
+                                {
                                   type: 'div',
                                   props: {
                                     style: {
-                                      display: 'flex',
-                                      alignItems: 'center',
-                                      width: '50%',
-                                      marginBottom: '12px',
+                                      fontSize: '12px',
+                                      lineHeight: '20px',
                                     },
-                                    children: [
-                                      {
-                                        type: 'div',
-                                        props: {
-                                          style: {
-                                            width: '10px',
-                                            height: '10px',
-                                            borderRadius: '50%',
-                                            backgroundColor: lang.color,
-                                            marginRight: '8px',
-                                          },
-                                        },
-                                      },
-                                      {
-                                        type: 'span',
-                                        props: {
-                                          style: { fontSize: '14px' },
-                                          children: `${lang.name} ${lang.percent}%`,
-                                        },
-                                      },
-                                    ],
+                                    children: `${lang.name} ${lang.percent}%`,
                                   },
-                                })),
-                              },
+                                },
+                              ],
                             },
-                          ],
+                          })),
                         },
                       },
                     ],
@@ -270,11 +264,18 @@ export default async function handler(...[, res]: Handler) {
         ],
       },
     } as unknown as ReactNode,
-    DATA,
+    {
+      width: 800,
+      height: 300,
+      fonts: [
+        { name: 'Inter', weight: 400, data: INTER_REGULAR },
+        { name: 'Inter', weight: 700, data: INTER_BOLD },
+      ],
+    },
   );
 
-  res.setHeader('Content-Type', 'image/svg+xml');
-  res.setHeader('Cache-Control', 'public, max-age=3600');
-
-  return res.send(svg);
+  res
+    .setHeader('Content-Type', 'image/svg+xml')
+    // .setHeader('Cache-Control', 'public, max-age=3600')
+    .send(svg);
 }
