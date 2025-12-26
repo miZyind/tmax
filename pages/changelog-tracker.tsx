@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { useCallback, useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-import { Button, Classes, Colors, H3, PanelStack2 } from '@blueprintjs/core';
+import { Button, Classes, Colors, H3, PanelStack } from '@blueprintjs/core';
 
 import Logo from '#component/changelog-tracker/logo';
 import Main from '#component/changelog-tracker/main-panel';
@@ -68,7 +68,7 @@ function ChangelogTracker({ className, token }: Props) {
         <p className={Classes.TEXT_LARGE}>{TRACKER_DESC}</p>
       </header>
       <TokenContext.Provider value={token}>
-        <PanelStack2
+        <PanelStack
           stack={stack}
           onOpen={onOpen}
           onClose={onClose}
@@ -109,7 +109,7 @@ export default styled(ChangelogTracker)`
       text-align: center;
     }
   }
-  .${Classes.PANEL_STACK2} {
+  .${Classes.PANEL_STACK} {
     flex: 1;
   }
   footer {

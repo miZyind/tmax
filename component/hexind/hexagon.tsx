@@ -45,6 +45,7 @@ function Hexagon({
   const [timeline, setTimeline] = useState<gsap.core.Timeline | null>(null);
   const [playing, setPlaying] = useState(settings.animate && !animate);
   const getPos = useCallback(
+    // eslint-disable-next-line @typescript-eslint/no-useless-default-assignment -- Bug
     (gap = FINAL_GAP) => ({
       left: width + width * x * gap,
       top: height + height * y * gap,
