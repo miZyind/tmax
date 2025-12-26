@@ -97,7 +97,7 @@ export default async function handler(...[, res]: Handler) {
           fontFamily: 'Inter',
           borderRadius: '12px',
           flexDirection: 'column',
-          backgroundColor: '#0d1117',
+          backgroundColor: '#1f2430',
         },
         children: [
           {
@@ -121,7 +121,7 @@ export default async function handler(...[, res]: Handler) {
                       display: 'flex',
                       padding: '16px',
                       alignItems: 'center',
-                      backgroundColor: '#1f2430',
+                      backgroundColor: '#30363d',
                     },
                     children: [
                       {
@@ -179,7 +179,7 @@ export default async function handler(...[, res]: Handler) {
                       display: 'flex',
                       padding: '16px',
                       flexDirection: 'column',
-                      backgroundColor: '#1f2430',
+                      backgroundColor: '#30363d',
                     },
                     children: [
                       {
