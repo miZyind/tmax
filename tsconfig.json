@@ -19,6 +19,7 @@
       "#api/*": ["pages/api/*"],
       "#component/*": ["component/*"],
       "#context/*": ["context/*"],
+      "#data/*": ["data/*"],
       "#icon/*": ["icon/*"],
       "#lib/*": ["lib/*"],
       "#singularity": ["public/singularity.js"]

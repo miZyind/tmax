@@ -1,0 +1,390 @@
+{
+  "user": {
+    "commits": {
+      "totalCommitContributions": 0
+    },
+    "repositoriesContributedTo": {
+      "totalCount": 1
+    },
+    "pullRequests": {
+      "totalCount": 8
+    },
+    "mergedPullRequests": {
+      "totalCount": 7
+    },
+    "openIssues": {
+      "totalCount": 1
+    },
+    "closedIssues": {
+      "totalCount": 13
+    },
+    "repositories": {
+      "totalCount": 22,
+      "nodes": [
+        {
+          "name": "tmax",
+          "stargazers": {
+            "totalCount": 2
+          },
+          "languages": {
+            "edges": [
+              {
+                "size": 70317,
+                "node": {
+                  "color": "#3178c6",
+                  "name": "TypeScript"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "loopnexts",
+          "stargazers": {
+            "totalCount": 2
+          },
+          "languages": {
+            "edges": [
+              {
+                "size": 18529,
+                "node": {
+                  "color": "#3178c6",
+                  "name": "TypeScript"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "vocabulazy-web",
+          "stargazers": {
+            "totalCount": 0
+          },
+          "languages": {
+            "edges": [
+              {
+                "size": 2636,
+                "node": {
+                  "color": "#3178c6",
+                  "name": "TypeScript"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "vscode-darkpp-regular",
+          "stargazers": {
+            "totalCount": 1
+          },
+          "languages": {
+            "edges": []
+          }
+        },
+        {
+          "name": "react-hirc",
+          "stargazers": {
+            "totalCount": 0
+          },
+          "languages": {
+            "edges": [
+              {
+                "size": 4108,
+                "node": {
+                  "color": "#3178c6",
+                  "name": "TypeScript"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "nestjs-demo",
+          "stargazers": {
+            "totalCount": 57
+          },
+          "languages": {
+            "edges": [
+              {
+                "size": 45079,
+                "node": {
+                  "color": "#3178c6",
+                  "name": "TypeScript"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "ONI-Mods",
+          "stargazers": {
+            "totalCount": 11
+          },
+          "languages": {
+            "edges": [
+              {
+                "size": 8391,
+                "node": {
+                  "color": "#178600",
+                  "name": "C#"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "deno-hctk",
+          "stargazers": {
+            "totalCount": 0
+          },
+          "languages": {
+            "edges": [
+              {
+                "size": 171609,
+                "node": {
+                  "color": "#3178c6",
+                  "name": "TypeScript"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "eslint-plugin-mizyind",
+          "stargazers": {
+            "totalCount": 0
+          },
+          "languages": {
+            "edges": [
+              {
+                "size": 28314,
+                "node": {
+                  "color": "#f1e05a",
+                  "name": "JavaScript"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "Factorio-Mods",
+          "stargazers": {
+            "totalCount": 0
+          },
+          "languages": {
+            "edges": [
+              {
+                "size": 137263,
+                "node": {
+                  "color": "#000080",
+                  "name": "Lua"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "mattermost-plugin-sentry",
+          "stargazers": {
+            "totalCount": 2
+          },
+          "languages": {
+            "edges": [
+              {
+                "size": 6751,
+                "node": {
+                  "color": "#00ADD8",
+                  "name": "Go"
+                }
+              },
+              {
+                "size": 1074,
+                "node": {
+                  "color": "#427819",
+                  "name": "Makefile"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "saunter",
+          "stargazers": {
+            "totalCount": 0
+          },
+          "languages": {
+            "edges": [
+              {
+                "size": 7405,
+                "node": {
+                  "color": "#00ADD8",
+                  "name": "Go"
+                }
+              },
+              {
+                "size": 161,
+                "node": {
+                  "color": "#427819",
+                  "name": "Makefile"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "nestjs-xion",
+          "stargazers": {
+            "totalCount": 1
+          },
+          "languages": {
+            "edges": [
+              {
+                "size": 39993,
+                "node": {
+                  "color": "#3178c6",
+                  "name": "TypeScript"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "zalo-dark",
+          "stargazers": {
+            "totalCount": 0
+          },
+          "languages": {
+            "edges": [
+              {
+                "size": 316,
+                "node": {
+                  "color": "#663399",
+                  "name": "CSS"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "miZyind",
+          "stargazers": {
+            "totalCount": 0
+          },
+          "languages": {
+            "edges": []
+          }
+        },
+        {
+          "name": "bevy_ui_animation",
+          "stargazers": {
+            "totalCount": 8
+          },
+          "languages": {
+            "edges": [
+              {
+                "size": 20533,
+                "node": {
+                  "color": "#dea584",
+                  "name": "Rust"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "Valheim-Mods",
+          "stargazers": {
+            "totalCount": 0
+          },
+          "languages": {
+            "edges": [
+              {
+                "size": 6870,
+                "node": {
+                  "color": "#178600",
+                  "name": "C#"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "AoE2-Mods",
+          "stargazers": {
+            "totalCount": 0
+          },
+          "languages": {
+            "edges": []
+          }
+        },
+        {
+          "name": "AppleScripts",
+          "stargazers": {
+            "totalCount": 1
+          },
+          "languages": {
+            "edges": []
+          }
+        },
+        {
+          "name": "7D2D-Mods",
+          "stargazers": {
+            "totalCount": 0
+          },
+          "languages": {
+            "edges": [
+              {
+                "size": 494,
+                "node": {
+                  "color": "#178600",
+                  "name": "C#"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "sd-webui-latent-couple",
+          "stargazers": {
+            "totalCount": 140
+          },
+          "languages": {
+            "edges": [
+              {
+                "size": 29194,
+                "node": {
+                  "color": "#3572A5",
+                  "name": "Python"
+                }
+              },
+              {
+                "size": 590,
+                "node": {
+                  "color": "#663399",
+                  "name": "CSS"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "iyes_progress",
+          "stargazers": {
+            "totalCount": 0
+          },
+          "languages": {
+            "edges": [
+              {
+                "size": 56214,
+                "node": {
+                  "color": "#dea584",
+                  "name": "Rust"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}
