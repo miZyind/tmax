@@ -16,6 +16,7 @@ const BG = '#1f2430';
 const BG_BOX = '#30363d';
 const FG_NATIVE = '#3182ce';
 const FG_FLUENT = '#e53e3e';
+const IGNORED_NODES = ['Mathematica', 'JavaScript', 'CSS'];
 
 export default async function handler(...[, res]: Handler) {
   const response = await fetcher<{ data?: typeof DATA }>(
@@ -33,9 +34,9 @@ export default async function handler(...[, res]: Handler) {
             openIssues: issues(states: OPEN) { totalCount }
             closedIssues: issues(states: CLOSED) { totalCount }
             repositories(first: 100, ownerAffiliations: OWNER) {
-              name
               totalCount
               nodes {
+                name
                 stargazers { totalCount }
                 languages(first: 10, orderBy: {field: SIZE, direction: DESC}) {
                   edges { size, node { color name } }
@@ -278,6 +279,7 @@ export default async function handler(...[, res]: Handler) {
                   data.repositories.nodes
                     .filter((node) => node.languages.edges.length)
                     .flatMap((node) => node.languages.edges)
+                    .filter((edge) => !IGNORED_NODES.includes(edge.node.name))
                     .reduce<Record<string, PLang | undefined>>(
                       (v, { node: { name, color }, size }) => (
                         (v[name] = {

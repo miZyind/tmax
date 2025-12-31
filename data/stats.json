@@ -19,7 +19,7 @@
       "totalCount": 13
     },
     "repositories": {
-      "totalCount": 22,
+      "totalCount": 31,
       "nodes": [
         {
           "name": "tmax",
@@ -29,7 +29,7 @@
           "languages": {
             "edges": [
               {
-                "size": 70317,
+                "size": 78840,
                 "node": {
                   "color": "#3178c6",
                   "name": "TypeScript"
@@ -275,6 +275,30 @@
           }
         },
         {
+          "name": "Singularity-Rust",
+          "stargazers": {
+            "totalCount": 0
+          },
+          "languages": {
+            "edges": [
+              {
+                "size": 80183,
+                "node": {
+                  "color": "#dea584",
+                  "name": "Rust"
+                }
+              },
+              {
+                "size": 494,
+                "node": {
+                  "color": "#ffcc33",
+                  "name": "Fluent"
+                }
+              }
+            ]
+          }
+        },
+        {
           "name": "bevy_ui_animation",
           "stargazers": {
             "totalCount": 8
@@ -327,6 +351,30 @@
           }
         },
         {
+          "name": "Singularity",
+          "stargazers": {
+            "totalCount": 0
+          },
+          "languages": {
+            "edges": [
+              {
+                "size": 45487,
+                "node": {
+                  "color": "#178600",
+                  "name": "C#"
+                }
+              },
+              {
+                "size": 39576,
+                "node": {
+                  "color": "#dd1100",
+                  "name": "Mathematica"
+                }
+              }
+            ]
+          }
+        },
+        {
           "name": "7D2D-Mods",
           "stargazers": {
             "totalCount": 0
@@ -365,6 +413,138 @@
                 }
               }
             ]
+          }
+        },
+        {
+          "name": "singty.ai",
+          "stargazers": {
+            "totalCount": 0
+          },
+          "languages": {
+            "edges": [
+              {
+                "size": 59065,
+                "node": {
+                  "color": "#3178c6",
+                  "name": "TypeScript"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "odin-api",
+          "stargazers": {
+            "totalCount": 0
+          },
+          "languages": {
+            "edges": [
+              {
+                "size": 322476,
+                "node": {
+                  "color": "#3178c6",
+                  "name": "TypeScript"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "odin-web",
+          "stargazers": {
+            "totalCount": 0
+          },
+          "languages": {
+            "edges": [
+              {
+                "size": 501454,
+                "node": {
+                  "color": "#3178c6",
+                  "name": "TypeScript"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "odin-app",
+          "stargazers": {
+            "totalCount": 0
+          },
+          "languages": {
+            "edges": [
+              {
+                "size": 160640,
+                "node": {
+                  "color": "#3178c6",
+                  "name": "TypeScript"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "jzpc",
+          "stargazers": {
+            "totalCount": 0
+          },
+          "languages": {
+            "edges": [
+              {
+                "size": 15389,
+                "node": {
+                  "color": "#3178c6",
+                  "name": "TypeScript"
+                }
+              },
+              {
+                "size": 1110,
+                "node": {
+                  "color": "#663399",
+                  "name": "CSS"
+                }
+              },
+              {
+                "size": 253,
+                "node": {
+                  "color": "#f1e05a",
+                  "name": "JavaScript"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "pipelinex",
+          "stargazers": {
+            "totalCount": 0
+          },
+          "languages": {
+            "edges": [
+              {
+                "size": 224048,
+                "node": {
+                  "color": "#3178c6",
+                  "name": "TypeScript"
+                }
+              },
+              {
+                "size": 154,
+                "node": {
+                  "color": "#f1e05a",
+                  "name": "JavaScript"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "singularity-branding",
+          "stargazers": {
+            "totalCount": 0
+          },
+          "languages": {
+            "edges": []
           }
         },
         {
