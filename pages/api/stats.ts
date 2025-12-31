@@ -33,6 +33,7 @@ export default async function handler(...[, res]: Handler) {
             openIssues: issues(states: OPEN) { totalCount }
             closedIssues: issues(states: CLOSED) { totalCount }
             repositories(first: 100, ownerAffiliations: OWNER) {
+              name
               totalCount
               nodes {
                 stargazers { totalCount }
