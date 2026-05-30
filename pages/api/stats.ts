@@ -19,12 +19,19 @@ const FG_FLUENT = '#e53e3e';
 const IGNORED_NODES = ['Mathematica', 'JavaScript', 'CSS'];
 
 export default async function handler(...[, res]: Handler) {
-  const response = await fetcher<{ data?: typeof DATA }>(
-    'https://api.github.com/graphql',
-    {
-      method: 'POST',
-      body: JSON.stringify({
-        query: `#graphql
+  // 用內建的 stats.json 當後備,確保 GitHub 慢/逾時/出錯時仍能立即回傳完整 SVG,
+  // 避免回源超過 Camo 代理的逾時而顯示破圖。
+  let data = DATA.user;
+
+  try {
+    const response = await fetcher<{ data?: typeof DATA }>(
+      'https://api.github.com/graphql',
+      {
+        method: 'POST',
+        // 限制回源時間(短於 Camo 的逾時),逾時就改用後備資料而非卡住整個請求。
+        signal: AbortSignal.timeout(2500),
+        body: JSON.stringify({
+          query: `#graphql
         query data($name: String!) {
           user(login: $name) {
             commits: contributionsCollection { totalCommitContributions }
@@ -46,17 +53,28 @@ export default async function handler(...[, res]: Handler) {
           }
         }
       `,
-        variables: { name: 'miZyind' },
-      }),
-      headers: {
-        Authorization: `Bearer ${Config.GH_TOKEN}`,
+          variables: { name: 'miZyind' },
+        }),
+        headers: {
+          Authorization: `Bearer ${Config.GH_TOKEN}`,
+        },
       },
-    },
-  );
-  const data = response.data ? response.data.user : DATA.user;
+    );
+
+    if (response.data) {
+      data = response.data.user;
+    }
+  } catch {
+    // 維持 data 為後備資料。
+  }
 
   res
-    .setHeader('Cache-Control', 'public, max-age=3600')
+    // stale-while-revalidate:max-age 過期後 CDN 先回舊圖(不阻塞、不破圖),
+    // 同時於背景回源更新,使用者永遠不會看到空白。
+    .setHeader(
+      'Cache-Control',
+      'public, max-age=3600, stale-while-revalidate=86400',
+    )
     .setHeader('Content-Type', 'image/svg+xml')
     .send(
       new XMLBuilder({
