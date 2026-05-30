@@ -110,7 +110,9 @@ function PriceChart({ className, code, prices, color }: Props) {
   const chart = useRef<Chart | null>(null);
 
   useEffect(() => {
-    if (!canvas.current) return;
+    if (!canvas.current) {
+      return;
+    }
 
     Chart.register(
       LineElement,
