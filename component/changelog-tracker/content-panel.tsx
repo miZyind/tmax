@@ -20,7 +20,6 @@ function ContentPanel({ className, title, content }: PanelProps<Props>) {
       <Divider />
       <div
         className='markdown-body'
-        // eslint-disable-next-line react/no-danger -- Necessary to decode markdown content
         dangerouslySetInnerHTML={decode(content)}
       />
     </div>

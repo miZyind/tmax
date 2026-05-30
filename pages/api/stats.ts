@@ -1,4 +1,4 @@
-/* eslint-disable no-sequences, @typescript-eslint/no-magic-numbers */
+/* eslint-disable no-sequences */
 import { XMLBuilder } from 'fast-xml-parser';
 import { orderBy, sumBy, take } from 'lodash';
 
