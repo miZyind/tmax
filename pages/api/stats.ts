@@ -19,12 +19,19 @@ const FG_FLUENT = '#e53e3e';
 const IGNORED_NODES = ['Mathematica', 'JavaScript', 'CSS'];
 
 export default async function handler(...[, res]: Handler) {
-  const response = await fetcher<{ data?: typeof DATA }>(
-    'https://api.github.com/graphql',
-    {
-      method: 'POST',
-      body: JSON.stringify({
-        query: `#graphql
+  // Use the bundled stats.json as fallback so a full SVG is returned right away even when GitHub is slow,
+  // times out or errors, instead of the origin fetch outliving Camo's timeout and showing a broken image.
+  let data = DATA.user;
+
+  try {
+    const response = await fetcher<{ data?: typeof DATA }>(
+      'https://api.github.com/graphql',
+      {
+        method: 'POST',
+        // Cap the origin fetch (shorter than Camo's timeout); on timeout fall back instead of stalling the request.
+        signal: AbortSignal.timeout(2500),
+        body: JSON.stringify({
+          query: `#graphql
         query data($name: String!) {
           user(login: $name) {
             commits: contributionsCollection { totalCommitContributions }
@@ -46,17 +53,28 @@ export default async function handler(...[, res]: Handler) {
           }
         }
       `,
-        variables: { name: 'miZyind' },
-      }),
-      headers: {
-        Authorization: `Bearer ${Config.GH_TOKEN}`,
+          variables: { name: 'miZyind' },
+        }),
+        headers: {
+          Authorization: `Bearer ${Config.GH_TOKEN}`,
+        },
       },
-    },
-  );
-  const data = response.data ? response.data.user : DATA.user;
+    );
+
+    if (response.data) {
+      data = response.data.user;
+    }
+  } catch {
+    // Keep data as the fallback.
+  }
 
   res
-    .setHeader('Cache-Control', 'public, max-age=3600')
+    // stale-while-revalidate: once max-age expires the CDN serves the stale image first (no blocking, no broken image)
+    // and revalidates in the background, so users never see a blank.
+    .setHeader(
+      'Cache-Control',
+      'public, max-age=3600, stale-while-revalidate=86400',
+    )
     .setHeader('Content-Type', 'image/svg+xml')
     .send(
       new XMLBuilder({
