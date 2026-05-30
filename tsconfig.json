@@ -2,42 +2,34 @@
   "include": ["**/*", ".next/types/**/*.ts"],
   "exclude": ["node_modules"],
   "compilerOptions": {
-    /* General */
+    "types": ["node"],
+    "lib": ["DOM"],
     "target": "ESNext",
     "module": "ESNext",
     "jsx": "react-jsx",
-    "strict": true,
+    "moduleResolution": "bundler",
+    "tsBuildInfoFile": ".next/tsconfig.tsbuildinfo",
     "allowJs": true,
     "incremental": true,
-    "lib": ["DOM", "DOM.Iterable", "ESNext"],
-    "plugins": [{ "name": "@styled/typescript-styled-plugin" }],
-    /* Modules: https://www.typescriptlang.org/tsconfig#Modules_6244 */
-    "baseUrl": ".",
+    "skipLibCheck": true,
+    "isolatedModules": true,
+    "esModuleInterop": true,
     "resolveJsonModule": true,
-    "moduleResolution": "bundler",
-    "paths": {
-      "#api/*": ["pages/api/*"],
-      "#component/*": ["component/*"],
-      "#context/*": ["context/*"],
-      "#data/*": ["data/*"],
-      "#icon/*": ["icon/*"],
-      "#lib/*": ["lib/*"],
-      "#singularity": ["public/singularity.js"]
-    },
-    /* Emit: https://www.typescriptlang.org/tsconfig#Emit_6246 */
+    "strict": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
     "noEmit": true,
-    "importHelpers": true,
-    "removeComments": true,
-    "preserveConstEnums": true,
-    /* Type Checking: https://www.typescriptlang.org/tsconfig#Type_Checking_6248 */
     "noUnusedLocals": true,
-    "noImplicitReturns": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    /* Interop Constraints: https://www.typescriptlang.org/tsconfig#Interop_Constraints_6252 */
-    "esModuleInterop": true,
-    "isolatedModules": true,
-    /* Completeness: https://www.typescriptlang.org/tsconfig#Completeness_6257 */
-    "skipLibCheck": true
+    "paths": {
+      "#api/*": ["./pages/api/*"],
+      "#component/*": ["./component/*"],
+      "#context/*": ["./context/*"],
+      "#data/*": ["./data/*"],
+      "#icon/*": ["./icon/*"],
+      "#lib/*": ["./lib/*"],
+      "#singularity": ["./public/singularity.js"]
+    }
   }
 }
