@@ -1,5 +1,5 @@
 /* eslint-disable no-sequences */
-import { XMLBuilder } from 'fast-xml-parser';
+import XMLBuilder from 'fast-xml-builder';
 import { orderBy, sumBy, take } from 'lodash';
 
 import DATA from '#data/stats.json';
