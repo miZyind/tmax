@@ -69,10 +69,20 @@ export default async function handler(...[, res]: Handler) {
   }
 
   res
-    // stale-while-revalidate: once max-age expires the CDN serves the stale image first (no blocking, no broken image)
-    // and revalidates in the background, so users never see a blank.
+    // Browser-side cache.
+    .setHeader('Cache-Control', 'public, max-age=3600')
+    // Netlify normalizes stale-while-revalidate out of the standard Cache-Control (in production
+    // only public,max-age=3600 survives), so the CDN-specific header is used to enable
+    // "durable + stale-while-revalidate": after expiry the CDN (Netlify edge and the downstream GitHub
+    // camo) serves the stale image and revalidates in the background, without waiting for a cold-start
+    // origin fetch that breaks the image on first GitHub Profile load. durable stores the response in Netlify's
+    // global durable cache, so it can be served without invoking the function again.
     .setHeader(
-      'Cache-Control',
+      'Netlify-CDN-Cache-Control',
+      'public, durable, max-age=3600, stale-while-revalidate=86400',
+    )
+    .setHeader(
+      'CDN-Cache-Control',
       'public, max-age=3600, stale-while-revalidate=86400',
     )
     .setHeader('Content-Type', 'image/svg+xml')
