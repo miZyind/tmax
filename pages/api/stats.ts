@@ -69,10 +69,20 @@ export default async function handler(...[, res]: Handler) {
   }
 
   res
-    // stale-while-revalidate:max-age 過期後 CDN 先回舊圖(不阻塞、不破圖),
-    // 同時於背景回源更新,使用者永遠不會看到空白。
+    // 瀏覽器端快取。
+    .setHeader('Cache-Control', 'public, max-age=3600')
+    // Netlify 會把 stale-while-revalidate 從標準 Cache-Control 正規化掉(實測線上
+    // 只剩 public,max-age=3600),因此改用 CDN 專屬 header 來啟用
+    // 「durable + stale-while-revalidate」:過期後由 CDN(Netlify 邊緣與下游 GitHub
+    // camo)先回舊圖、背景再回源更新,不必等冷啟動回源,避免 GitHub Profile
+    // 首次載入因 camo 逾時而破圖。durable 讓回應存入 Netlify 全域持久快取,
+    // 可不重新呼叫 function 即回應。
     .setHeader(
-      'Cache-Control',
+      'Netlify-CDN-Cache-Control',
+      'public, durable, max-age=3600, stale-while-revalidate=86400',
+    )
+    .setHeader(
+      'CDN-Cache-Control',
       'public, max-age=3600, stale-while-revalidate=86400',
     )
     .setHeader('Content-Type', 'image/svg+xml')
