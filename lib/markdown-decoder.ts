@@ -3,14 +3,17 @@ import 'highlight.js/styles/github-dark-dimmed.css';
 import hljs from 'highlight.js';
 import MarkdownIt from 'markdown-it';
 
-import type { Options, PluginSimple } from 'markdown-it';
+import type {
+  MarkdownIt as MarkdownItInstance,
+  MarkdownItOptions,
+} from 'markdown-it';
 
-const highlight: Options['highlight'] = (code, language) =>
+const highlight: MarkdownItOptions['highlight'] = (code, language) =>
   language && hljs.getLanguage(language)
     ? hljs.highlight(code, { language }).value
     : '';
 const options = { html: true, linkify: true, typographer: true, highlight };
-const GithubIssuePlugin: PluginSimple = (m) => {
+const GithubIssuePlugin = (m: MarkdownItInstance): void => {
   const INVALID_INDEX = -1;
   const TEXT_INDEX_OFFSET = 1;
 
