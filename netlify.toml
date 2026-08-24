@@ -22,3 +22,7 @@ included_files = [
   "node_modules/next/dist/server/future/route-modules/pages/vendored/contexts/router-context*",
   "node_modules/next/dist/server/future/route-modules/pages/vendored/contexts/head-manager-context*",
 ]
+
+# The scheduled function (netlify/functions/refresh-stats.ts) is TypeScript; bundle it explicitly with esbuild.
+[functions."refresh-stats"]
+node_bundler = "esbuild"

@@ -1,16 +1,16 @@
 {
   "user": {
     "commits": {
-      "totalCommitContributions": 0
+      "totalCommitContributions": 62
     },
     "repositoriesContributedTo": {
       "totalCount": 1
     },
     "pullRequests": {
-      "totalCount": 8
+      "totalCount": 9
     },
     "mergedPullRequests": {
-      "totalCount": 7
+      "totalCount": 8
     },
     "openIssues": {
       "totalCount": 1
@@ -19,17 +19,15 @@
       "totalCount": 13
     },
     "repositories": {
-      "totalCount": 31,
+      "totalCount": 47,
       "nodes": [
         {
           "name": "tmax",
-          "stargazers": {
-            "totalCount": 2
-          },
+          "stargazerCount": 2,
           "languages": {
             "edges": [
               {
-                "size": 78840,
+                "size": 80219,
                 "node": {
                   "color": "#3178c6",
                   "name": "TypeScript"
@@ -40,9 +38,7 @@
         },
         {
           "name": "loopnexts",
-          "stargazers": {
-            "totalCount": 2
-          },
+          "stargazerCount": 2,
           "languages": {
             "edges": [
               {
@@ -57,9 +53,7 @@
         },
         {
           "name": "vocabulazy-web",
-          "stargazers": {
-            "totalCount": 0
-          },
+          "stargazerCount": 0,
           "languages": {
             "edges": [
               {
@@ -74,18 +68,14 @@
         },
         {
           "name": "vscode-darkpp-regular",
-          "stargazers": {
-            "totalCount": 1
-          },
+          "stargazerCount": 1,
           "languages": {
             "edges": []
           }
         },
         {
           "name": "react-hirc",
-          "stargazers": {
-            "totalCount": 0
-          },
+          "stargazerCount": 0,
           "languages": {
             "edges": [
               {
@@ -100,13 +90,11 @@
         },
         {
           "name": "nestjs-demo",
-          "stargazers": {
-            "totalCount": 57
-          },
+          "stargazerCount": 55,
           "languages": {
             "edges": [
               {
-                "size": 45079,
+                "size": 45078,
                 "node": {
                   "color": "#3178c6",
                   "name": "TypeScript"
@@ -117,9 +105,7 @@
         },
         {
           "name": "ONI-Mods",
-          "stargazers": {
-            "totalCount": 11
-          },
+          "stargazerCount": 11,
           "languages": {
             "edges": [
               {
@@ -134,9 +120,7 @@
         },
         {
           "name": "deno-hctk",
-          "stargazers": {
-            "totalCount": 0
-          },
+          "stargazerCount": 0,
           "languages": {
             "edges": [
               {
@@ -151,13 +135,11 @@
         },
         {
           "name": "eslint-plugin-mizyind",
-          "stargazers": {
-            "totalCount": 0
-          },
+          "stargazerCount": 0,
           "languages": {
             "edges": [
               {
-                "size": 28314,
+                "size": 28608,
                 "node": {
                   "color": "#f1e05a",
                   "name": "JavaScript"
@@ -168,9 +150,7 @@
         },
         {
           "name": "Factorio-Mods",
-          "stargazers": {
-            "totalCount": 0
-          },
+          "stargazerCount": 0,
           "languages": {
             "edges": [
               {
@@ -185,9 +165,7 @@
         },
         {
           "name": "mattermost-plugin-sentry",
-          "stargazers": {
-            "totalCount": 2
-          },
+          "stargazerCount": 2,
           "languages": {
             "edges": [
               {
@@ -209,9 +187,7 @@
         },
         {
           "name": "saunter",
-          "stargazers": {
-            "totalCount": 0
-          },
+          "stargazerCount": 0,
           "languages": {
             "edges": [
               {
@@ -233,16 +209,21 @@
         },
         {
           "name": "nestjs-xion",
-          "stargazers": {
-            "totalCount": 1
-          },
+          "stargazerCount": 1,
           "languages": {
             "edges": [
               {
-                "size": 39993,
+                "size": 39991,
                 "node": {
                   "color": "#3178c6",
                   "name": "TypeScript"
+                }
+              },
+              {
+                "size": 63,
+                "node": {
+                  "color": "#f1e05a",
+                  "name": "JavaScript"
                 }
               }
             ]
@@ -250,9 +231,7 @@
         },
         {
           "name": "zalo-dark",
-          "stargazers": {
-            "totalCount": 0
-          },
+          "stargazerCount": 0,
           "languages": {
             "edges": [
               {
@@ -267,29 +246,25 @@
         },
         {
           "name": "miZyind",
-          "stargazers": {
-            "totalCount": 0
-          },
+          "stargazerCount": 0,
           "languages": {
             "edges": []
           }
         },
         {
           "name": "Singularity-Rust",
-          "stargazers": {
-            "totalCount": 0
-          },
+          "stargazerCount": 0,
           "languages": {
             "edges": [
               {
-                "size": 80183,
+                "size": 330346,
                 "node": {
                   "color": "#dea584",
                   "name": "Rust"
                 }
               },
               {
-                "size": 494,
+                "size": 9458,
                 "node": {
                   "color": "#ffcc33",
                   "name": "Fluent"
@@ -300,9 +275,7 @@
         },
         {
           "name": "bevy_ui_animation",
-          "stargazers": {
-            "totalCount": 8
-          },
+          "stargazerCount": 8,
           "languages": {
             "edges": [
               {
@@ -317,9 +290,7 @@
         },
         {
           "name": "Valheim-Mods",
-          "stargazers": {
-            "totalCount": 0
-          },
+          "stargazerCount": 0,
           "languages": {
             "edges": [
               {
@@ -334,27 +305,21 @@
         },
         {
           "name": "AoE2-Mods",
-          "stargazers": {
-            "totalCount": 0
-          },
+          "stargazerCount": 0,
           "languages": {
             "edges": []
           }
         },
         {
           "name": "AppleScripts",
-          "stargazers": {
-            "totalCount": 1
-          },
+          "stargazerCount": 1,
           "languages": {
             "edges": []
           }
         },
         {
           "name": "Singularity",
-          "stargazers": {
-            "totalCount": 0
-          },
+          "stargazerCount": 0,
           "languages": {
             "edges": [
               {
@@ -376,9 +341,7 @@
         },
         {
           "name": "7D2D-Mods",
-          "stargazers": {
-            "totalCount": 0
-          },
+          "stargazerCount": 0,
           "languages": {
             "edges": [
               {
@@ -393,9 +356,7 @@
         },
         {
           "name": "sd-webui-latent-couple",
-          "stargazers": {
-            "totalCount": 140
-          },
+          "stargazerCount": 139,
           "languages": {
             "edges": [
               {
@@ -417,9 +378,7 @@
         },
         {
           "name": "singty.ai",
-          "stargazers": {
-            "totalCount": 0
-          },
+          "stargazerCount": 0,
           "languages": {
             "edges": [
               {
@@ -434,9 +393,7 @@
         },
         {
           "name": "odin-api",
-          "stargazers": {
-            "totalCount": 0
-          },
+          "stargazerCount": 0,
           "languages": {
             "edges": [
               {
@@ -451,13 +408,11 @@
         },
         {
           "name": "odin-web",
-          "stargazers": {
-            "totalCount": 0
-          },
+          "stargazerCount": 0,
           "languages": {
             "edges": [
               {
-                "size": 501454,
+                "size": 501846,
                 "node": {
                   "color": "#3178c6",
                   "name": "TypeScript"
@@ -468,13 +423,11 @@
         },
         {
           "name": "odin-app",
-          "stargazers": {
-            "totalCount": 0
-          },
+          "stargazerCount": 0,
           "languages": {
             "edges": [
               {
-                "size": 160640,
+                "size": 161032,
                 "node": {
                   "color": "#3178c6",
                   "name": "TypeScript"
@@ -485,9 +438,7 @@
         },
         {
           "name": "jzpc",
-          "stargazers": {
-            "totalCount": 0
-          },
+          "stargazerCount": 0,
           "languages": {
             "edges": [
               {
@@ -516,13 +467,11 @@
         },
         {
           "name": "pipelinex",
-          "stargazers": {
-            "totalCount": 0
-          },
+          "stargazerCount": 0,
           "languages": {
             "edges": [
               {
-                "size": 224048,
+                "size": 225164,
                 "node": {
                   "color": "#3178c6",
                   "name": "TypeScript"
@@ -540,18 +489,14 @@
         },
         {
           "name": "singularity-branding",
-          "stargazers": {
-            "totalCount": 0
-          },
+          "stargazerCount": 0,
           "languages": {
             "edges": []
           }
         },
         {
           "name": "iyes_progress",
-          "stargazers": {
-            "totalCount": 0
-          },
+          "stargazerCount": 0,
           "languages": {
             "edges": [
               {
@@ -559,6 +504,399 @@
                 "node": {
                   "color": "#dea584",
                   "name": "Rust"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "ctcvn",
+          "stargazerCount": 0,
+          "languages": {
+            "edges": [
+              {
+                "size": 795934,
+                "node": {
+                  "color": "#3178c6",
+                  "name": "TypeScript"
+                }
+              },
+              {
+                "size": 23809,
+                "node": {
+                  "color": "#f1e05a",
+                  "name": "JavaScript"
+                }
+              },
+              {
+                "size": 3129,
+                "node": {
+                  "color": "#663399",
+                  "name": "CSS"
+                }
+              },
+              {
+                "size": 765,
+                "node": {
+                  "color": "#89e051",
+                  "name": "Shell"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "pc-api",
+          "stargazerCount": 0,
+          "languages": {
+            "edges": [
+              {
+                "size": 241254,
+                "node": {
+                  "color": "#3178c6",
+                  "name": "TypeScript"
+                }
+              },
+              {
+                "size": 39876,
+                "node": {
+                  "color": "#f1e05a",
+                  "name": "JavaScript"
+                }
+              },
+              {
+                "size": 39048,
+                "node": {
+                  "color": "#3572A5",
+                  "name": "Python"
+                }
+              },
+              {
+                "size": 3187,
+                "node": {
+                  "color": "#89e051",
+                  "name": "Shell"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "dd-live-report",
+          "stargazerCount": 0,
+          "languages": {
+            "edges": [
+              {
+                "size": 52884,
+                "node": {
+                  "color": "#f1e05a",
+                  "name": "JavaScript"
+                }
+              },
+              {
+                "size": 25167,
+                "node": {
+                  "color": "#663399",
+                  "name": "CSS"
+                }
+              },
+              {
+                "size": 620,
+                "node": {
+                  "color": "#e34c26",
+                  "name": "HTML"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "southern-cross",
+          "stargazerCount": 0,
+          "languages": {
+            "edges": [
+              {
+                "size": 109348,
+                "node": {
+                  "color": "#f1e05a",
+                  "name": "JavaScript"
+                }
+              },
+              {
+                "size": 34388,
+                "node": {
+                  "color": "#663399",
+                  "name": "CSS"
+                }
+              },
+              {
+                "size": 107,
+                "node": {
+                  "color": "#3178c6",
+                  "name": "TypeScript"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "domdom-live-report",
+          "stargazerCount": 0,
+          "languages": {
+            "edges": [
+              {
+                "size": 88889,
+                "node": {
+                  "color": "#f1e05a",
+                  "name": "JavaScript"
+                }
+              },
+              {
+                "size": 35856,
+                "node": {
+                  "color": "#663399",
+                  "name": "CSS"
+                }
+              },
+              {
+                "size": 107,
+                "node": {
+                  "color": "#3178c6",
+                  "name": "TypeScript"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "lovarie",
+          "stargazerCount": 0,
+          "languages": {
+            "edges": [
+              {
+                "size": 147429,
+                "node": {
+                  "color": "#f1e05a",
+                  "name": "JavaScript"
+                }
+              },
+              {
+                "size": 1631,
+                "node": {
+                  "color": "#663399",
+                  "name": "CSS"
+                }
+              },
+              {
+                "size": 107,
+                "node": {
+                  "color": "#3178c6",
+                  "name": "TypeScript"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "lovarie-rust",
+          "stargazerCount": 0,
+          "languages": {
+            "edges": [
+              {
+                "size": 125344,
+                "node": {
+                  "color": "#dea584",
+                  "name": "Rust"
+                }
+              },
+              {
+                "size": 3389,
+                "node": {
+                  "color": "#663399",
+                  "name": "CSS"
+                }
+              },
+              {
+                "size": 1012,
+                "node": {
+                  "color": "#e34c26",
+                  "name": "HTML"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "hackmd",
+          "stargazerCount": 0,
+          "languages": {
+            "edges": [
+              {
+                "size": 9690,
+                "node": {
+                  "color": "#dea584",
+                  "name": "Rust"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "singularity-genesis",
+          "stargazerCount": 0,
+          "languages": {
+            "edges": [
+              {
+                "size": 3555779,
+                "node": {
+                  "color": "#dea584",
+                  "name": "Rust"
+                }
+              },
+              {
+                "size": 17598,
+                "node": {
+                  "color": "#89e051",
+                  "name": "Shell"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "hack",
+          "stargazerCount": 0,
+          "languages": {
+            "edges": [
+              {
+                "size": 667,
+                "node": {
+                  "color": "#384d54",
+                  "name": "Dockerfile"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "installrecon",
+          "stargazerCount": 0,
+          "languages": {
+            "edges": [
+              {
+                "size": 38333,
+                "node": {
+                  "color": "#f1e05a",
+                  "name": "JavaScript"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "claude-skills",
+          "stargazerCount": 0,
+          "languages": {
+            "edges": []
+          }
+        },
+        {
+          "name": "pc-stats",
+          "stargazerCount": 0,
+          "languages": {
+            "edges": [
+              {
+                "size": 39698,
+                "node": {
+                  "color": "#3178c6",
+                  "name": "TypeScript"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "nihon",
+          "stargazerCount": 0,
+          "languages": {
+            "edges": [
+              {
+                "size": 92661,
+                "node": {
+                  "color": "#f1e05a",
+                  "name": "JavaScript"
+                }
+              },
+              {
+                "size": 54930,
+                "node": {
+                  "color": "#663399",
+                  "name": "CSS"
+                }
+              },
+              {
+                "size": 107,
+                "node": {
+                  "color": "#3178c6",
+                  "name": "TypeScript"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "weilung",
+          "stargazerCount": 0,
+          "languages": {
+            "edges": [
+              {
+                "size": 130914,
+                "node": {
+                  "color": "#f1e05a",
+                  "name": "JavaScript"
+                }
+              },
+              {
+                "size": 28561,
+                "node": {
+                  "color": "#663399",
+                  "name": "CSS"
+                }
+              },
+              {
+                "size": 107,
+                "node": {
+                  "color": "#3178c6",
+                  "name": "TypeScript"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "pmh-lifestyle-map",
+          "stargazerCount": 0,
+          "languages": {
+            "edges": [
+              {
+                "size": 70846,
+                "node": {
+                  "color": "#f1e05a",
+                  "name": "JavaScript"
+                }
+              },
+              {
+                "size": 30795,
+                "node": {
+                  "color": "#663399",
+                  "name": "CSS"
+                }
+              },
+              {
+                "size": 107,
+                "node": {
+                  "color": "#3178c6",
+                  "name": "TypeScript"
                 }
               }
             ]

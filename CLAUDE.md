@@ -25,13 +25,13 @@ yarn clean   # rm -rf .next
 
 - **Path aliases** (tsconfig `paths`) — always import via these, never relative paths across dirs:
   `#api/*`, `#component/*`, `#context/*`, `#data/*`, `#icon/*`, `#lib/*`, `#singularity`.
-- **Routing** is the Pages Router (`pages/`): `index.tsx` (hexind hub), `changelog-tracker.tsx`, `singularity.tsx` (Unity WebGL game). API routes live in `pages/api/` (`get-changelogs`, `get-prices`, `stats`, `oauth/callback`, `oauth/sign-out`).
+- **Routing** is the Pages Router (`pages/`): `index.tsx` (hexind hub), `changelog-tracker.tsx`, `singularity.tsx` (Unity WebGL game). API routes live in `pages/api/` (`get-changelogs`, `get-prices`, `stats`, `oauth/callback`, `oauth/sign-out`). Netlify scheduled functions live in `netlify/functions/` — they are bundled by Netlify's esbuild, not Next, so they use relative imports instead of `#` aliases.
 - **Provider stack** in `pages/_app.tsx`: `StyleSheetManager` → `ThemeProvider` → `SWRConfig` (global `fetcher` from `#lib/fetcher`) → `BlueprintProvider`. Pages receive `className={Classes.DARK}` (app is dark-themed). `_document.tsx` does SSR collection of styled-components via `ServerStyleSheet`.
 
 ### Data fetching
 - **Client side**: SWR with the global `fetcher` (typed: `fetcher<T>`). Hit internal `/api/*` routes.
 - **Server side**: `getServerSideProps` wrapped in `withPageTransitionDelay` from `#lib/hoc`. This HOC delays the response by `PAGE_TRANSITION_DELAY` (1000ms) before running the optional inner `getServerSideProps`, so the page-transition animation stays visible — wrap any new page's `getServerSideProps` with it for consistency.
-- API routes return JSON and integrate external sources: GitHub API (changelogs, stats SVG), and Vietnamese market price feeds (gold + stocks, codes in `Code` enum). `data/stats.json` is the fallback for the stats route.
+- API routes return JSON and integrate external sources: GitHub API (changelogs, stats SVG), and Vietnamese market price feeds (gold + stocks, codes in `Code` enum). The stats route (`pages/api/stats.ts`) does **not** call GitHub on the request path: `netlify/functions/refresh-stats.ts` (Netlify scheduled function, hourly) fetches GitHub GraphQL via `#lib/stats` and writes to Netlify Blobs (store `stats`, key `user`); the route reads that blob (2s cap, strict shape validation) and falls back to `data/stats.json`. The `X-Stats-Source` response header (`blob` / `fallback`) tells which one was served. Never let this route return 500 — GitHub camo renders any non-200 as a broken image.
 
 ### Styling
 - **styled-components** only (compiler plugin enabled in `next.config.ts`); no CSS files except imported vendor CSS in `_app.tsx`. `shouldForwardProp` is globally `true`.
@@ -50,4 +50,4 @@ yarn clean   # rm -rf .next
 
 ## Environment
 
-Copy `.env.example` → `.env`. Server-only secrets: `GH_CLIENT_SECRET`, `GH_TOKEN`. Public: `NEXT_PUBLIC_GA_ID`, `NEXT_PUBLIC_GH_CLIENT_ID`, `NEXT_PUBLIC_GH_REDIRECT_URI`. Deploy is Netlify (`netlify.toml`, `@netlify/plugin-nextjs`).
+Copy `.env.example` → `.env`. Server-only secrets: `GH_CLIENT_SECRET`, `GH_TOKEN`. `GH_TOKEN` is a fine-grained PAT: query `stargazerCount`, never the `stargazers` connection (FORBIDDEN → null repository nodes). Public: `NEXT_PUBLIC_GA_ID`, `NEXT_PUBLIC_GH_CLIENT_ID`, `NEXT_PUBLIC_GH_REDIRECT_URI`. Deploy is Netlify (`netlify.toml`, `@netlify/plugin-nextjs`).

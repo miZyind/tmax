@@ -22,6 +22,7 @@
   "packageManager": "yarn@1.22.22",
   "dependencies": {
     "@blueprintjs/core": "^6.18.0",
+    "@netlify/blobs": "^11.0.1",
     "chart.js": "^4.5.1",
     "cookies-next": "^6.1.1",
     "date-fns": "^4.4.0",
@@ -40,6 +41,7 @@
     "@blueprintjs/eslint-plugin": "^6.2.1",
     "@commitlint/cli": "^21.2.1",
     "@commitlint/config-conventional": "^21.2.0",
+    "@netlify/functions": "^6.0.0",
     "@netlify/plugin-nextjs": "^5.15.13",
     "@styled/typescript-styled-plugin": "^1.0.1",
     "@types/lodash": "^4.17.25",
