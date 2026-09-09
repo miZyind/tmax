@@ -3,6 +3,7 @@ import '@blueprintjs/core/lib/css/blueprint.css';
 import '@blueprintjs/icons/lib/css/blueprint-icons.css';
 
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 import Script from 'next/script';
 import {
   StyleSheetManager,
@@ -19,7 +20,7 @@ import {
 
 import PageTransition from '#component/page-transition';
 import Config from '#lib/config';
-import { SITE_TITLE } from '#lib/constant';
+import { SITE_TITLE, SITE_URL } from '#lib/constant';
 import fetcher from '#lib/fetcher';
 import theme from '#lib/theme';
 
@@ -35,6 +36,9 @@ FocusStyleManager.onlyShowFocusOnTabs();
 
 export default function App({ Component, pageProps }: AppProps) {
   const { GA_ID } = Config;
+  const { asPath } = useRouter();
+  // Strip query and hash so the http, www and ?dialog= variants all point to the same https canonical URL.
+  const canonicalUrl = `${SITE_URL}${asPath.split(/[?#]/u)[0]}`;
 
   return (
     <>
@@ -42,6 +46,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <meta name='viewport' content='width=device-width, initial-scale=1.0' />
         <title>{SITE_TITLE}</title>
         <meta name='description' content={SITE_TITLE} />
+        <link rel='canonical' href={canonicalUrl} />
       </Head>
       <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} />
       <Script id='google-analytics'>

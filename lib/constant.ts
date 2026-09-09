@@ -7,6 +7,7 @@ export const CHANGELOG_TRACKING_LIST = [
   'netlify/netlify-plugin-nextjs',
   'semantic-release/semantic-release',
 ];
+export const SITE_URL = 'https://mizyind.dev';
 export const SITE_TITLE = 'Turbulent miZyind at Xion';
 export const TRACKER_TITLE = `Changelog Tracker`;
 export const TRACKER_DESC = `This is a simple utility that you can use to track the changelogs for npm packages easily.`;
