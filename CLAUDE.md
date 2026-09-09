@@ -51,3 +51,13 @@ yarn clean   # rm -rf .next
 ## Environment
 
 Copy `.env.example` → `.env`. Server-only secrets: `GH_CLIENT_SECRET`, `GH_TOKEN`. `GH_TOKEN` is a fine-grained PAT: query `stargazerCount`, never the `stargazers` connection (FORBIDDEN → null repository nodes). Public: `NEXT_PUBLIC_GA_ID`, `NEXT_PUBLIC_GH_CLIENT_ID`, `NEXT_PUBLIC_GH_REDIRECT_URI`. Deploy is Netlify (`netlify.toml`, `@netlify/plugin-nextjs`).
+
+<!-- BEGIN:nextjs-agent-rules -->
+
+# This is NOT the Next.js you know
+
+This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
+
+This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
+
+<!-- END:nextjs-agent-rules -->
