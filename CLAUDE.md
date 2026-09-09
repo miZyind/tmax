@@ -16,7 +16,7 @@ yarn lint    # eslint with --max-warnings 0 (must be clean)
 yarn clean   # rm -rf .next
 ```
 
-- Package manager is **yarn 1.x** (`packageManager: yarn@1.22.22`); Node `>=22`.
+- Package manager is **yarn 1.x** (`packageManager: yarn@1.22.22`); Node `>=24`.
 - There is **no test framework** in this repo.
 - Lint a single file: `yarn eslint path/to/file.tsx --max-warnings 0`.
 - Pre-commit (husky + lint-staged) runs eslint on staged `*.{ts,tsx}`; commit messages are enforced by **commitlint (conventional commits)** — use `feat:`, `fix:`, `chore:`, `ci:`, etc.

@@ -16,7 +16,7 @@
     "start": "next start"
   },
   "engines": {
-    "node": ">=22",
+    "node": ">=24",
     "yarn": ">=1.22.19"
   },
   "packageManager": "yarn@1.22.22",
