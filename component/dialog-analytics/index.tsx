@@ -6,10 +6,9 @@ import { Classes, Colors, Dialog, Spinner } from '@blueprintjs/core';
 import { usePrices } from '#api/get-prices';
 import { Name, useDialogs } from '#context/dialogs';
 import AnalyticsIcon from '#icon/analytics';
+import { Code } from '#lib/constant';
 
 import PriceChart from './price-chart';
-
-import type { Code } from '#lib/constant';
 
 const DIALOG = Name.Analytics;
 const CHARTS_RENDER_DELAY = 500;
@@ -48,11 +47,11 @@ function DialogAnalytics({ className }: StyledProps) {
       >
         <div className={Classes.DIALOG_BODY}>
           {data
-            ? Object.entries(data).map(([code, prices], index) => (
+            ? Object.values(Code).map((code, index) => (
                 <PriceChart
                   key={code}
-                  code={code as Code}
-                  prices={prices}
+                  code={code}
+                  prices={data[code]}
                   color={colors[index]}
                 />
               ))
