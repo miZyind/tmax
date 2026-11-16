@@ -68,7 +68,7 @@ function Hexagon({
             rotate: 90,
             repeat: 1,
             yoyo: true,
-            yoyoEase: Expo.easeOut,
+            easeReverse: Expo.easeOut,
           })
           .to(ref.current, {
             ...getPos(),
