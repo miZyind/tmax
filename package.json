@@ -50,10 +50,13 @@
     "@types/react-dom": "^19.3.0",
     "baseline-browser-mapping": "^2.11.37",
     "eslint": "^10.15.0",
-    "eslint-plugin-mizyind": "^9.0.9",
+    "eslint-plugin-mizyind": "^9.0.10",
     "husky": "^9.1.7",
     "lint-staged": "^17.6.1",
     "typescript": "^6.0.3"
+  },
+  "resolutions": {
+    "**/@typescript-eslint/typescript-estree/minimatch": "^11.0.8"
   },
   "prettier": {
     "singleQuote": true,

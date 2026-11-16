@@ -16,7 +16,7 @@ interface Context {
   dispatch: Dispatch<Action>;
 }
 
-const dialogs = Object.values(Name);
+const dialogs: string[] = Object.values(Name);
 const initialState = Object.fromEntries(dialogs.map((name) => [name, false]));
 const reducer = (state: State, [n, v]: Action) => ({ ...state, [n]: v });
 const DialogsContext = createContext({} as Context);
@@ -26,7 +26,7 @@ export function DialogsProvider({ children }: { children: ReactNode }) {
   const { query } = useRouter();
   const routerState =
     typeof query.dialog === 'string' &&
-    dialogs.includes(query.dialog.toUpperCase() as Name)
+    dialogs.includes(query.dialog.toUpperCase())
       ? { [query.dialog.toUpperCase()]: true }
       : {};
   const [state, dispatch] = useReducer(reducer, {
